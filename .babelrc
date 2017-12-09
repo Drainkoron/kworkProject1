@@ -1,0 +1,13 @@
+{
+    "presets": ["env", "react"],
+    "plugins": ["react-hot-loader/babel", 
+        "transform-decorators-legacy",
+        "transform-class-properties",
+        "syntax-dynamic-import",
+        ["import", {
+            "libraryName": "antd",
+            "libraryDirectory": "es",
+            "style": true
+        }]
+    ]
+}
