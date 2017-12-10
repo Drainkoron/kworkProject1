@@ -1,0 +1,138 @@
+Установка постгрес
+
+sudo apt-get update
+sudo apt-get install postgresql postgresql-contrib
+
+>>> Оболочка PostgreSQL
+
+    sudo su - postgres
+
+>>> Доступы к базам
+
+export PATH=/Library/PostgreSQL/9.5/bin:$PATH
+
+	orange
+	psql -h localhost orange admin
+	712283
+
+	Local
+	psql -h localhost postgres postgres
+	root	
+
+	Credit
+	psql -h localhost designer admin  
+	712283
+
+	JCRM - local
+	psql -h localhost jcrm admin  
+	712283
+
+	JATA
+	psql -h 95.213.194.234 jata jata_read
+	VLxMuhLzePHJLUyC2pfL
+
+
+Команды psql
+
+    \c dbname - подсоединение к БД dbname.
+    \l - список баз данных.
+    \dt - список всех таблиц.
+    \d table - структура таблицы table.
+    \du - список всех пользователей и их привилегий.
+    \dt+ - список всех таблиц с описанием.
+    \dt *s* - список всех таблиц, содержащих s в имени.
+    \i FILE - выполнить команды из файла FILE.
+    \o FILE - сохранить результат запроса в файл FILE.
+    \a - переключение между режимами вывода: с/без выравнивания.
+
+создаём базу
+
+	create database jcrm;
+	CREATE USER admin WITH password '712283';
+	GRANT ALL privileges ON DATABASE designer TO admin;
+
+создаём таблицу
+
+	CREATE TABLE users2 (id SERIAL PRIMARY KEY, doc json);
+
+
+Примеры запросов
+
+	$query = "SELECT * FROM customer WHERE (doc->>'status') LIKE '%$type%' 
+								AND (doc::text) ILIKE '%$name%' 
+								AND (doc->>'sub_person') ILIKE '%$person%' 
+								ORDER BY (doc->>'$by') ASC LIMIT $limit OFFSET $offset";
+
+
+
+
+client.query(`SELECT (doc) FROM remontnik_page WHERE id = ${page_num}`);
+client.query(`SELECT * FROM works WHERE (doc->>'page') = '${service_list[request_count].page}' 
+                                                                                        AND (doc->>'name') = '${service_list[request_count].name}'`);
+client.query(`SELECT * FROM remontnik_page WHERE (doc->>'href') = '${list_page[request_count].href}'`);
+client.query(`INSERT INTO remontnik_page (doc) VALUES ('${doc}')`);
+
+$query = "SELECT * FROM $name ORDER BY (doc->>'$by') ASC LIMIT $limit OFFSET $offset";
+
+
+$query = "SELECT * FROM company WHERE (doc->'primary'->>'name') ILIKE '%$name%'  
+								AND (doc->>'object') ILIKE '%$address%'
+								AND (doc->'status'->>'step') IN $step
+								ORDER BY (doc->'primary'->>'$by') ASC LIMIT $limit OFFSET $offset";
+
+
+$query = "SELECT * FROM orders WHERE CAST(id AS TEXT) LIKE '%$id%'
+								AND	(doc->'primary'->>'status') LIKE '%$status%' 
+								AND (doc->>'customer') ILIKE '%$order%' 
+								AND (doc->>'service') ILIKE '%$service%' 
+								AND (doc->'primary'->>'user_fio') LIKE '%$user_fio%' 
+								AND (doc->'primary'->>'date') BETWEEN '$date_start' AND '$date_stop'
+								ORDER BY (doc->'primary'->>'$by') DESC LIMIT $limit OFFSET $offset";
+
+$query = "WITH service_rows AS(SELECT json_array_elements(doc->'service') AS doc FROM orders WHERE json_array_length(doc->'service') > 0)
+			SELECT doc, doc->>'id' as id FROM service_rows WHERE (doc->>'name') ILIKE '%$name%'
+										AND (doc->>'status') LIKE '%$status%'
+										ORDER BY (doc->>'$by') ASC LIMIT $limit OFFSET $offset";
+
+$query_count = "WITH service_rows AS(SELECT json_array_elements(doc->'service') AS doc FROM orders WHERE json_array_length(doc->'service') > 0)
+			SELECT * FROM service_rows";
+
+$query = "WITH service_rows AS(SELECT json_array_elements(doc->'service') AS doc FROM orders WHERE json_array_length(doc->'service') > 0)
+			SELECT doc, doc->>'id' as id FROM service_rows WHERE (doc->>'name') ILIKE '%$name%'
+										AND (doc->>'status') LIKE '%$status%'
+										ORDER BY (doc->>'$by') ASC LIMIT $limit OFFSET $offset";
+
+ var requestString = `WITH users_rows AS(SELECT json_array_elements(doc->'users') AS doc 
+                            FROM profile WHERE json_array_length(doc->'users') > 0) 
+                                SELECT doc FROM users_rows 
+                                    WHERE (doc->>'email') LIKE '${data.email}' 
+                                    AND (doc->>'password') LIKE '${data.password}'`;  
+
+ //var driver = `SELECT * FROM account_driver WHERE user_id in (SELECT id FROM auth_user WHERE date_joined > '2016-01-31 13:40')`;
+
+SELECT *  FROM "account_driver" INNER JOIN "auth_user" ON ("account_driver"."user_id" = "auth_user"."id") WHERE "auth_user"."date_joined" > 2016-01-31 13:40:00+03:00
+
+
+    var potentialdriver = `SELECT * FROM base_potentialdriver WHERE date_create > '${utcDate}'`;
+    // var driver = `WITH driver AS(SELECT * FROM account_driver INNER JOIN auth_user ON account_driver.user_id = auth_user.id)
+    //                 SELECT * FROM driver WHERE date_joined > '2017-01-31 13:40'`;
+
+    var driver = `SELECT "account_driver"."first_name",
+                            "account_driver"."last_name",
+                            "account_driver"."middle_name", 
+                            "account_driver"."driver_verified",
+                            "account_driver"."phone",
+                            "auth_user"."date_joined",
+                            "auth_user"."email"
+                                 FROM account_driver LEFT JOIN auth_user ON account_driver.user_id = auth_user.id
+                                    WHERE auth_user.date_joined > '${localDate}'`;
+    var requestObject = [];
+
+
+    //  var requestString = `WITH users_rows AS(SELECT json_array_elements(doc->'users') AS doc 
+    //                         FROM profile WHERE json_array_length(doc->'users') > 0) 
+    //                             SELECT doc FROM users_rows 
+    //                                 WHERE (doc->>'email') LIKE '${data.email}' 
+    //                                 AND (doc->>'password') LIKE '${data.password}'`;  
+
+

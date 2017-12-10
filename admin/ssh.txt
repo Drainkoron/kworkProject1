@@ -1,0 +1,59 @@
+// 
+
+pass wd
+
+cs .ssh
+ls
+known_hosts
+
+смотрим ключ если есть
+ls ~/.ssh/*.pub
+
+читаем ключ
+cat ~/.ssh/id_rsa.pub
+
+создали ключи если нет
+
+	ssh-keygen -t dsa
+
+перешли в .ssh на локале
+
+на сервере создали ssh
+
+	host$ mkdir ~/.ssh
+	host$ chown -R user:user ~/.ssh/
+	host$ chmod 700 ~/.ssh/
+
+отключаемся ~.
+
+переходим 
+
+	cd .ssh
+
+копируем ключ c локала на сервер
+
+$ cat ~/.ssh/id_rsa.pub | ssh root@81.177.143.244 'cat >> ~/.ssh/authorized_keys'
+
+ключ должен попросить код
+
+Если ключ слетел
+
+агент
+eval `ssh-agent -s`
+ssh-add
+
+КонфигБезопасность
+
+PermitRootLogin yes / no
+
+# Change to no to disable tunnelled clear text passwords
+PasswordAuthentication no
+AllowUsers vinil / разрещённый юзер
+
+ssh_copy_id
+
+в гит копируем публичный ключ
+
+
+
+

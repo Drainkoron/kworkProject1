@@ -24,37 +24,3 @@ export default function getListTablePg() {
     res.send(rows[0])
 
 }
-
-// export default function getListTablePg() {
-
-//     var requestString = `SELECT * FROM orders WHERE id = ${id}`;
-
-//     return new Promise(function(resolve, reject) {
-//         clientSql().then((client) => {
-
-//             client.query(requestString).then((result) => {
-//                 if(result.rowCount != 0) {
-//                     resultRequest.success(result.rows[0]);
-//                 } else {
-//                     resultRequest.error(errorNoneData);
-//                 }
-                    
-//             }, (error) => {
-//                 resultRequest.error(errorRequest);
-//             });
-
-//             var resultRequest = {
-//                 success(val) {
-//                     client.end();
-//                     resolve(val);
-//                 },
-//                 error(val) {
-//                     client.end();
-//                     reject(val);
-//                 }
-//             }
-//         }, (error) => {
-//             reject(error);
-//         })    
-//     })
-// }

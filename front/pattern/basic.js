@@ -1,7 +1,7 @@
 import { observable, computed, action, toJS, intercept } from 'mobx'
 
 import { message } from 'antd';
-import { MessageConfig } from '../../app_constants'
+import { MessageConfig } from '../app_constants'
 message.config(MessageConfig)
 
 class Basic {

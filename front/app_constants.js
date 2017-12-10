@@ -1,5 +1,5 @@
 const zone = 'box'
-export const URL = `https://${zone}.dev-base.ru`
+export const URL = `http://localhost:8000`
 // export const API = `https://${zone}.dev-base.ru/api/v1`
 // export const WS = `wss://${zone}.dev-base.ru/ws`
 export const MessageConfig = {

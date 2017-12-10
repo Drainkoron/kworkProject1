@@ -1,0 +1,40 @@
+top - процессы
+
+ps aux | grep node
+
+kill id
+
+Папки
+
+rm -rf node_modules
+
+
+
+Обновление пакетов 
+
+sudo apt-get update
+
+sudo apt-get install git
+sudo apt-get install curl
+
+
+Пароль на рут
+
+passwd
+
+
+Добавить пользователя
+
+adduser
+passwd
+
+
+
+после установки
+
+sudo apt install aptitude
+sudo aptitude update
+sudo aptitude full-upgrade
+
+
+sudo aptitude install nginx

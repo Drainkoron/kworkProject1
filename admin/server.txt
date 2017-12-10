@@ -1,0 +1,15 @@
+fail2ban
+
+nano /etc/fail2ban/jail.conf
+
+fail2ban-client reload
+
+service fail2ban restart
+
+service fail2ban status
+
+Астериск
+
+fail2ban-client set asterisk banip 123.456.789.001
+fail2ban-client status asterisk
+

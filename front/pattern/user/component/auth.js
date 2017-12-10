@@ -22,7 +22,7 @@ class Auth extends Component {
 		this.props.mainStore[name](params)
 	}
 	componentWillMount() {
-		
+		console.log('auth init')
 	}
 	componentWillReceiveProps(nextProps) {
 
@@ -33,8 +33,8 @@ class Auth extends Component {
 						style={{width: '350px', margin: '5% auto'}}>
 				<Form className="login-form">
 					<Form.Item>
-						<Input prefix={<Icon type="mail" style={{ fontSize: 13 }} />}  
-								{...scheme.email.elem}/>
+						<Input prefix={<Icon type="user" style={{ fontSize: 13 }} />}  
+								{...scheme.login.elem}/>
 					</Form.Item>
 					<Form.Item>
 						<Input prefix={<Icon type="lock" style={{ fontSize: 13 }} />}
@@ -47,7 +47,7 @@ class Auth extends Component {
 						<a style={{float: 'right'}}>восстановить пароль</a>
 						<Button type="primary" 
 								htmlType="submit" 
-								style={{width: '100%'}}
+								style={{width: '100%', marginTop: '20px'}}
 								onClick={() => this.self('validate')}>
 							Войти
 						</Button>

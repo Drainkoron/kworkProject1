@@ -8,11 +8,11 @@ import {
 
 import { Provider } from 'mobx-react';
 
-import mainStore from './store/main_store.js'
+import mainStore from './user/main_store.js'
 
 const store = { mainStore }
 
-import Auth from './component/auth'
+import Auth from './user/component/auth'
 import NoMatch from './component/no_match'
 
 export default () => (

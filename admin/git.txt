@@ -1,0 +1,18 @@
+git init
+git clone с точкой
+
+
+
+// Настройка внешних репозиториев
+
+root@cs77222:~/www# git remote remove origin 
+root@cs77222:~/www# git remote -v
+root@cs77222:~/www# git remote add origin git@bitbucket.org:Garris/ordo.git
+root@cs77222:~/www# git remote -v
+
+
+// Ключ для гит
+ssh-keygen
+копируем rsa 
+
+

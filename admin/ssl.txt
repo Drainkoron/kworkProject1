@@ -1,0 +1,44 @@
+openssl req -x509 -newkey rsa:2048 -keyout keytmp.pem -out cert.pem -days 365 
+openssl rsa -in keytmp.pem -out key.pem
+
+
+
+
+https://www.kevinleary.net/self-signed-trusted-certificates-node-js-express-js/
+
+openssl genrsa -out support-a.key 2048
+openssl req -new -x509 -key support-a.key -out support-a.cert -days 3650 -subj /CN=support-a.ru
+
+
+что такое https://habrahabr.ru/company/tuthost/blog/150433/
+
+
+
+Теперь можно установить CertBot и получить сертификат в ручном режиме. 
+
+Краткая инструкция:
+
+1. Скачиванием дистрибутив
+
+wget https://dl.eff.org/certbot-auto
+
+2. Установка прав на файл
+
+chmod a+x certbot-auto
+
+3. Запуск для получения сертификата в ручном режиме
+
+./certbot-auto certonly --authenticator manual
+
+4. Следуйте указаниям программы (подробнее смотрите в полной инструкции ниже с шага № 4).
+
+Congratulations! Your certificate and chain have been saved at
+   /etc/letsencrypt/live/support-a.ru/fullchain.pem. Your cert will
+   expire on 2017-08-18. To obtain a new or tweaked version of this
+   certificate in the future, simply run certbot-auto again. To
+   non-interactively renew *all* of your certificates, run
+   "certbot-auto renew"
+ - If you like Certbot, please consider supporting our work by:
+
+   Donating to ISRG / Let's Encrypt:   https://letsencrypt.org/donate
+   Donating to EFF:                    https://eff.org/donate-le

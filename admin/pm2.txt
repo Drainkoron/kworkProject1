@@ -1,0 +1,54 @@
+
+Запуск
+
+pm2 start index.js --max-memory-restart 100M --name ordo
+
+Обновление
+
+pm2 restart name
+
+http://pm2.keymetrics.io/docs/usage/startup/#verify-startup-apps
+
+sudo update-rc.d -f pm2-init.sh remove - удаляем скрипт
+
+cd /etc/init.d/pm2-init.sh   редактируем скрпт
+
+
+pm2 kill all
+pm2 start
+pm2 save 
+pm2
+pm2 resurrect
+
+cd .pm2
+
+PM2
+
+pm2 start main.js --name same-name
+pm2 list
+pm2 monit
+pm2 stop same-name
+pm2 restart same-name
+pm2 delete same-name
+
+pm2 startup - один раз для разрешения перезапуска!
+
+
+Монитор https://app.keymetrics.io
+Harris 712283
+
+Перезагрузка скрипт
+/etc/init.d/pm2-init.sh
+
+
+
+
+Перезапуск
+
+/etc/rc0.d/K20pm2-init.sh -> ../init.d/pm2-init.sh
+   /etc/rc1.d/K20pm2-init.sh -> ../init.d/pm2-init.sh
+   /etc/rc6.d/K20pm2-init.sh -> ../init.d/pm2-init.sh
+   /etc/rc2.d/S20pm2-init.sh -> ../init.d/pm2-init.sh
+   /etc/rc3.d/S20pm2-init.sh -> ../init.d/pm2-init.sh
+   /etc/rc4.d/S20pm2-init.sh -> ../init.d/pm2-init.sh
+   /etc/rc5.d/S20pm2-init.sh -> ../init.d/pm2-init.sh
