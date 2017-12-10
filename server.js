@@ -34,10 +34,12 @@ if (isDevelopment) {
 const PORT = 8000;
 
 app.listen(PORT, function() {
-	console.log('Listening on port ' + PORT + '...');
+	console.log('Go on port ' + PORT + '...');
 });
 
 import db from './back/db'
+
+
 
 
 
@@ -52,6 +54,11 @@ app.get("/admin", async (req, res) => {
 
 
 import { addUser, viewUser, authUser } from './back/user/request'
+
+app.use('*', (req, res, next) => {
+	console.log(req.cookies, 'cookie')
+	next()
+})
 
 app.get("/add_user", addUser)
 app.get("/view_user", viewUser)

@@ -23,9 +23,6 @@ export function viewUser(req, res) {
     } else {
         res.send(false);
     }
-
-
-	
 }
 
 export function authUser(req, res) {
