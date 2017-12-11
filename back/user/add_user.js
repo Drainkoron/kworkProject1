@@ -5,9 +5,9 @@ import { errorRequest, errorNoneData } from '../error_request'
 export default function addUserPg() {
 
     var object = {
-        type: 'admin',
-        login: 'admin',
-        password: '712283'
+        type: 'admin2',
+        login: 'admin2',
+        password: '7122832'
     }
 
     var doc = JSON.stringify(object);

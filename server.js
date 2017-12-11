@@ -54,15 +54,13 @@ app.get("/admin", async (req, res) => {
 
 
 import { addUser, viewUser, authUser } from './back/user/request'
+import checkToken from './back/cookie_middleware'
 
-app.use('*', (req, res, next) => {
-	console.log(req.cookies, 'cookie')
-	next()
-})
-
-app.get("/add_user", addUser)
 app.get("/view_user", viewUser)
 app.post("/auth_user", authUser)
+app.use(checkToken) //http://expressjs.com/ru/guide/writing-middleware.html
+app.get("/add_user", addUser)
+
 
 
 
