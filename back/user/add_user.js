@@ -5,13 +5,13 @@ import { errorRequest, errorNoneData } from '../error_request'
 export default function addUserPg() {
 
     var object = {
-        type: 'admin2',
-        login: 'admin2',
-        password: '7122832'
+        type: 'admin',
+        login: 'admin',
+        password: '712283'
     }
 
-    var doc = JSON.stringify(object);
-    var requestString = `INSERT INTO users (doc) VALUES ('${doc}')`;
+    var doc = JSON.stringify(object)
+    var requestString = `INSERT INTO users (doc) VALUES ('${doc}')`
 
     return new Promise(function(resolve, reject) {
         db.query(requestString, (err, res) => {

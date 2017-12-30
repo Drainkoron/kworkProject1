@@ -11,6 +11,8 @@ sudo apt-get install postgresql postgresql-contrib
 
 export PATH=/Library/PostgreSQL/9.5/bin:$PATH
 
+/Library/PostgreSQL/9.6/scripts/runpsql.sh    // mac os 10
+
 	orange
 	psql -h localhost orange admin
 	712283
@@ -53,7 +55,7 @@ export PATH=/Library/PostgreSQL/9.5/bin:$PATH
 
 создаём таблицу
 
-	CREATE TABLE users2 (id SERIAL PRIMARY KEY, doc json);
+	CREATE TABLE users (id SERIAL PRIMARY KEY, doc jsonb);
 
 
 Примеры запросов

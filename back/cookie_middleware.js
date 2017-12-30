@@ -3,7 +3,7 @@ import jwt from 'jsonwebtoken'
 
 export default function checkToken(req, res, next) {
     if('token' in req.cookies) {
-        var user = jwt.verify(req.cookies.token, 'reactor');
+        var user = jwt.verify(req.cookies.token, req.get('User-Agent'))
         var requestString = `SELECT (doc) FROM users WHERE (doc->>'login') LIKE '${user.login}' 
                                                     AND (doc->>'password') LIKE '${user.password}'`
         db.query(requestString, (err, res) => {

@@ -40,11 +40,8 @@ app.listen(PORT, function() {
 import db from './back/db'
 
 
-
-
-
 app.all("/", function(req, res) {
-  	res.sendFile(path.resolve(PUBLIC_PATH, 'index.html'));
+  	res.sendFile(path.resolve(PUBLIC_PATH, 'index.html'))
 });
 
 app.get("/admin", async (req, res) => {
@@ -58,7 +55,7 @@ import checkToken from './back/cookie_middleware'
 
 app.get("/view_user", viewUser)
 app.post("/auth_user", authUser)
-app.use(checkToken) //http://expressjs.com/ru/guide/writing-middleware.html
+app.use(checkToken)
 app.get("/add_user", addUser)
 
 

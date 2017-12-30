@@ -13,9 +13,8 @@ export function addUser(req, res) {
 }
 
 export function viewUser(req, res) {
-
     if('token' in req.cookies) {
-        viewUserPg(req.cookies.token).then((result) => { 
+        viewUserPg(req).then((result) => {
             res.send(result);
         }, (error) => {
             res.status(error.status).send(error.message);
@@ -28,7 +27,7 @@ export function viewUser(req, res) {
 export function authUser(req, res) {
 	authUserPg(req.body).then((result) => { 
         const token = jwt.sign({ login: result.doc.login, 
-                                    password: result.doc.password }, 'reactor');
+                                    password: result.doc.password }, req.get('User-Agent'));
         
         res.cookie('token', token, {maxAge: req.body.remember ? 1209600000 : 21600000})
         res.send(result.doc);
