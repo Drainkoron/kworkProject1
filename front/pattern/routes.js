@@ -8,18 +8,21 @@ import {
 
 import { Provider } from 'mobx-react';
 
-import mainStore from './user/main_store.js'
+import mainStore from './main/main_store.js'
+import userStore from './users/store.js'
 
-const store = { mainStore }
+const store = { mainStore, userStore }
 
-import Auth from './user/component/auth'
+import Auth from './main/component/auth'
 import NoMatch from './component/no_match'
+import Cabinet from './cabinet'
 
 export default () => (
     <Router>
         <Provider {...store}>
             <Switch>
                 <Route exact path='/' component={Auth}/>
+                <Route path='/cabinet' component={Cabinet}/>
                 <Route component={NoMatch}/>
             </Switch>
         </Provider>

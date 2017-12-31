@@ -40,7 +40,7 @@ app.listen(PORT, function() {
 import db from './back/db'
 
 
-app.all("/", function(req, res) {
+app.all(['/', '/cabinet', '/cabinet/*', ], function(req, res) {
   	res.sendFile(path.resolve(PUBLIC_PATH, 'index.html'))
 });
 
