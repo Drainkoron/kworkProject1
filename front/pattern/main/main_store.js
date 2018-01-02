@@ -4,7 +4,7 @@ import observeModel from '../../common/observe_model'
 import formValidate from '../../common/form_validate'
 import authScheme from './auth_scheme'
 
-import { authUserReq, viewUserReq } from './request'
+import { authUserReq, viewUserReq, logoutReq } from './request'
 
 import Basic from '../basic.js'
 
@@ -75,12 +75,12 @@ class MainStore extends Basic {
 	}
 
 	@action logout() {
-		console.log('logout')
-		document.cookie = ''
-		console.log(document.cookie, 'document.cookie ')
-		this.resetForm()
-		this.history.push('/')
-		
+		logoutReq().then(data => {
+			this.resetForm()
+			this.history.push('/')
+		}, error => {
+			this.messageError('Ошибка выхода!')
+		})
 	}
 
 	// @action viewUser() {

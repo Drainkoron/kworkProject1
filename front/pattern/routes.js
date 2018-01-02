@@ -8,14 +8,18 @@ import {
 
 import { Provider } from 'mobx-react';
 
-import mainStore from './main/main_store.js'
-import userStore from './users/store.js'
+import mainStore from './main/main_store'
+import userStore from './users/store'
+import tableStore from './table/store'
 
-const store = { mainStore, userStore }
+const store = { mainStore, 
+                userStore, 
+                tableStore }
 
 import Auth from './main/component/auth'
 import NoMatch from './component/no_match'
 import Cabinet from './cabinet'
+import TableBlock from './table/block'
 
 export default () => (
     <Router>
@@ -23,6 +27,7 @@ export default () => (
             <Switch>
                 <Route exact path='/' component={Auth}/>
                 <Route path='/cabinet' component={Cabinet}/>
+                <Route path='/table' component={TableBlock}/>
                 <Route component={NoMatch}/>
             </Switch>
         </Provider>

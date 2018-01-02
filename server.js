@@ -40,23 +40,23 @@ app.listen(PORT, function() {
 import db from './back/db'
 
 
-app.all(['/', '/cabinet', '/cabinet/*', ], function(req, res) {
+app.all(['/', '/table' ,'/cabinet', '/cabinet/*', ], function(req, res) {
   	res.sendFile(path.resolve(PUBLIC_PATH, 'index.html'))
 });
 
-app.get("/admin", async (req, res) => {
-	const { rows } = await db.query("SELECT table_name FROM information_schema.tables WHERE table_type = 'BASE TABLE' AND table_schema = 'public' ORDER BY table_type, table_name")
-	res.json(rows)
-});
+// app.get("/admin", async (req, res) => {
+// 	const { rows } = await db.query("SELECT table_name FROM information_schema.tables WHERE table_type = 'BASE TABLE' AND table_schema = 'public' ORDER BY table_type, table_name")
+// 	res.json(rows)
+// });
 
 
-import { addUser, viewUser, authUser } from './back/user/request'
+import { addUser, viewUser, authUser, logout } from './back/user/request'
 import checkToken from './back/cookie_middleware'
 
 app.get("/view_user", viewUser)
 app.post("/auth_user", authUser)
 app.use(checkToken)
-app.get("/add_user", addUser)
+app.get("/logout", logout)
 
 
 

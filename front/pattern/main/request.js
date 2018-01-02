@@ -39,3 +39,22 @@ export function viewUserReq(requestObject) {
         });
     })
 }
+
+export function logoutReq() {
+    return new Promise(function(resolve, reject) {
+        fetchGet(`${URL}/logout`).then((response) => {
+            if(response.status == 200) {
+                response.json().then((data) => {
+                    resolve(data)
+                });
+            } else {
+                response.text().then((data) => {
+                    reject(data)
+                })
+            }
+        }).catch((error) => {
+            reject(error)
+        });
+    })
+}
+

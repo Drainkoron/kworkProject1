@@ -14,11 +14,15 @@ export function addUser(req, res) {
 
 export function viewUser(req, res) {
     if('token' in req.cookies) {
-        viewUserPg(req).then((result) => {
-            res.send(result);
-        }, (error) => {
-            res.status(error.status).send(error.message);
-        })
+        if(req.cookies.token) {
+            viewUserPg(req).then((result) => {
+                res.send(result);
+            }, (error) => {
+                res.status(error.status).send(error.message);
+            })
+        } else {
+            res.send(false);
+        }
     } else {
         res.send(false);
     }
@@ -27,13 +31,18 @@ export function viewUser(req, res) {
 export function authUser(req, res) {
 	authUserPg(req.body).then((result) => { 
         const token = jwt.sign({ login: result.doc.login, 
-                                    password: result.doc.password }, req.get('User-Agent'));
+                                    password: result.doc.password }, req.get('User-Agent'))
         
         res.cookie('token', token, {maxAge: req.body.remember ? 1209600000 : 21600000})
-        res.send(result.doc);
+        res.send(result.doc)
     }, (error) => {
-        res.status(error.status).send(error.message);
+        res.status(error.status).send(error.message)
     })
+}
+
+export function logout(req, res) {
+    res.clearCookie('token')
+    res.send(true)
 }
 
 
