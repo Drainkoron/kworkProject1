@@ -64,6 +64,7 @@ class MainStore extends Basic {
 	}
 
 	@action routing(path) {
+		console.log(path, 'path')
 		switch(path) {
 			case 'logout':
 				this.logout()

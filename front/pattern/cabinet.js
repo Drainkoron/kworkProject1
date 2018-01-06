@@ -24,6 +24,7 @@ const SubMenu = Menu.SubMenu;
 const MenuItemGroup = Menu.ItemGroup;
 
 import UserBlock from './users/block'
+import TableBlock from './table/block'
 
 
 @inject("mainStore") @observer
@@ -84,10 +85,14 @@ class Cabinet extends Component {
                             <div style={{ background: '#fff', padding: 24, minHeight: 360 }}> 
                                 <Switch>
                                     <Route path='/cabinet/users' component={UserBlock}/> 
+                                    <Route path='/cabinet/table' component={TableBlock}/> 
+
+
+                                    
                                 </Switch>
                             </div>
                         </Content>
-                        <Footer onDoubleClick={() => this.self('routing', '/test')} style={{ textAlign: 'center' }}>
+                        <Footer onDoubleClick={() => this.self('routing', '/cabinet/table')} style={{ textAlign: 'center' }}>
                             DevBase
                         </Footer>
                     </Layout>

@@ -1,98 +1,56 @@
 import { observable, computed, action, intercept } from 'mobx'
 
-import observeModel from '../../common/observe_model'
-import formValidate from '../../common/form_validate'
-import tableScheme from './table_scheme'
-
-// import { authUserReq, viewUserReq, logoutReq } from './request'
+import { getTableReq, createTableReq, dropTableReq } from './request'
 
 import Basic from '../basic.js'
 
 class TableStore extends Basic {
-	@observable scheme
-    @observable model
-    @observable form
+	@observable table
+	@observable tableName
 
 	constructor() {
 		super()
-		this.model = this.formModel()
-		this.scheme = tableScheme(this)
-		this.changeSheme = observeModel(this)
-		this.form = {
-            view: false,
-            error: ''
+		this.table = []
+		this.tableName = ''
+	}
+
+	@action getTable() {
+		getTableReq().then(data => {
+			this.table = data
+		}, error => {
+			this.messageError('Ошибка получения списка таблиц!')
+		})
+	}
+
+	@action selectTable(elem) {
+		console.log(elem.table_name)
+	}
+	
+	@action changeName(name) {
+		this.tableName = name
+	}
+
+	@action addTable() {
+		createTableReq({name: this.tableName}).then(data => {
+			this.tableName = ''
+			this.getTable()
+		}, error => {
+			this.messageError('Ошибка создания таблицы!')
+		})
+	}
+
+	@action dropTable(elem) {
+		if(elem.table_name == 'users') {
+			this.messageError('Не нужно удалять таблицу юзеров!')
+		} else {
+			dropTableReq({name: elem.table_name}).then(data => {
+				this.getTable()
+			}, error => {
+				this.messageError('Ошибка удаления таблицы!')
+			})
 		}
-	}
-
-	formModel() {
-        return {
-            name: ''
-        }
-	}
+	} 
 	
-	@action validate() {
-        this.form.error = formValidate(this.scheme)
-        if(this.form.error == false) {
-            //this.authUser()
-        }
-	}
-	
-	// @action authUser() {
-	// 	authUserReq(this.model).then(data => {
-	// 		this.enterApp(data)
-	// 	}, error => {
-	// 		this.messageError('Ошибка авторизации!')
-	// 	})
-	// }
-
-	// @action viewUser() {
-	// 	viewUserReq(this.model).then(data => {
-	// 		if(data) {
-	// 			this.enterApp(data)
-	// 		}
-	// 	}, error => {
-	// 		this.messageError('Ошибка авторизации!')
-	// 	})
-	// }
-
-	// @action async enterApp(data) {
-	// 	this.setModel(data)
-	// 	this.history.push('/cabinet/users')
-	// }
-
-	// @action routing(path) {
-	// 	switch(path) {
-	// 		case 'logout':
-	// 			this.logout()
-	// 				break
-
-	// 		default:
-	// 			this.history.push(path)
-	// 	}
-	// }
-
-	// @action logout() {
-	// 	logoutReq().then(data => {
-	// 		console.log(data, 'data')
-	// 		console.log(document.cookie, 'document.cookie ')
-	// 		this.resetForm()
-	// 		this.history.push('/')
-	// 	}, error => {
-	// 		this.messageError('Ошибка выхода!')
-	// 	})
-	// }
-
-	// @action viewUser() {
-	// 	viewAccReq().then(data => {
-	// 		this.enterApp(data.body)
-	// 	}, error => {
-	// 		this.history.push('/')
-	// 	})
-	// }
-	
-
-
-		
 }
 	
 

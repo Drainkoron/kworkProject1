@@ -59,6 +59,14 @@ app.use(checkToken)
 app.get("/logout", logout)
 
 
+import { getTable, createTable, dropTable } from './back/admin/request'
+
+app.get("/get_table", getTable)
+app.post("/create_table", createTable)
+app.post("/drop_table", dropTable)
+
+
+
 
 
 //https://github.com/auth0/node-jsonwebtoken
