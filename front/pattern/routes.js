@@ -24,8 +24,8 @@ export default () => (
     <Router>
         <Provider {...store}>
             <Switch>
-                <Route exact path='/' component={Auth}/>
-                <Route path='/cabinet' component={Cabinet}/>
+                <Route exact path='/demo' component={Auth}/>
+                <Route path='/demo/cabinet' component={Cabinet}/>
                 <Route component={NoMatch}/>
             </Switch>
         </Provider>

@@ -4,7 +4,7 @@ const CleanWebpackPlugin = require('clean-webpack-plugin');
 
 export default new Config().extend('conf/webpack.base.config.js').merge({
     entry: ['babel-polyfill', 
-                './client/index.js'],
+                __dirname + '/../front/index.js'],
     output: {
         publicPath: 'https://wh2.dev-base.ru/',
         filename: '[hash].min.js'
@@ -17,7 +17,7 @@ export default new Config().extend('conf/webpack.base.config.js').merge({
         }),
         new CleanWebpackPlugin(['static'], {
             root: __dirname + '/../',
-            exclude: ['index.html']
+            exclude: ['.well-known', 'script', 'style', 'index.html', 'demo.html']
         }),
         new webpack.optimize.UglifyJsPlugin({
             compress: {

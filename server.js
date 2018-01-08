@@ -40,8 +40,12 @@ app.listen(PORT, function() {
 import db from './back/db'
 
 
-app.all(['/', '/table' ,'/cabinet', '/cabinet/*', ], function(req, res) {
-  	res.sendFile(path.resolve(PUBLIC_PATH, 'index.html'))
+app.all('/', function(req, res) {
+	res.sendFile(path.resolve(PUBLIC_PATH, 'index.html'))
+});
+
+app.all(['/demo', '/demo/*'], function(req, res) {
+  	res.sendFile(path.resolve(PUBLIC_PATH, 'demo.html'))
 });
 
 // app.get("/admin", async (req, res) => {

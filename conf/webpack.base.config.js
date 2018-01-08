@@ -41,7 +41,8 @@ export default new Config().merge({
         // ),
         // new webpack.IgnorePlugin(/^\.\/locale$/, /moment$/),
         new HtmlWebpackPlugin({
-            template: './static/index.html',
+            filename: 'demo.html',
+            template: './static/demo.html',
             inject: "body"
         })
     ]
