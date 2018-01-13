@@ -45,7 +45,6 @@ class Dictionary extends React.Component {
 		})
     }
     getList(data) {
-        console.log('list')
         var requestsObject = {
             name: this.props.data.dictionary,
             value: data.value
@@ -83,29 +82,29 @@ class Dictionary extends React.Component {
     render() {
         const { button, list } = this.state
 
+        console.log(list, 'list')
+
         return (
-        <div className="ext-search">
-            <Select
-                size="large"
-                mode="combobox"
-                value={this.props.data.value}
-                placeholder=""
-                notFoundContent=""
-                style={{ width: 240 }}
-                defaultActiveFirstOption={false}
-                showArrow={false}
-                filterOption={false}
-                onSelect={(value) => this.select(value)}
-                onSearch={(value) => this.search(value)}>
-                    {list.map(elem => <Option key={elem.id} value={elem.name}>{elem.name}</Option>)}
-             
-            </Select>
-            {button ? <Button onClick={this.add}
-                                shape="circle" 
-                                size="large" 
-                                icon="plus" /> : null}
-            
-        </div>
+            <div className="ext-search">
+                <Select
+                    mode="combobox"
+                    value={this.props.data.value}
+                    placeholder=""
+                    notFoundContent=""
+                    style={{ width: 240 }}
+                    defaultActiveFirstOption={false}
+                    showArrow={false}
+                    filterOption={false}
+                    onSelect={(value) => this.select(value)}
+                    onSearch={(value) => this.search(value)}>
+                        {list.map(elem => <Option key={elem.id} value={elem.doc.value}>{elem.doc.value}</Option>)}
+                
+                </Select>
+                {button ? <Button onClick={this.add}
+                                    shape="circle" 
+                                    icon="plus" /> : null}
+                
+            </div>
         );
     }
 }

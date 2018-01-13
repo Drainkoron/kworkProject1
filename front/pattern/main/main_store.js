@@ -52,6 +52,8 @@ class MainStore extends Basic {
 		viewUserReq(this.model).then(data => {
 			if(data) {
 				this.enterApp(data)
+			} else {
+				this.history.push('/')
 			}
 		}, error => {
 			this.messageError('Ошибка авторизации!')
@@ -60,7 +62,7 @@ class MainStore extends Basic {
 
 	@action async enterApp(data) {
 		this.setModel(data)
-		this.history.push('/cabinet/users')
+		this.history.push('/cabinet/staff')
 	}
 
 	@action routing(path) {
