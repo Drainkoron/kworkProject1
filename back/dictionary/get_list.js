@@ -2,8 +2,9 @@ import db from '../db'
 import { errorRequest, errorNoneData } from '../error_request'
 
 
-export default function getTablePg() {
-    var requestString = `SELECT table_name FROM information_schema.tables WHERE table_type = 'BASE TABLE' AND table_schema = 'public' ORDER BY table_type, table_name`
+export default function getListPg(object) {
+
+    var requestString = `SELECT (doc) FROM ${object.name} WHERE (doc->>'value') ILIKE '%${object.value}%'`
 
     return new Promise(function(resolve, reject) {
         db.query(requestString, (err, res) => {
@@ -15,3 +16,4 @@ export default function getTablePg() {
         })
     })
 }
+

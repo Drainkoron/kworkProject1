@@ -1,0 +1,7 @@
+table {
+    font-size: 13px;
+}
+
+.ant-input-affix-wrapper .ant-input {
+    min-height: 1% !important;
+}

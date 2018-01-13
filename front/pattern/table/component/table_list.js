@@ -41,7 +41,8 @@ class TableList extends React.Component {
                             onRow={record => ({
                                 onClick: () => this.self('selectTable', record)
                             })}
-                            pagination={true} />
+                            pagination={true}
+                            size="middle" />
                 </div>
             </div>
 		)

@@ -23,8 +23,12 @@ const { Header, Content, Footer, Sider } = Layout;
 const SubMenu = Menu.SubMenu;
 const MenuItemGroup = Menu.ItemGroup;
 
+/* Pattern block */
 import UserBlock from './users/block'
 import TableBlock from './table/block'
+
+/* Custom block */
+import StaffBlock from '../block/staff/block'
 
 
 @inject("mainStore") @observer
@@ -61,7 +65,10 @@ class Cabinet extends Component {
                             selectedKeys={[history.location.pathname]}
                             style={{ lineHeight: '64px' }}
                             onClick={(event) => this.self('routing', event.key)}>
-                            <Menu.Item key="/demo/cabinet/users">
+                            <Menu.Item key="/cabinet/staff">
+                                <Icon type="solution" />Персонал
+                            </Menu.Item>
+                            <Menu.Item key="/cabinet/users">
                                 <Icon type="team" />Пользователи
                             </Menu.Item>
                         </Menu>
@@ -84,15 +91,16 @@ class Cabinet extends Component {
                         <Content style={{ margin: '24px 16px 0' }}>
                             <div style={{ background: '#fff', padding: 24, minHeight: 360 }}> 
                                 <Switch>
-                                    <Route path='/demo/cabinet/users' component={UserBlock}/> 
-                                    <Route path='/demo/cabinet/table' component={TableBlock}/> 
-
+                                    <Route path='/cabinet/users' component={UserBlock}/> 
+                                    <Route path='/cabinet/table' component={TableBlock}/> 
+                                    <Route path='/cabinet/staff' component={StaffBlock}/> 
+                                    
 
                                     
                                 </Switch>
                             </div>
                         </Content>
-                        <Footer onDoubleClick={() => this.self('routing', '/demo/cabinet/table')} style={{ textAlign: 'center' }}>
+                        <Footer onDoubleClick={() => this.self('routing', '/cabinet/table')} style={{ textAlign: 'center' }}>
                             DevBase
                         </Footer>
                     </Layout>

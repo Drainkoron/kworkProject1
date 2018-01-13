@@ -5,7 +5,7 @@ import AppRouter from './pattern/routes';
 import { LocaleProvider } from 'antd';
 import ruRU from 'antd/lib/locale-provider/ru_RU'
 
-//import './pattern/custom.css';
+import './pattern/custom.css';
 
 
 

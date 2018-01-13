@@ -35,32 +35,24 @@ class Dictionary extends React.Component {
     }
     add() {
         var requestsObject = {
-            group: this.props.data.group,
-            name: this.props.data.value
+            name: this.props.data.dictionary,
+            value: this.props.data.value
         }
         creatDictionaryElem(requestsObject).then(data => {
-			if(data.success) {
-                this.setState({list: [],
-                                button: false})
-            } else {
-                message.error('Ошибка сохранения елемента справочника!')
-            }
+            this.setState({list: [], button: false})
 		}, error => {
 			message.error('Ошибка сохранения елемента справочника!')
 		})
     }
     getList(data) {
+        console.log('list')
         var requestsObject = {
-            group: data.group || this.props.data.group,
-            search_name: data.value
+            name: this.props.data.dictionary,
+            value: data.value
         }
         
         getDictionaryList(requestsObject).then(data => {
-			if(data.success) {
-                this.setResult(data.body)
-            } else {
-                message.error('Ошибка получения справочника!')
-            }
+            this.setResult(data)
 		}, error => {
 			message.error('Ошибка получения справочника!')
 		})

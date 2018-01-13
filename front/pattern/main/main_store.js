@@ -60,7 +60,7 @@ class MainStore extends Basic {
 
 	@action async enterApp(data) {
 		this.setModel(data)
-		this.history.push('/demo/cabinet/users')
+		this.history.push('/cabinet/users')
 	}
 
 	@action routing(path) {
@@ -78,7 +78,7 @@ class MainStore extends Basic {
 	@action logout() {
 		logoutReq().then(data => {
 			this.resetForm()
-			this.history.push('/demo')
+			this.history.push('/')
 		}, error => {
 			this.messageError('Ошибка выхода!')
 		})

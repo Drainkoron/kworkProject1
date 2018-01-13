@@ -40,12 +40,8 @@ app.listen(PORT, function() {
 import db from './back/db'
 
 
-app.all('/', function(req, res) {
+app.all(['/', '/cabinet', '/cabinet/*'], function(req, res) {
 	res.sendFile(path.resolve(PUBLIC_PATH, 'index.html'))
-});
-
-app.all(['/demo', '/demo/*'], function(req, res) {
-  	res.sendFile(path.resolve(PUBLIC_PATH, 'demo.html'))
 });
 
 // app.get("/admin", async (req, res) => {
@@ -54,6 +50,7 @@ app.all(['/demo', '/demo/*'], function(req, res) {
 // });
 
 
+/* User */
 import { addUser, viewUser, authUser, logout } from './back/user/request'
 import checkToken from './back/cookie_middleware'
 
@@ -62,14 +59,22 @@ app.post("/auth_user", authUser)
 app.use(checkToken)
 app.get("/logout", logout)
 
-
+/* Table */
 import { getTable, createTable, dropTable } from './back/admin/request'
 
 app.get("/get_table", getTable)
 app.post("/create_table", createTable)
 app.post("/drop_table", dropTable)
 
+/* Dictionary */
+import { getList, addElem } from './back/dictionary/request'
 
+app.post("/get_dictionary", getList)
+app.post("/add_dictionary_elem", addElem)
+
+import staff from './back/block_request/staff'
+
+app.get("/add_staff", staff.add)
 
 
 
