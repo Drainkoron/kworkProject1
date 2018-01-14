@@ -75,20 +75,31 @@ class StaffStore extends Basic {
 
     /* Form */
 
-    // @action validateForm() {
-    //     this.form.error = formValidate(this.scheme)
-    //     if(this.form.error == false) {
-    //         if(this.model.id) {
-    //             this.editForm()
-    //         } else {
-    //             this.saveForm()
-    //         }
-    //     }
-    // }
+    @action validateForm() {
+        this.form.error = formValidate(this.scheme)
+        if(this.form.error == false) {
+            if(this.model.id) {
+                this.editForm()
+            } else {
+                this.saveForm()
+            }
+        }
+    }
 
-    // @action saveForm() {
-    //     this.saveFormRequest({json_data: this.model})
-    // }
+    @action saveForm() {
+        addReq(this.model).then(data => {
+            this.addSuccess(data)
+		}, error => {
+			this.messageError('Ошибка сохранения работника!')
+		})
+    }
+
+    @action addSuccess(object) {
+        console.log(object)
+        // this.form.view = false
+        // this.requestObject.page = 1
+        // this.getList()
+    }
 
     // @action editForm() {
     //     console.log(this.model, 'edit')

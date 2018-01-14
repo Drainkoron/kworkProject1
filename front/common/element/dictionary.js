@@ -82,8 +82,6 @@ class Dictionary extends React.Component {
     render() {
         const { button, list } = this.state
 
-        console.log(list, 'list')
-
         return (
             <div className="ext-search">
                 <Select

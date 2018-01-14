@@ -1,7 +1,33 @@
+/* all style custom */
+
 table {
     font-size: 13px;
 }
 
 .ant-input-affix-wrapper .ant-input {
     min-height: 1% !important;
+}
+
+.ant-form label {
+    font-size: 12px !important;
+}
+
+input {
+    font-size: 12px !important;
+}
+
+.ant-input {
+    font-size: 12px !important;
+}
+
+.ant-select-dropdown {
+    font-size: 12px !important;
+}
+
+.ant-form-item {
+    margin-bottom: 12px !important;
+}
+
+.ant-menu {
+    font-size: 12px !important;
 }

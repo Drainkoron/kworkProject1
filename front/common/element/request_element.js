@@ -11,9 +11,11 @@ export function getDictionaryList(requestObject) {
             if(response.status == 200) {
                 response.json().then((data) => {
                     resolve(data)
-                });
+                })
             } else {
-                reject(error);
+                response.text().then((data) => {
+                    reject(data)
+                })
             }
         }).catch((error) => {
             reject(error);
@@ -22,15 +24,16 @@ export function getDictionaryList(requestObject) {
 }
 
 export function creatDictionaryElem(requestObject) {
-    console.log(requestObject)
     return new Promise(function(resolve, reject) {
         fetchPost(`${URL}/add_dictionary_elem/`, requestObject).then((response) => {
             if(response.status == 200) {
                 response.json().then((data) => {
                     resolve(data)
-                });
+                })
             } else {
-                reject(error);
+                response.text().then((data) => {
+                    reject(data)
+                })
             }
         }).catch((error) => {
             reject(error);

@@ -72,9 +72,11 @@ import { getList, addElem } from './back/dictionary/request'
 app.post("/get_dictionary", getList)
 app.post("/add_dictionary_elem", addElem)
 
+/* Custom */
+
 import staff from './back/block_request/staff'
 
-app.get("/add_staff", staff.add)
+app.post("/add_staff", (req, res) => staff.add(req, res))
 
 
 

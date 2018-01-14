@@ -15,6 +15,7 @@ import { Form,
 
 const RadioButton = Radio.Button;
 const RadioGroup = Radio.Group;
+const { TextArea } = Input;
 
 import Dictionary from '../../../common/element/dictionary'
 
@@ -23,7 +24,7 @@ const formItemLayout = {
         sm: { span: 8 }
     },
     wrapperCol: {
-        sm: { span: 14 }
+        sm: { span: 16 }
     },
 };
 
@@ -65,7 +66,8 @@ class ModalForm extends React.Component {
                                                             'Date': <DatePicker {...scheme[key].elem}/>,
                                                             'Checked': <Checkbox {...scheme[key].elem}/>,
                                                             'Dictionary': <Dictionary data={scheme[key].elem}/>,
-                                                            'Number': <InputNumber {...scheme[key].elem}/>
+                                                            'Number': <InputNumber {...scheme[key].elem}/>,
+                                                            'Textarea': <TextArea {...scheme[key].elem}/>,
                                                         }[scheme[key].options.type]}
                                                     </Form.Item>
                 

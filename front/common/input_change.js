@@ -22,35 +22,28 @@ export default function inputChange(event, store) {
             }
                 break
          case 'phone':
-            if(RegExps.num.test(symbol)) {
-                if(event.target.value.length < 19) {
-                    var num = event.target.value.replace(/\D/g, "");
-                    var length = num.length;
-                    if(length == 0) {
-                        value = "";
-                    }
-                    if(length == 1) {
-                        value = `+${symbol}`;
-                    }
-                    if(length == 2) {
-                        value = item.elem.value.concat(` (${symbol}`);
-                    }
-                    if(length == 5) {
-                        value = item.elem.value.concat(`) ${symbol}`);
-                    }
-                    if(length == 8 || length == 10) {
-                        value = item.elem.value.concat(`-${symbol}`);
-                    }
-                    if(length == 3 || length == 4 || length == 6 || length == 7 || length == 9 || length == 11) {
-                        value = item.elem.value.concat(`${symbol}`);
+            var num = event.target.value.replace(/\D/g, "");
+            if(num.length < 12) {
+                if(event.target.value.length > item.elem.value.length) {
+                    for(var i in num) {
+                        if(i == 0) {
+                            value = num[i] ? num[i] != 7 ? `+7 (${num[i]}` : `+7 (` : null
+                        }
+                        if(i == 1 || i == 2 || i == 4 || i == 5 || i == 7 || i == 9 || i == 10) {
+                            value = num[i] ? item.elem.value + num[i] : item.elem.value
+                        }
+                        if(i == 3) {
+                            value = num[i] ? item.elem.value + `${num[i]}) ` : item.elem.value
+                        }
+                        if(i == 6 || i == 8) {
+                            value = num[i] ? item.elem.value + `${num[i]}-` : item.elem.value
+                        }
                     }
                 } else {
-                    value = item.elem.value.substr(0, item.elem.value.length - 1);
+                    value = event.target.value
                 }
             } else {
-                if(event.target.value.length < item.elem.value.length) {
-                    value = item.elem.value.substr(0, item.elem.value.length - 1);
-                }
+                value = item.elem.value
             }
                 break
         default:

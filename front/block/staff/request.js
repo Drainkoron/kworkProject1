@@ -1,4 +1,4 @@
-import { API } from '../../app_constants'
+import { URL } from '../../app_constants'
 import fetchPost from '../../common/fetch_post'
 import fetchPut from '../../common/fetch_put'
 import fetchGet from '../../common/fetch_get'
@@ -8,13 +8,15 @@ const block = 'staff'
 
 export function addReq(requestObject) {
     return new Promise(function(resolve, reject) {
-        fetchPost(`${API}/${block}/create/`, requestObject).then((response) => {
+        fetchPost(`${URL}/add_${block}/`, requestObject).then((response) => {
             if(response.status == 200) {
                 response.json().then((data) => {
                     resolve(data)
-                });
+                })
             } else {
-                reject(error);
+                response.text().then((data) => {
+                    reject(data)
+                })
             }
         }).catch((error) => {
             reject(error);
@@ -22,70 +24,70 @@ export function addReq(requestObject) {
     })
 }
 
-export function getReq(id) {
-    return new Promise(function(resolve, reject) {
-        fetchGet(`${API}/${block}/${id}/`).then((response) => {
-            if(response.status == 200) {
-                response.json().then((data) => {
-                    resolve(data)
-                });
-            } else {
-                reject(error);
-            }
-        }).catch((error) => {
-            reject(error);
-        });
-    })
-}
+// export function getReq(id) {
+//     return new Promise(function(resolve, reject) {
+//         fetchGet(`${API}/${block}/${id}/`).then((response) => {
+//             if(response.status == 200) {
+//                 response.json().then((data) => {
+//                     resolve(data)
+//                 });
+//             } else {
+//                 reject(error);
+//             }
+//         }).catch((error) => {
+//             reject(error);
+//         });
+//     })
+// }
 
-export function editReq(requestObject) {
-    return new Promise(function(resolve, reject) {
-        fetchPut(`${API}/${block}/update/${requestObject.json_data.id}/`, requestObject).then((response) => {
-            if(response.status == 200) {
-                response.json().then((data) => {
-                    resolve(data)
-                });
-            } else {
-                reject(error);
-            }
-        }).catch((error) => {
-            reject(error);
-        });
-    })
-}
+// export function editReq(requestObject) {
+//     return new Promise(function(resolve, reject) {
+//         fetchPut(`${API}/${block}/update/${requestObject.json_data.id}/`, requestObject).then((response) => {
+//             if(response.status == 200) {
+//                 response.json().then((data) => {
+//                     resolve(data)
+//                 });
+//             } else {
+//                 reject(error);
+//             }
+//         }).catch((error) => {
+//             reject(error);
+//         });
+//     })
+// }
 
-export function getListReq(requestObject) {
-    return new Promise(function(resolve, reject) {
-        fetchPost(`${API}/${block}/list/`, requestObject).then((response) => {
-            if(response.status == 200) {
-                response.json().then((data) => {
-                    resolve(data)
-                });
-            } else {
-                reject(error);
-            }
-        }).catch((error) => {
-            reject(error);
-        });
-    })
-}
+// export function getListReq(requestObject) {
+//     return new Promise(function(resolve, reject) {
+//         fetchPost(`${API}/${block}/list/`, requestObject).then((response) => {
+//             if(response.status == 200) {
+//                 response.json().then((data) => {
+//                     resolve(data)
+//                 });
+//             } else {
+//                 reject(error);
+//             }
+//         }).catch((error) => {
+//             reject(error);
+//         });
+//     })
+// }
 
 
-export function deleteReq(id) {
-    return new Promise(function(resolve, reject) {
-        fetchDelete(`${API}/${block}/delete/${id}/`).then((response) => {
-            if(response.status == 200) {
-                response.json().then((data) => {
-                    resolve(data)
-                });
-            } else {
-                reject(error);
-            }
-        }).catch((error) => {
-            reject(error);
-        });
-    })
-}
+// export function deleteReq(id) {
+//     return new Promise(function(resolve, reject) {
+//         fetchDelete(`${API}/${block}/delete/${id}/`).then((response) => {
+//             if(response.status == 200) {
+//                 response.json().then((data) => {
+//                     resolve(data)
+//                 });
+//             } else {
+//                 reject(error);
+//             }
+//         }).catch((error) => {
+//             reject(error);
+//         });
+//     })
+// }
 
 
 // export function reportCountReq(field) {

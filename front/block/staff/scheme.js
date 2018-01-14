@@ -87,15 +87,14 @@ export function blockScheme(store) {
 		address: {
 			options: {
 				name: "Адрес",
-				type: "Input",
+				type: "Textarea",
 				col: 0
 			},
 			elem: {
-                type: 'textarea',
                 rows: 3,
 				placeholder: "...",
 				value: '',
-				onChange: event => inputChange(event, store),
+				onChange: event => inputChange(event, store, 'address'),
 				name: "address"
 			}
 		},
@@ -208,30 +207,28 @@ export function blockScheme(store) {
 		card: {
 			options: {
 				name: "Карта",
-				type: "Input",
+				type: "Textarea",
 				col: 1
 			},
 			elem: {
-                type: 'textarea',
                 rows: 3,
 				placeholder: "...",
 				value: '',
-				onChange: event => inputChange(event, store),
+				onChange: event => inputChange(event, store, 'card'),
 				name: "card"
 			}
 		},
 		note: {
 			options: {
 				name: "Дополнительно",
-				type: "Input",
+				type: "Textarea",
 				col: 1
 			},
 			elem: {
-                type: 'textarea',
                 rows: 3,
 				placeholder: "...",
 				value: '',
-				onChange: event => inputChange(event, store),
+				onChange: event => inputChange(event, store, 'note'),
 				name: "note"
 			}
 		}

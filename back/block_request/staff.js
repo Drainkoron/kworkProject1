@@ -6,12 +6,11 @@ class Staff extends BasicRequest {
         this.name = 'staff'
     }
     add(req, res) {
-        console.log(req.body, 'тело запроса')
-        // this.addPg().then((result) => { 
-        //     res.send(result);
-        // }, (error) => {
-        //     res.status(error.status).send(error.message);
-        // })
+        this.addPg(req.body).then((result) => { 
+            res.send(result);
+        }, (error) => {
+            res.status(error.status).send(error.message);
+        })
     }
 }
 
