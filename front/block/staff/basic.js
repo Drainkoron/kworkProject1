@@ -86,18 +86,7 @@ class Basic {
     }
 
     /* request */
-    @action saveFormRequest(object) {
-        addReq(object).then(data => {
-			if(data.success) {
-                this.addSuccess(data.body)
-            } else {
-                message.error('Ошибка сохранения работника!')
-            }
-		}, error => {
-			message.error('Ошибка сохранения работника!')
-		})
-    }
-
+   
     @action editFormRequest(object) {
         editReq(object).then(data => {
 			if(data.success) {
@@ -111,23 +100,7 @@ class Basic {
 		})
     }
 
-    @action addSuccess(object) {
-        this.form.view = false
-        this.requestObject.page = 1
-        this.getList()
-    }
 
-    @action getList() {
-        getListReq(this.requestObject).then(data => {
-			if(data.success) {
-                this.listResult = data.body
-            } else {
-                message.error('Ошибка получения списка!')
-            }
-		}, error => {
-			message.error('Ошибка получения списка!')
-        })
-    }
 
     @action reportCount(field, callback) {
         reportCountReq(field).then(data => {

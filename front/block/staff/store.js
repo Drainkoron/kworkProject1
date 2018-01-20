@@ -40,11 +40,11 @@ class StaffStore extends Basic {
         return {
             page: 1,
             limit: 10,
-            full_search: '',
-            filter_field: {
+            fullSearch: '',
+            filterField: {
                 position: 'all',
             },
-            sort_by: { 
+            sortBy: { 
                 param: 'date',
                 reverse: true
             }
@@ -95,11 +95,21 @@ class StaffStore extends Basic {
     }
 
     @action addSuccess(object) {
-        console.log(object)
-        // this.form.view = false
-        // this.requestObject.page = 1
-        // this.getList()
+        this.form.view = false
+        this.requestObject.page = 1
+        this.getList()
     }
+
+
+    @action getList() {
+        getListReq(this.requestObject).then(data => {
+            this.listResult = data
+		}, error => {
+			message.error('Ошибка получения списка работников!')
+        })
+    }
+
+    
 
     // @action editForm() {
     //     console.log(this.model, 'edit')
@@ -112,15 +122,11 @@ class StaffStore extends Basic {
 
     // /* Filter */
 
-    // @action changeFilterType(value) {
-    //     if(value == 'all') {
-    //         this.requestObject.filter_field.position = 'all'
-    //     } else {
-    //         this.requestObject.filter_field.position = value
-    //     }
-    //     this.requestObject.page = 1
-    //     this.getList()
-    // }
+    @action changeFilterType(value) {
+        this.requestObject.filterField.position = value
+        this.requestObject.page = 1
+        this.getList()
+    }
 
     // /* event Form */
     // @action viewForm(elem) {

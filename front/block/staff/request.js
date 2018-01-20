@@ -8,7 +8,25 @@ const block = 'staff'
 
 export function addReq(requestObject) {
     return new Promise(function(resolve, reject) {
-        fetchPost(`${URL}/add_${block}/`, requestObject).then((response) => {
+        fetchPost(`${URL}/${block}_add/`, requestObject).then((response) => {
+            if(response.status == 200) {
+                response.json().then((data) => {
+                    resolve(data)
+                })
+            } else {
+                response.text().then((data) => {
+                    reject(data)
+                })
+            }
+        }).catch((error) => {
+            reject(error);
+        });
+    })
+}
+
+export function getListReq(requestObject) {
+    return new Promise(function(resolve, reject) {
+        fetchPost(`${URL}/${block}_list/`, requestObject).then((response) => {
             if(response.status == 200) {
                 response.json().then((data) => {
                     resolve(data)
@@ -56,21 +74,7 @@ export function addReq(requestObject) {
 //     })
 // }
 
-// export function getListReq(requestObject) {
-//     return new Promise(function(resolve, reject) {
-//         fetchPost(`${API}/${block}/list/`, requestObject).then((response) => {
-//             if(response.status == 200) {
-//                 response.json().then((data) => {
-//                     resolve(data)
-//                 });
-//             } else {
-//                 reject(error);
-//             }
-//         }).catch((error) => {
-//             reject(error);
-//         });
-//     })
-// }
+
 
 
 // export function deleteReq(id) {

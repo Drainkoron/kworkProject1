@@ -30,8 +30,8 @@ class StaffBlock extends React.Component {
 		this.props.staffStore[name](params)
 	}
 	componentWillMount() {
-        // this.props.staffStore.resetSearchModel()
-        // this.props.staffStore.getList()
+        this.props.staffStore.resetSearchModel()
+        this.props.staffStore.getList()
 	}
 	render() {
 		const { form, requestObject, model } = this.props.staffStore

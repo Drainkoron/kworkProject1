@@ -41,18 +41,17 @@ class List extends React.Component {
 		
 	}
 	render() {
-        const { listResult, requestObject, viewCount, model } = this.props.staffStore
+        const { listResult, requestObject } = this.props.staffStore
  
 		return (
             <div style={{marginTop: '20px'}}>
                 {listResult.object_list ? <div>
                     <h4 className='header-table'>
-                        Список персонала: показаны с {(requestObject.page * requestObject.limit) - requestObject.limit + 1} по {viewCount} - 
+                        Список персонала: показаны с {(requestObject.page * requestObject.limit) - requestObject.limit + 1} по 1 - 
                         найдены {listResult.search_count} из {listResult.all_count}
                     </h4>
                     <Table columns={columns} 
                             dataSource={listResult.object_list.toJS()}
-                            onRowClick={elem => this.props.data.click(elem)}
                             rowSelection={this.props.data.selection}
                             rowKey='id'
                             pagination={{

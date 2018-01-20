@@ -30,7 +30,7 @@ class Filter extends React.Component {
                 <Menu
                     onClick={event => this.self('changeFilterType', event.key)}
                     defaultSelectedKeys={['all']}
-                    selectedKeys={[requestObject.filter_field.position]}
+                    selectedKeys={[requestObject.filterField.position]}
                     mode="horizontal">
                         <Menu.Item key="all">
                             <span>Все</span> 
