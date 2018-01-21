@@ -72,11 +72,11 @@ class Basic {
     }
 
     @action onChangeFullSearch(event) {
-        this.requestObject.full_search = event.target.value
+        this.requestObject.fullSearch = event.target.value
     }
 
     @action changeFullSearch(text) {
-        this.requestObject.full_search = text
+        this.requestObject.fullSearch = text
         this.getList()
     }
 

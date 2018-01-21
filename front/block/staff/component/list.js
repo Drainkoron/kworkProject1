@@ -7,23 +7,23 @@ import { Type } from '../dictionary'
 
 const columns = [{
         title: 'ФИО',
-        dataIndex: 'json_data.fio',
-        key: 'json_data.fio',
+        dataIndex: 'doc.fio',
+        key: 'doc.fio',
         width: 150,
     }, {
         title: 'Телефон',
-        dataIndex: 'json_data.phone',
-        key: 'json_data.phone',
+        dataIndex: 'doc.phone',
+        key: 'doc.phone',
         width: 150,
     }, {
         title: 'Ставка',
-        dataIndex: 'json_data.rate',
-        key: 'json_data.rate',
+        dataIndex: 'doc.rate',
+        key: 'doc.rate',
         width: 100,
     },{
         title: 'Статус',
-        dataIndex: 'json_data.status',
-        key: 'json_data.status',
+        dataIndex: 'doc.status',
+        key: 'doc.status',
         width: 100,
     }
 ];
@@ -41,21 +41,23 @@ class List extends React.Component {
 		
 	}
 	render() {
-        const { listResult, requestObject } = this.props.staffStore
+        const { listResult, requestObject, viewCount } = this.props.staffStore
  
 		return (
             <div style={{marginTop: '20px'}}>
-                {listResult.object_list ? <div>
+                {listResult.data ? <div>
                     <h4 className='header-table'>
-                        Список персонала: показаны с {(requestObject.page * requestObject.limit) - requestObject.limit + 1} по 1 - 
-                        найдены {listResult.search_count} из {listResult.all_count}
+                        Список персонала: показаны с {(requestObject.page * requestObject.limit) - requestObject.limit + 1} по {viewCount} - 
+                        найдены {listResult.searchCount} из {listResult.count}
                     </h4>
                     <Table columns={columns} 
-                            dataSource={listResult.object_list.toJS()}
-                            rowSelection={this.props.data.selection}
+                            dataSource={listResult.data.toJS()}
                             rowKey='id'
+                            onRow={record => ({
+                                onClick: () => this.self('viewForm', record)
+                            })}
                             pagination={{
-                                total: listResult.search_count,
+                                total: listResult.searchCount,
                                 current: requestObject.page,
                                 onChange: page => this.self('changePaginationPage', page),
                                 pageSize: requestObject.limit,

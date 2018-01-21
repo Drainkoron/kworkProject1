@@ -24,7 +24,7 @@ class BasicRequest {
                 if (err) {
                     reject(errorRequest)
                 } else {
-                    resolve(res.rows[0].count)
+                    resolve(res.rows[0].count * 1)
                 }
             })
         })
@@ -41,7 +41,7 @@ class BasicRequest {
                 if (err) {
                     reject(errorRequest)
                 } else {
-                    resolve(res.rows[0].count)
+                    resolve(res.rows[0].count * 1)
                 }
             })
         })

@@ -49,41 +49,8 @@ class Basic {
         this.form.view = false
     }
 
-     /* search */
 
-    @action resetSearchModel() {
-        this.requestObject = this.searchModel()
-    }
 
-    @action onChangeFullSearch(event) {
-        this.requestObject.full_search = event.target.value
-    }
-
-    @action changeFullSearch(text) {
-        this.requestObject.full_search = text
-        this.getList()
-    }
-
-    /* Pagination */
-
-    @action changePaginationPage(page) {
-        this.requestObject.page = page
-        this.getList()
-    }
-
-    @action changePaginationSizePage(pageSize) {
-        this.requestObject.limit = pageSize
-        this.requestObject.page = 1
-        this.getList()
-    }
-
-    @computed get viewCount() {
-        var stopPage = this.requestObject.page * this.requestObject.limit
-        if(this.listResult.search_count < stopPage) {
-            stopPage = this.listResult.search_count
-        }
-        return stopPage
-    }
 
     /* request */
    

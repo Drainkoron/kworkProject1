@@ -40,7 +40,7 @@ class StaffBlock extends React.Component {
                 <div>
                     <Search
                         onChange={event => this.self('onChangeFullSearch', event)}
-                        value={requestObject.full_search}
+                        value={requestObject.fullSearch}
                         placeholder="Поиск по персоналу"
                         style={{ width: 250 }}
                         onSearch={value => this.self('changeFullSearch', value)}/> 
@@ -51,8 +51,7 @@ class StaffBlock extends React.Component {
                 <Row gutter={20} type="flex" justify="space-around" align="top">
                     <Col span={14}>
                         <Filter />
-                        <List data={{click: (elem) => this.self('viewForm', elem),
-                                    selection: null}}/>
+                        <List />
                     </Col>
                     <Col span={10} style={{paddingTop: '35px'}}>
                         {model.id ? <Tabs defaultActiveKey="1" type="card" size="small">

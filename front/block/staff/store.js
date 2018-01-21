@@ -128,11 +128,12 @@ class StaffStore extends Basic {
         this.getList()
     }
 
-    // /* event Form */
-    // @action viewForm(elem) {
-    //     elem.json_data.id = elem.id
-    //     this.setModel(elem.json_data)
-    // }
+    /* event Form */
+    @action viewForm(elem) {
+        console.log(elem, 'elem')
+        elem.doc.id = elem.id
+        this.setModel(elem.doc)
+    }
 
     // @action viewModal() {
     //     this.form.view = true
