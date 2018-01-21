@@ -44,7 +44,7 @@ class ViewForm extends React.Component {
                         }
                     })}
                 </div>
-                
+                <PicturesWall data={{object: 'staff', id: model.id}}/>
                 <div className="view-form-function">
                     <Button htmlType="submit" onClick={() => this.self('changeStatus', 'Архив')}>В архив</Button>  
                     <Button type="primary" htmlType="submit" onClick={elem => this.self('viewModal')}>Редактировать</Button>
@@ -55,6 +55,3 @@ class ViewForm extends React.Component {
 }
 
 export default ViewForm
-
-// <PicturesWall data={{object: 'staff',
-// id: model.id}}/>

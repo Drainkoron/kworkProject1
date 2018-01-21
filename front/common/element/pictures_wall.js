@@ -85,7 +85,7 @@ class PicturesWall extends React.Component {
 		}
 	}
 	componentWillMount() {
-		this.getFiles(this.props.data)
+		//this.getFiles(this.props.data)
 	}
 	render() {
 		//const { scheme, form, model } = this.props.staffStore
@@ -95,7 +95,7 @@ class PicturesWall extends React.Component {
 		return (
 			<div className="clearfix" style={{marginTop: '20px'}}>
 				<Upload
-					action={`${API}/file/create/`}
+					action={`${URL}/upload_file`}
 					withCredentials={true}
 					data={{id_object: id,
 							name: 'file',

@@ -1,7 +1,6 @@
 import db from '../db'
 import { errorRequest, errorNoneData } from '../error_request'
 
-
 export default function addUserPg() {
 
     var object = {
