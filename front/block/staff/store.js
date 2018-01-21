@@ -110,15 +110,14 @@ class StaffStore extends Basic {
     }
 
     
+    @action editForm() {
+        editReq(this.model).then(data => {
+            this.addSuccess(data)
+		}, error => {
+			this.messageError('Ошибка редактирования работника!')
+		})
+    }
 
-    // @action editForm() {
-    //     console.log(this.model, 'edit')
-    //     this.editFormRequest({json_data: this.model})
-    // }
-
-    // @action changeType(type) {
-    //     this.model.type = type.target.value
-    // }
 
     // /* Filter */
 
@@ -130,14 +129,9 @@ class StaffStore extends Basic {
 
     /* event Form */
     @action viewForm(elem) {
-        console.log(elem, 'elem')
         elem.doc.id = elem.id
         this.setModel(elem.doc)
     }
-
-    // @action viewModal() {
-    //     this.form.view = true
-    // }
 
     // /* Payout */
 

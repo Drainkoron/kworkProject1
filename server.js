@@ -77,6 +77,7 @@ app.post("/add_dictionary_elem", addElem)
 import staff from './back/block_request/staff'
 
 app.post("/staff_add", (req, res) => staff.add(req, res))
+app.post("/staff_edit", (req, res) => staff.edit(req, res))
 app.post("/staff_list", (req, res) => staff.list(req, res))
 
 

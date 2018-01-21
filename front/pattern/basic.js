@@ -6,16 +6,6 @@ message.config(MessageConfig)
 
 class Basic {
     
-    // constructor() {
-    //     this.changeKeys = this.interceptorKeys()
-    // }
-
-    // interceptorKeys() {
-    //     return intercept(this.keys, change => {
-    //         return change
-    //     })
-    // }
-
     /* message */
     
     @action messageError(text) {
@@ -100,10 +90,6 @@ class Basic {
         }
         return stopPage
     }
-            
-
-
-
 }
 
 export default Basic

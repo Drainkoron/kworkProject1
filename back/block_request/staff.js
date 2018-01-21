@@ -12,6 +12,13 @@ class Staff extends BasicRequest {
             res.status(error.status).send(error.message);
         })
     }
+    edit(req, res) {
+        this.editPg(req.body).then((result) => { 
+            res.send(result);
+        }, (error) => {
+            res.status(error.status).send(error.message);
+        })
+    }
     async list(req, res) {
         var resultRequest = {
             count: 0,

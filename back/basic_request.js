@@ -17,6 +17,20 @@ class BasicRequest {
             })
         })
     }
+    editPg(object) {
+        var doc = JSON.stringify(object)
+        var requestString = `UPDATE ${this.name} SET doc = '${doc}' WHERE id = ${object.id} RETURNING id, doc`
+
+        return new Promise(function(resolve, reject) {
+            db.query(requestString, (err, res) => {
+                if (err) {
+                    reject(errorRequest);
+                } else {
+                    resolve(res.rows[0])
+                }
+            })
+        })
+    }
     count() {
         var requestString = `SELECT count(*) FROM ${this.name}`
         return new Promise(function(resolve, reject) {
