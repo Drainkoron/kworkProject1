@@ -3,9 +3,7 @@ import path from 'path';
 import express from 'express';
 import bodyParser from 'body-parser'
 import cookieParser from 'cookie-parser'
-import multer from 'multer'
 
-const upload = multer({ dest: 'uploads/' })
 const PUBLIC_PATH = __dirname + '/static';
 
 const app = express();
@@ -46,11 +44,6 @@ app.all(['/', '/cabinet', '/cabinet/*'], function(req, res) {
 	res.sendFile(path.resolve(PUBLIC_PATH, 'index.html'))
 });
 
-// app.get("/admin", async (req, res) => {
-// 	const { rows } = await db.query("SELECT table_name FROM information_schema.tables WHERE table_type = 'BASE TABLE' AND table_schema = 'public' ORDER BY table_type, table_name")
-// 	res.json(rows)
-// });
-
 
 /* User */
 import { addUser, viewUser, authUser, logout } from './back/user/request'
@@ -75,12 +68,9 @@ app.post("/get_dictionary", getList)
 app.post("/add_dictionary_elem", addElem)
 
 /* File */
-app.post('/upload_file', upload.single('file'), function (req, res, next) {
-	console.log(req.file, 'req file')
-	// req.file is the `avatar` file
-	// req.body will hold the text fields, if there were any
-	res.end();
-})
+import { uploadFile } from './back/file/request'
+
+app.post('/upload_file', uploadFile)
 
 /* Custom */
 
@@ -96,31 +86,6 @@ app.post("/staff_list", (req, res) => staff.list(req, res))
 //https://github.com/auth0/node-jsonwebtoken
 
 
-
-
-// var upload = multer().single('avatar')
-
-// app.post('/profile', function (req, res) {
-//   upload(req, res, function (err) {
-//     if (err) {
-//       // An error occurred when uploading
-//       return
-//     }
-
-//     // Everything went fine
-//   })
-// })
-
-// DiskStorage
-
-// var storage = multer.diskStorage({
-// 	destination: function (req, file, cb) {
-// 	  cb(null, '/tmp/my-uploads')
-// 	},
-// 	filename: function (req, file, cb) {
-// 	  cb(null, file.fieldname + '-' + Date.now())
-// 	}
-//   })
   
 //   var upload = multer({ storage: storage })
 
