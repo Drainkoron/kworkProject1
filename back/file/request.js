@@ -2,7 +2,7 @@ import multer from 'multer' //https://github.com/expressjs/multer
 
 const storage = multer.diskStorage({
 	destination: function (req, file, callback) {
-        callback(null, __dirname + '/../../uploads')
+        callback(null, __dirname + '/../../static/files')
 	},
 	filename: function (req, file, callback) {
         console.log(file, 'file')
@@ -16,16 +16,17 @@ const upload = multer({ storage: storage }).single('file')
 
 import addFilePg from './add_file'
 
-export function uploadFile(req, res) {
-    console.log(req.body, 'req')
-    upload(req, res, function (err) {
+export async function uploadFile(req, res) {
+    await upload(req, res, function (err) {
         if (err) {
             console.log(err, 'error')
-          // An error occurred when uploading
-          return
+            // An error occurred when uploading
+            return
         } 
 
-        console.log(req.file, 'ok')
+        console.log(req.file, 'file')
+        console.log(req.body, 'body')
+        
     
         // Everything went fine
     })
