@@ -7,11 +7,11 @@ export default function checkToken(req, res, next) {
             var user = jwt.verify(req.cookies.token, req.get('User-Agent'))
             var requestString = `SELECT (doc) FROM users WHERE (doc->>'login') LIKE '${user.login}' 
                                                         AND (doc->>'password') LIKE '${user.password}'`
-            db.query(requestString, (err, res) => {
+            db.query(requestString, (err, resPg) => {
                 if (err) {
                     responseError(res)
                 } else {
-                    if(res.rows.length) {
+                    if(resPg.rows.length) {
                         next()
                     } else {
                         responseError(res)

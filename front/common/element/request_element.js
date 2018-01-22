@@ -42,38 +42,42 @@ export function creatDictionaryElem(requestObject) {
 }
 
 
-// export function getFileList(requestObject) {
-//     return new Promise(function(resolve, reject) {
-//         fetchPost(`${API}/file/list/`, requestObject).then((response) => {
-//             if(response.status == 200) {
-//                 response.json().then((data) => {
-//                     resolve(data)
-//                 });
-//             } else {
-//                 reject(error);
-//             }
-//         }).catch((error) => {
-//             reject(error);
-//         });
-//     })
-// }
+export function getFileList(requestObject) {
+    return new Promise(function(resolve, reject) {
+        fetchPost(`${URL}/list_file/`, requestObject).then((response) => {
+            if(response.status == 200) {
+                response.json().then((data) => {
+                    resolve(data)
+                })
+            } else {
+                response.text().then((data) => {
+                    reject(data)
+                })
+            }
+        }).catch((error) => {
+            reject(error);
+        });
+    })
+}
 
 
-// export function deleteFile(id) {
-//     return new Promise(function(resolve, reject) {
-//         fetchDelete(`${API}/file/delete/${id}/`).then((response) => {
-//             if(response.status == 200) {
-//                 response.json().then((data) => {
-//                     resolve(data)
-//                 });
-//             } else {
-//                 reject(error);
-//             }
-//         }).catch((error) => {
-//             reject(error);
-//         });
-//     })
-// }
+export function deleteFile(requestObject) {
+    return new Promise(function(resolve, reject) {
+        fetchPost(`${URL}/delete_file/`, requestObject).then((response) => {
+            if(response.status == 200) {
+                response.json().then((data) => {
+                    resolve(data)
+                })
+            } else {
+                response.text().then((data) => {
+                    reject(data)
+                })
+            }
+        }).catch((error) => {
+            reject(error);
+        });
+    })
+}
 
 
 

@@ -36,21 +36,17 @@ class PicturesWall extends React.Component {
 	}
 	handleChange(event) {
 		if(event.file.status == 'done') {
-			event.fileList[event.fileList.length - 1].deleteKey = event.file.response.body.id
+			event.fileList[event.fileList.length - 1].deleteKey = event.file.response.id
 		}
 		this.setState({ fileList: event.fileList })
 	}
 	getFiles(data) {
 		var requestsObject = {
-			name_object: data.object,
-			id_object: data.id
+			object: data.object,
+			id: data.id
 		}
 		getFileList(requestsObject).then(data => {
-			if(data.success) {
-				this.mutation(data.body)
-            } else {
-                message.error('Ошибка получения файлов!')
-            }
+			this.mutation(data)
 		}, error => {
 			message.error('Ошибка получения файлов!')
 		})
@@ -61,20 +57,16 @@ class PicturesWall extends React.Component {
 			result.push({
 				uid: elem.id,
 				deleteKey: elem.id,
-				name: elem.name,
+				name: elem.doc.name,
 				status: 'done',
-				url: URL+elem.file
+				url: `${URL}/${elem.doc.path}`
 			})
 		})
 		this.setState({ fileList: result })
 	} 
 	handleRemove(file) {
-		deleteFile(file.deleteKey).then(data => {
-			if(data.success) {
-				
-            } else {
-                message.error('Ошибка удаления файла!')
-            }
+		deleteFile({id: file.deleteKey}).then(data => {
+			
 		}, error => {
 			message.error('Ошибка удаления файла!')
 		})
@@ -85,7 +77,7 @@ class PicturesWall extends React.Component {
 		}
 	}
 	componentWillMount() {
-		//this.getFiles(this.props.data)
+		this.getFiles(this.props.data)
 	}
 	render() {
 		//const { scheme, form, model } = this.props.staffStore
@@ -97,9 +89,8 @@ class PicturesWall extends React.Component {
 				<Upload
 					action={`${URL}/upload_file`}
 					withCredentials={true}
-					data={{id_object: id,
-							name: 'file',
-							name_object: object}}
+					data={{id: id,
+							object: object}}
 					listType="picture-card"
 					fileList={fileList}
 					onPreview={this.handlePreview}

@@ -2,15 +2,16 @@ import db from '../db'
 import { errorRequest, errorNoneData } from '../error_request'
 
 
-export default function addFilePg(name) {
-    var requestString = `CREATE TABLE ${name} (id SERIAL PRIMARY KEY, doc jsonb)`
+export default function addFilePg(object) {
+    var doc = JSON.stringify(object)
+    var requestString = `INSERT INTO files (doc) VALUES ('${doc}') RETURNING id, doc`
 
     return new Promise(function(resolve, reject) {
         db.query(requestString, (err, res) => {
             if (err) {
                 reject(errorRequest);
             } else {
-                resolve(true)
+                resolve(res.rows[0])
             }
         })
     })

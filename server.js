@@ -68,9 +68,11 @@ app.post("/get_dictionary", getList)
 app.post("/add_dictionary_elem", addElem)
 
 /* File */
-import { uploadFile } from './back/file/request'
+import { uploadFile, listFile, deleteFile } from './back/file/request'
 
 app.post('/upload_file', uploadFile)
+app.post('/list_file', listFile)
+app.post('/delete_file', deleteFile)
 
 /* Custom */
 
@@ -79,6 +81,9 @@ import staff from './back/block_request/staff'
 app.post("/staff_add", (req, res) => staff.add(req, res))
 app.post("/staff_edit", (req, res) => staff.edit(req, res))
 app.post("/staff_list", (req, res) => staff.list(req, res))
+
+
+
 
 
 
