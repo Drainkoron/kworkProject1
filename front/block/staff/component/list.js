@@ -17,7 +17,7 @@ class List extends React.Component {
                 key: 'doc.fio',
                 width: 150,
                 sorter: true,
-                sortOrder: 'descend'
+                defaultSortOrder: 'ascend'
             }, {
                 title: 'Телефон',
                 dataIndex: 'doc.phone',
@@ -28,11 +28,13 @@ class List extends React.Component {
                 dataIndex: 'doc.rate',
                 key: 'doc.rate',
                 width: 100,
+                sorter: true,
             },{
                 title: 'Статус',
                 dataIndex: 'doc.status',
                 key: 'doc.status',
                 width: 100,
+                sorter: true,
             }
         ]}
     }

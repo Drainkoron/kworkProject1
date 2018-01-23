@@ -71,12 +71,13 @@ class Basic {
     }
 
     /* Sorter */
-    @action changeSorterPage(event) {
-        console.log(event)
-    }
-
-    @action getCurrentSorter(val) {
-        console.log(val)
+    @action changeSorterPage(object) {
+        if('order' in object && 'field' in object) {
+            this.requestObject.sortBy.field = object.field.split('.')[1]
+            this.requestObject.sortBy.reverse = object.order == 'ascend' ? false : true
+            this.requestObject.page = 1
+            this.getList()
+        }
     }
 
     /* Pagination */
