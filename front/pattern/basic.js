@@ -70,6 +70,15 @@ class Basic {
         this.getList()
     }
 
+    /* Sorter */
+    @action changeSorterPage(event) {
+        console.log(event)
+    }
+
+    @action getCurrentSorter(val) {
+        console.log(val)
+    }
+
     /* Pagination */
 
     @action changePaginationPage(page) {

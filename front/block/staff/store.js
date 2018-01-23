@@ -45,8 +45,8 @@ class StaffStore extends Basic {
                 position: 'all',
             },
             sortBy: { 
-                param: 'date',
-                reverse: true
+                field: 'fio',
+                reverse: false
             }
         }
     }

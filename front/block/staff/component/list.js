@@ -5,34 +5,36 @@ import { Table } from 'antd';
 
 import { Type } from '../dictionary'
 
-const columns = [{
-        title: 'ФИО',
-        dataIndex: 'doc.fio',
-        key: 'doc.fio',
-        width: 150,
-    }, {
-        title: 'Телефон',
-        dataIndex: 'doc.phone',
-        key: 'doc.phone',
-        width: 150,
-    }, {
-        title: 'Ставка',
-        dataIndex: 'doc.rate',
-        key: 'doc.rate',
-        width: 100,
-    },{
-        title: 'Статус',
-        dataIndex: 'doc.status',
-        key: 'doc.status',
-        width: 100,
-    }
-];
-
 @inject("staffStore") @observer
 class List extends React.Component {
 	constructor(props) {
         super(props);
         this.self = this.self.bind(this)
+        this.state = {
+            columns: [{
+                title: 'ФИО',
+                dataIndex: 'doc.fio',
+                key: 'doc.fio',
+                width: 150,
+                sorter: true,
+                sortOrder: 'descend'
+            }, {
+                title: 'Телефон',
+                dataIndex: 'doc.phone',
+                key: 'doc.phone',
+                width: 150,
+            }, {
+                title: 'Ставка',
+                dataIndex: 'doc.rate',
+                key: 'doc.rate',
+                width: 100,
+            },{
+                title: 'Статус',
+                dataIndex: 'doc.status',
+                key: 'doc.status',
+                width: 100,
+            }
+        ]}
     }
     self(name, params) {
 		this.props.staffStore[name](params)
@@ -50,9 +52,10 @@ class List extends React.Component {
                         Список персонала: показаны с {(requestObject.page * requestObject.limit) - requestObject.limit + 1} по {viewCount} - 
                         найдены {listResult.searchCount} из {listResult.count}
                     </h4>
-                    <Table columns={columns} 
+                    <Table columns={this.state.columns} 
                             dataSource={listResult.data.toJS()}
                             rowKey='id'
+                            onChange={(pagination, filters, sorter)  => this.self('changeSorterPage', sorter)}
                             onRow={record => ({
                                 onClick: () => this.self('viewForm', record)
                             })}

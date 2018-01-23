@@ -67,6 +67,7 @@ class BasicRequest {
                 requestString += `AND (doc->>'${name}') ILIKE '${object.filterField[name]}'`
             }
         }
+        requestString += `ORDER BY (doc->>'${object.sortBy.field}') ${object.sortBy.reverse ? 'DESC' : 'ASC'} `
         requestString += `LIMIT ${object.limit} OFFSET ${(object.page - 1) * object.limit}` 
         return new Promise(function(resolve, reject) {
             db.query(requestString, (err, res) => {
