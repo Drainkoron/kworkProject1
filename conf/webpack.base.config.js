@@ -2,6 +2,8 @@ import webpack from 'webpack';
 import Config from 'webpack-config';
 import HtmlWebpackPlugin from 'html-webpack-plugin';
 
+console.log(__dirname + '/../static')
+
 export default new Config().merge({
     output: {
         path: __dirname + '/../static'
@@ -42,7 +44,7 @@ export default new Config().merge({
         // new webpack.IgnorePlugin(/^\.\/locale$/, /moment$/),
         new HtmlWebpackPlugin({
             filename: 'index.html',
-            template: './static/index.html',
+            template: './render/index.html',
             inject: "body"
         })
     ]

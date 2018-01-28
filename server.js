@@ -6,9 +6,11 @@ import cookieParser from 'cookie-parser'
 
 const PUBLIC_PATH = __dirname + '/static';
 
+
 const app = express();
 const isDevelopment = process.env.NODE_ENV === 'development';
 
+app.use(express.static(PUBLIC_PATH));
 app.use(bodyParser.json())
 app.use(bodyParser.urlencoded({
     extended: true
@@ -26,8 +28,6 @@ if (isDevelopment) {
 		}
 	}));
   	app.use(require('webpack-hot-middleware')(compiler));
-} else {
-  	app.use(express.static(PUBLIC_PATH));
 }
 
 

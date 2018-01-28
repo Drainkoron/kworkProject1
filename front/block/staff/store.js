@@ -16,6 +16,7 @@ class StaffStore extends Basic {
     @observable form
     @observable listResult
     @observable requestObject
+    @observable currentRow
     // @observable payout
     // @observable receive
 
@@ -30,6 +31,7 @@ class StaffStore extends Basic {
         },
         this.listResult = {},
         this.requestObject = this.searchModel()
+        this.currentRow = null
         // this.payout = [],
         // this.receive = []
     }
@@ -117,7 +119,6 @@ class StaffStore extends Basic {
 			this.messageError('Ошибка редактирования работника!')
 		})
     }
-
 
     // /* Filter */
 

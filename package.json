@@ -4,10 +4,10 @@
   "description": "magazine",
   "main": "server.js",
   "scripts": {
-    "dev": "NODE_ENV=development babel-node server.js",
     "set_dev": "NODE_ENV=development webpack",
+    "dev": "NODE_ENV=development babel-node server.js",
     "modules": "NODE_ENV=development webpack --display-modules",
-    "set_prod": "NODE_ENV=production webpack",
+    "prod": "NODE_ENV=production webpack",
     "start": "NODE_ENV=production babel-node server.js"
   },
   "repository": {

@@ -9,6 +9,10 @@ export default function observeModel(self) {
                     self.scheme[change.name].elem.value = change.newValue ? moment(change.newValue) : null
                         break
 
+                case 'Checked':
+                    self.scheme[change.name].elem.checked = change.newValue
+                        break
+
                 default:
                     self.scheme[change.name].elem.value = change.newValue
                         break

@@ -70,13 +70,23 @@ class Basic {
         this.getList()
     }
 
+    /* Row Class */
+    // @action getRowClass(record) {
+    //     console.log(record, 'getRowClass')
+    //     return 'active-row'
+    // }
+
     /* Sorter */
     @action changeSorterPage(object) {
         if('order' in object && 'field' in object) {
-            this.requestObject.sortBy.field = object.field.split('.')[1]
-            this.requestObject.sortBy.reverse = object.order == 'ascend' ? false : true
-            this.requestObject.page = 1
-            this.getList()
+            var field = object.field.split('.')[1]
+            var reverse = object.order == 'ascend' ? false : true
+            if(this.requestObject.sortBy.field != field || this.requestObject.sortBy.reverse != reverse) {
+                this.requestObject.sortBy.field = field
+                this.requestObject.sortBy.reverse = reverse
+                this.requestObject.page = 1
+                this.getList()
+            }
         }
     }
 
@@ -84,6 +94,7 @@ class Basic {
 
     @action changePaginationPage(page) {
         this.requestObject.page = page
+        console.log(this.requestObject.page, 'this.requestObject.page')
         this.getList()
     }
 

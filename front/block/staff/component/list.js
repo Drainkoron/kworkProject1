@@ -45,7 +45,9 @@ class List extends React.Component {
 		
 	}
 	render() {
-        const { listResult, requestObject, viewCount } = this.props.staffStore
+        const { listResult, requestObject, viewCount, model } = this.props.staffStore
+
+        console.log(model, 'update_model')
  
 		return (
             <div style={{marginTop: '20px'}}>

@@ -1,6 +1,6 @@
 import webpack from 'webpack';
 import Config from 'webpack-config';
-const CleanWebpackPlugin = require('clean-webpack-plugin');
+import CleanWebpackPlugin from 'clean-webpack-plugin';
 
 export default new Config().extend('conf/webpack.base.config.js').merge({
     entry: ['babel-polyfill', 
