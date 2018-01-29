@@ -74,3 +74,20 @@ input {
     direction: row;
     justify-content: space-between;
 }
+
+.avatar-uploader > .ant-upload {
+    width: 200px;
+    height: 200px;
+    float: right;
+}
+
+.avatar-uploader > .ant-upload > img {
+    width: 200px;
+    height: 200px;
+}
+
+.ant-avatar-img {
+    width: 200px;
+    height: 200px;
+    background-size: cover;
+}

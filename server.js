@@ -10,7 +10,6 @@ const PUBLIC_PATH = __dirname + '/static';
 const app = express();
 const isDevelopment = process.env.NODE_ENV === 'development';
 
-app.use(express.static(PUBLIC_PATH));
 app.use(bodyParser.json())
 app.use(bodyParser.urlencoded({
     extended: true
@@ -28,7 +27,11 @@ if (isDevelopment) {
 		}
 	}));
   	app.use(require('webpack-hot-middleware')(compiler));
+} else {
+	
 }
+
+app.use(express.static(PUBLIC_PATH));
 
 
 const PORT = 8000;
@@ -68,9 +71,10 @@ app.post("/get_dictionary", getList)
 app.post("/add_dictionary_elem", addElem)
 
 /* File */
-import { uploadFile, listFile, deleteFile } from './back/file/request'
+import { uploadFile, listFile, deleteFile, uploadAvatar } from './back/file/request'
 
 app.post('/upload_file', uploadFile)
+app.post('/upload_avatar', uploadAvatar)
 app.post('/list_file', listFile)
 app.post('/delete_file', deleteFile)
 

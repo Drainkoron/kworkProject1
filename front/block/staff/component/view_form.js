@@ -8,6 +8,7 @@ import { Form,
 
 import PicturesWall from '../../../common/element/pictures_wall'
 import Dictionary from '../../../common/element/dictionary'
+import Avatar from '../../../common/element/avatar'
 
 
 @inject("staffStore") @observer
@@ -27,6 +28,8 @@ class ViewForm extends React.Component {
         
 		return (
             <Form className="view-form">
+                <Avatar data={{value: model.avatar, 
+                                change: (value) => this.props.staffStore.setModelValue('avatar', value)}} />
                 <div className="view-form-content">
                     {Object.keys(scheme).map((key, index) => {
                         if(key != 'store') {
@@ -46,8 +49,8 @@ class ViewForm extends React.Component {
                 </div>
                 <PicturesWall data={{object: 'staff', id: model.id}}/>
                 <div className="view-form-function">
-                    <Button htmlType="submit" onClick={() => this.self('changeStatus', 'Архив')}>В архив</Button>  
-                    <Button type="primary" htmlType="submit" onClick={elem => this.self('viewModal')}>Редактировать</Button>
+                    <Button onClick={() => this.self('changeStatus', 'Архив')}>В архив</Button>  
+                    <Button type="primary" onClick={elem => this.self('viewModal')}>Редактировать</Button>
                 </div>
             </Form>
 		)

@@ -16,6 +16,7 @@ function uploadPromise(req, res) {
     return new Promise(function(resolve, reject) {
         upload(req, res, function (err) {
             if (err) {
+                console.log(err, 'err')
                 reject()
             } else {
                 req.body.name = req.file.originalname
@@ -38,9 +39,6 @@ function deletePromise(name) {
     })
 }
 
-
-//!!!! token!!!! ????
-
 import addFilePg from './add_file'
 import listFilePg from './list_file'
 import deleteFilePg from './delete_file'
@@ -57,6 +55,15 @@ export async function uploadFile(req, res) {
         res.send(result)
     }, (error) => {
         res.status(error.status).send(error.message)
+    })
+}
+
+export async function uploadAvatar(req, res) {
+    var data = ''
+	await uploadPromise(req, res).then((result) => { 
+        res.send(result)
+    }, (error) => {
+        res.status(500).send('File upload error');
     })
 }
 

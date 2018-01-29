@@ -56,6 +56,7 @@ class StaffStore extends Basic {
     formModel() {
         return {
             id: false,
+            avatar: '',
             position: 'Соискатель',
             fio: '',
             phone: '',
@@ -64,6 +65,7 @@ class StaffStore extends Basic {
             specialty: '',
             rate: 100,
             status: 'Свободен',
+            city: '',
             address: '',
             balance: 0,
             app: false,

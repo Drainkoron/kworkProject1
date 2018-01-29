@@ -84,6 +84,18 @@ export function blockScheme(store) {
 				name: "birthday"
 			}
 		},
+		city: {
+			options: {
+				name: "Город",
+				type: "Dictionary",
+				col: 0
+			},
+			elem: {
+                dictionary: 'city',
+                value: '',
+				onChange: (value) => dictionaryChange('city', value, store)
+			}
+		},
 		address: {
 			options: {
 				name: "Адрес",
