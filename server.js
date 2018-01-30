@@ -27,8 +27,10 @@ if (isDevelopment) {
 		}
 	}));
 	  app.use(require('webpack-hot-middleware')(compiler));
-	  app.use(express.static(PUBLIC_PATH));
-} 
+	  
+} else {
+	app.use(express.static(PUBLIC_PATH));
+}
 
 
 

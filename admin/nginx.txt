@@ -1,3 +1,15 @@
+1. создать конфиг
+2. подключить конфиг
+
+cd /etc/nginx/sites-enabled/
+ln -s /etc/nginx/sites-available/example.com
+
+3. Дать права на папку
+
+перезапуск сервера
+
+
+
 sudo aptitude install nginx
 
 sudo service nginx start
@@ -15,6 +27,9 @@ ls -la
 sudo nano /etc/nginx/sites-available/gaz-lift.com
 
 
+
+
+
 Рекомендую удалять командой sudo apt-get purge nginx или sudo apt purge nginx. 
 Если вы используете пакетный менеджер aptitude, то команда sudo aptitude purge nginx удаляет пакет полностью со всеми зависимостями и конфигурационными файлами.
 
@@ -27,6 +42,10 @@ chown www-data /home/www
 chown www-data /home/www/files
 Пользователь, под которым работает nginx, указывается в первой строке конфигурационного 
 файла (user www-data;).
+
+
+chown www-data /var/www/wh3.dev-base.ru
+chown www-data /var/www/wh3.dev-base.ru/static
 
 
 

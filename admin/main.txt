@@ -1,4 +1,4 @@
 
-cd /var/www/wh3
+cd /var/www/wh3.dev-base.ru
 
-123123
+htop
