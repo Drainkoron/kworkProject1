@@ -26,7 +26,7 @@ export default function authScheme(store) {
 				name: "Пароль",
 				type: "Input",
 				format: "eng",
-				min: 5,
+				min: 4,
 				textError: "Пароль не может быть короче короче 5 символов"
 			},
 			elem: {
