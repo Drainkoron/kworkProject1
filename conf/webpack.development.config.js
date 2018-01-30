@@ -1,6 +1,8 @@
 import webpack from 'webpack';
 import Config from 'webpack-config';
 
+const SERVER = 'http://localhost:8000'
+
 export default new Config().extend('conf/webpack.base.config.js').merge({
     entry: [
         'react-hot-loader/patch',
@@ -35,6 +37,9 @@ export default new Config().extend('conf/webpack.base.config.js').merge({
     //     }]
     // },
     plugins: [
-        new webpack.HotModuleReplacementPlugin()
+        new webpack.HotModuleReplacementPlugin(),
+        new webpack.DefinePlugin({
+            SERVER: JSON.stringify(SERVER)
+        }),
     ]
 });
