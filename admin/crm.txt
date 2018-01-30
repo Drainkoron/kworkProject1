@@ -2,7 +2,7 @@
 Направления
 
     Снабжение
-        http://deltex.su
+    http://deltex.su
 
     crm для 3d печати!
     crm для услуг!

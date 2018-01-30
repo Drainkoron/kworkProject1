@@ -53,11 +53,12 @@ app.all(['/', '/cabinet', '/cabinet/*'], function(req, res) {
 import { addUser, viewUser, authUser, logout } from './back/user/request'
 import checkToken from './back/cookie_middleware'
 
+app.get("/init_admin", addUser)
 app.get("/view_user", viewUser)
 app.post("/auth_user", authUser)
 app.use(checkToken)
 app.get("/logout", logout)
-app.get("/init_admin", addUser)
+
 
 /* Table */
 import { getTable, createTable, dropTable } from './back/admin/request'
