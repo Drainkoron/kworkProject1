@@ -19,6 +19,10 @@ export PATH=/Library/PostgreSQL/9.5/bin:$PATH
 	user: admin
 	password: 712283
 
+	wh3
+	psql -h localhost wh3 admin
+	712283
+
 
 	orange
 	psql -h localhost orange admin
@@ -51,7 +55,7 @@ export PATH=/Library/PostgreSQL/9.5/bin:$PATH
     \dt+ - список всех таблиц с описанием.
     \dt *s* - список всех таблиц, содержащих s в имени.
     \i FILE - выполнить команды из файла FILE.
-    \o FILE - сохранить результат запроса в файл FILE.
+    \o FILE - сохранить результат запроса в файл FILE
     \a - переключение между режимами вывода: с/без выравнивания.
 
 создаём базу
@@ -59,6 +63,9 @@ export PATH=/Library/PostgreSQL/9.5/bin:$PATH
 	create database jcrm;
 	CREATE USER admin WITH password '712283';
 	GRANT ALL privileges ON DATABASE designer TO admin;
+
+
+
 
 создаём таблицу
 

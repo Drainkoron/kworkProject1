@@ -4,7 +4,7 @@
 cd /etc/nginx/sites-enabled/
 ln -s /etc/nginx/sites-available/example.com
 
-3. Дать права на папку
+3. Дать права на папки статики
 
 перезапуск сервера
 
@@ -46,7 +46,7 @@ chown www-data /home/www/files
 
 chown www-data /var/www/wh3.dev-base.ru
 chown www-data /var/www/wh3.dev-base.ru/static
-
+chown www-data /var/www/wh3.dev-base.ru/static/files
 
 
 Настройка с нодой 
