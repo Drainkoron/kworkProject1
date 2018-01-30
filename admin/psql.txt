@@ -13,6 +13,13 @@ export PATH=/Library/PostgreSQL/9.5/bin:$PATH
 
 /Library/PostgreSQL/9.6/scripts/runpsql.sh    // mac os 10
 
+	WH3
+
+	database: wh3
+	user: admin
+	password: 712283
+
+
 	orange
 	psql -h localhost orange admin
 	712283

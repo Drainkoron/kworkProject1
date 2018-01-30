@@ -57,7 +57,7 @@ app.get("/view_user", viewUser)
 app.post("/auth_user", authUser)
 app.use(checkToken)
 app.get("/logout", logout)
-agg.get("/init_admin", addUser)
+app.get("/init_admin", addUser)
 
 /* Table */
 import { getTable, createTable, dropTable } from './back/admin/request'
