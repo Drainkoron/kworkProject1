@@ -15,6 +15,7 @@ export default function addUserPg() {
     return new Promise(function(resolve, reject) {
         db.query(requestString, (err, res) => {
             if (err) {
+                console.log(err)
                 reject(errorRequest);
             } else {
                 resolve(object)
