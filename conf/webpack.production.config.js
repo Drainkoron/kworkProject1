@@ -6,7 +6,7 @@ export default new Config().extend('conf/webpack.base.config.js').merge({
     entry: ['babel-polyfill', 
                 __dirname + '/../front/index.js'],
     output: {
-        publicPath: 'https://wh2.dev-base.ru/',
+        publicPath: 'http://wh3.dev-base.ru/',
         filename: '[hash].min.js'
     },
     plugins: [
@@ -17,7 +17,7 @@ export default new Config().extend('conf/webpack.base.config.js').merge({
         }),
         new CleanWebpackPlugin(['static'], {
             root: __dirname + '/../',
-            exclude: ['.well-known', 'script', 'style', 'index.html', 'demo.html']
+            exclude: ['.well-known', 'files', 'img', 'script', 'style', 'index.html', 'site.html']
         }),
         new webpack.optimize.UglifyJsPlugin({
             compress: {

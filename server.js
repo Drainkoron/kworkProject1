@@ -26,12 +26,11 @@ if (isDevelopment) {
 			colors: true
 		}
 	}));
-  	app.use(require('webpack-hot-middleware')(compiler));
-} else {
-	
-}
+	  app.use(require('webpack-hot-middleware')(compiler));
+	  app.use(express.static(PUBLIC_PATH));
+} 
 
-app.use(express.static(PUBLIC_PATH));
+
 
 
 const PORT = 8000;
