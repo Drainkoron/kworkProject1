@@ -11,7 +11,7 @@ export default function authScheme(store) {
 				name: "Логин",
                 type: "Input",
                 format: "eng",
-				min: 5,
+				min: 4,
 				textError: "Имя не может быть короче 5 символов"
 			},
 			elem: {
