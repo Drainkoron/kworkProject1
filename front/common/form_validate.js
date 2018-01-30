@@ -16,7 +16,7 @@ export default function formValidate(scheme) {
                     }
                 }
                 if('min' in scheme[i].options) {
-                    if(scheme[i].elem.value.length < scheme[i].options.min) {
+                    if(scheme[i].elem.value.length <= scheme[i].options.min) {
                         return scheme[i].options.textError
                     }
                 }

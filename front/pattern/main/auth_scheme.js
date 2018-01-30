@@ -12,7 +12,7 @@ export default function authScheme(store) {
                 type: "Input",
                 format: "eng",
 				min: 4,
-				textError: "Имя не может быть короче 5 символов"
+				textError: "Имя не может быть короче 4 символов"
 			},
 			elem: {
 				placeholder: "username",
