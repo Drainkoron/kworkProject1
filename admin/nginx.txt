@@ -1,7 +1,6 @@
 sudo aptitude install nginx
 
 sudo service nginx start
-sudo service nginx start
 sudo service nginx reload
 
 
@@ -38,3 +37,30 @@ https://linode.com/docs/development/nodejs/how-to-install-nodejs-and-nginx-on-de
 
 Проксирование в папку статик
 https://kuroikaze85.wordpress.com/2010/01/19/using-nginx-with-node-js/
+
+
+
+// Server nginx + nodejs (static!!!)
+
+#Names a server and declares the listening port
+server {
+    listen 80;
+    server_name gaz-lift.com www.gaz-lift.com;
+
+    #Configures the publicly served root directory
+    #Configures the index file to be served
+    # root /var/www/gaz-lift.com/static;
+    # index index.html index.htm;
+    location ^~ /static/ {
+        # Путь к корневому каталогу со статическими файлами
+        root /var/www/gaz-lift.com/static;
+    }
+
+    #These lines create a bypass for certain pathnames
+    #www.example.com/test.js is now routed to port 3000
+    #instead of port 80
+    location / {
+        proxy_pass http://95.213.194.214:8000;
+        proxy_set_header Host $host;
+    }
+}
