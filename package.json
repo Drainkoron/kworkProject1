@@ -8,7 +8,7 @@
     "dev": "NODE_ENV=development babel-node server.js",
     "modules": "NODE_ENV=development webpack --display-modules",
     "prod": "NODE_ENV=production webpack",
-    "start": "index.js"
+    "start": "node index.js"
   },
   "repository": {
     "type": "git",
