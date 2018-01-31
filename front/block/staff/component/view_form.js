@@ -29,7 +29,7 @@ class ViewForm extends React.Component {
 		return (
             <Form className="view-form">
                 <Avatar data={{value: model.avatar, 
-                                change: (value) => this.props.staffStore.setModelValue('avatar', value)}} />
+                                change: (value) => this.self('setAvatar', value)}} />
                 <div className="view-form-content">
                     {Object.keys(scheme).map((key, index) => {
                         if(key != 'store') {

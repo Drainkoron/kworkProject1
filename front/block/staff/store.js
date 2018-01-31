@@ -136,6 +136,12 @@ class StaffStore extends Basic {
         this.setModel(elem.doc)
     }
 
+    @action setAvatar(value) {
+        console.log(value, 'value')
+        this.model.avatar = value
+        this.saveForm()
+    }
+
     // /* Payout */
 
     // @action getPayoutList() {
