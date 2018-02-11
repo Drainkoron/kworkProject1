@@ -16,12 +16,14 @@ import tableStore from './table/store'
 /* Custom block */
 import staffStore from '../block/staff/store'
 import customerStore from '../block/customer/store'
+import orderStore from '../block/order/store'
 
 const store = { mainStore, 
                 userStore, 
                 tableStore,
                 staffStore,
-                customerStore }
+                customerStore,
+                orderStore }
 
 import Auth from './main/component/auth'
 import NoMatch from './component/no_match'

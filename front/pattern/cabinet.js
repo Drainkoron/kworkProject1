@@ -30,6 +30,8 @@ import TableBlock from './table/block'
 /* Custom block */
 import StaffBlock from '../block/staff/block'
 import CustomerBlock from '../block/customer/block'
+import OrderBlock from '../block/order/block'
+import OrderPage from '../block/order/page'
 
 
 @inject("mainStore") @observer
@@ -66,6 +68,9 @@ class Cabinet extends Component {
                             selectedKeys={[history.location.pathname]}
                             style={{ lineHeight: '64px' }}
                             onClick={(event) => this.self('routing', event.key)}>
+                            <Menu.Item key="/cabinet/order">
+                                <Icon type="database" />Работы
+                            </Menu.Item>
                             <Menu.Item key="/cabinet/customer">
                                 <Icon type="home" />Заказчики
                             </Menu.Item>
@@ -99,6 +104,8 @@ class Cabinet extends Component {
                                     <Route path='/cabinet/table' component={TableBlock}/> 
                                     <Route path='/cabinet/staff' component={StaffBlock}/> 
                                     <Route path='/cabinet/customer' component={CustomerBlock}/> 
+                                    <Route path='/cabinet/order' component={OrderBlock}/>
+                                    <Route path='/cabinet/order-page/:id' component={OrderPage}/>
                                     
                                     
 

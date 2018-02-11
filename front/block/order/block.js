@@ -12,10 +12,9 @@ const Search = Input.Search
 
 import Filter from  './component/filter.js'
 import List from './component/list.js'
-import ViewForm from './component/view_form.js'
 
 
-@inject("mainStore", "orderStore") @observer
+@inject("orderStore") @observer
 class OrderBlock extends React.Component {
 	constructor(props) {
         super(props);
@@ -25,8 +24,6 @@ class OrderBlock extends React.Component {
 		this.props.orderStore[name](params)
 	}
 	componentWillMount() {
-        // this.props.taskStore.user = Object.assign({}, this.props.mainStore.user)
-        // this.props.taskStore.history = this.props.history
         this.props.orderStore.resetSearchModel()
         this.props.orderStore.getList()
 	}

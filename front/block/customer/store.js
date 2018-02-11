@@ -66,15 +66,6 @@ class CustomerStore extends Basic {
         }
     }
 
-    @action getList() {
-        getListReq(this.requestObject).then(data => {
-            this.listResult = data
-		}, error => {
-			this.messageError('Ошибка получения списка работников!')
-        })
-    }
-
-
     /* Filter */
 
     @action changeFilterType(value) {
@@ -83,6 +74,7 @@ class CustomerStore extends Basic {
         this.getList()
     }
 
+    /* event Form */
     @action validateForm() {
         this.form.error = formValidate(this.scheme)
         if(this.form.error == false) {
@@ -92,6 +84,21 @@ class CustomerStore extends Basic {
                 this.saveForm()
             }
         }
+    }
+
+    @action viewForm(elem) {
+        elem.doc.id = elem.id
+        this.setModel(elem.doc)
+    }
+
+    /* Request */
+
+    @action getList() {
+        getListReq(this.requestObject).then(data => {
+            this.listResult = data
+        }, error => {
+            this.messageError('Ошибка получения списка работников!')
+        })
     }
 
     @action saveForm() {
@@ -116,12 +123,6 @@ class CustomerStore extends Basic {
         this.getList()
     }
 
-    /* event Form */
-    @action viewForm(elem) {
-        elem.doc.id = elem.id
-        this.setModel(elem.doc)
-    }
-
     /* external */
     
     @action changeSelect(value) {
@@ -135,6 +136,7 @@ class CustomerStore extends Basic {
         this.setModel(this.formModel())
         copyProperty(this.model, object, ['customer', 'persone', 'address', 'phone', 'typeJob', 'costHour', 'manager', 'source'])
         addReq(this.model).then(data => {
+            console.log('data')
             callback(data)
 		}, error => {
 			message.error('Ошибка сохранения заказчика!')

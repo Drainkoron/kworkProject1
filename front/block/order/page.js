@@ -20,15 +20,17 @@ import { Table,
             InputNumber,
             Tabs } from 'antd';
 
+const Step = Steps.Step;
+const TabPane = Tabs.TabPane;
+            
+
 import copyProperty from '../../common/copy_property'
 import Dictionary from '../../common/element/dictionary'
 import UserSelect from '../../common/element/user_select'
 import ConstantSelect from '../../common/element/constant_select'
 
-import OrderTableBlock from '../order_table/block'
 
-const Step = Steps.Step;
-const TabPane = Tabs.TabPane;
+
 
 import { StatusForm } from './dictionary'
 
@@ -47,12 +49,7 @@ const gridStyle = {
 }
 
 import SearchCustomer from '../customer/component/search'
-import SelectStaff from './component/select_staff'
-import CurrentStaff from './component/current_staff'
-//import ContactList from './component/contact_list'
-import ActList from './component/act_list'
-import PayoutList from './component/payout_list'
-import ReceiveForm from '../receive/component/form'
+
 
 @inject("mainStore", "orderStore") @observer
 class OrderPage extends React.Component {
@@ -196,99 +193,11 @@ class OrderPage extends React.Component {
                             showIcon
                             style={form.error != false ? {display: 'block', marginBottom: '30px'} : {display: 'none'}} />
 
-                    {model.status != 'Новая' ? 
-                        <Tabs defaultActiveKey="1">
-                            <TabPane tab={<span><Icon type="team" />Работники</span>} key="1">
-                                <CurrentStaff />
-                            </TabPane>
-                            {model.status == 'В работе' ? 
-                                <TabPane tab={<span><Icon type="solution" />Табель</span>} key="2">
-                                    <OrderTableBlock model={model} 
-                                                    customer={keys.customer} 
-                                                    staff={selectStaff.currentList} 
-                                                    updateAct={() => this.self('getAct')}
-                                                    updatePayout={() => this.self('getPayout')}/> 
-                                </TabPane> : null}
-                            {act.length ? 
-                                <TabPane tab={<span><Icon type="solution" />Акты</span>} key="3">
-                                    <ActList />
-                                </TabPane> : null}
-
-                            {payout.length ? 
-                                <TabPane tab={<span><Icon type="solution" />Ведомости</span>} key="4">
-                                    <PayoutList />
-                                </TabPane> : null}
-
-
-                                
-                        </Tabs> : null
-                    }
                 </Card> : false}
-                <SelectStaff />
-                <ReceiveForm />
+
             </div>
 		)
 	}
 }
 
 export default OrderPage
-
-
-
-
-
-// componentWillMount() {
-//     this.props.outInvoiceStore.getCurrentTask(this.props.match)
-// }
-
-
-
-// <Card title={Type[currentTask.json_data.type][0]}>
-// <div style={{height: 20}}>
-//     <h3 style={{float: 'left'}}><span style={{color: '#108ee9'}}>{currentTask.user}</span></h3>
-//     <h3 style={{float: 'right'}}>
-//         <span style={{color: '#10a54a'}}>{moment(currentTask.json_data.date).format('HH:mm DD-MM-YY')}</span>
-//     </h3>
-// </div>
-// <div style={{margin: '30px 0 22px 0'}}>    
-//     {editTaskStatus && user.superuser ? <div style={{height: '20px', margin: '20px 0 10px 0'}}> 
-//         <Button type="primary" 
-//                 onClick={() => this.self('editTask')}
-//                 style={{float: 'right'}}>Сохранить</Button>
-//     </div> : false}
-// </div> 
-
-// <h4>Содержание</h4>
-// <p>{currentTask.json_data.note}</p>
-// <div style={{height: '20px'}}></div>
-
-// <h4>Обсуждение: {listResult.all_count} сообщений</h4>
-// <div style={{height: '20px'}}></div>
-// <div style={{maxHeight: 300, 
-//                 overflow: 'auto',
-//                 padding: '0 20px 20px 0',
-//                 marginRight: '-24px'}}>
-//     { listResult.object_list ? 
-//         <Timeline>
-//                 {listResult.object_list.map(elem => {
-//                     return <Timeline.Item 
-//                                 key={elem.id} 
-//                                 className={elem.read ? 'timeline-message-read' : 'timeline-message-noread'}
-//                                 onMouseEnter={() => this.moveMessage(elem)}>
-//                                     <b>{elem.user}</b> {moment(elem.json_data.date).format('HH:mm DD-MM-YY')}
-//                                     <p>{elem.json_data.message}</p>
-//                             </Timeline.Item>
-//                 })}
-                
-            
-//         </Timeline> : false }
-// </div>
-// <div style={{height: '20px'}}></div>
-// <Form>
-//     <Form.Item label={scheme.message.options.name}>
-//         <Input {...scheme.message.elem}/>
-//     </Form.Item>
-// </Form>
-// {lengthMessage > 2 ? <div style={{height: 30}}>
-// </div>: false}
-// </Card>

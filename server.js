@@ -92,12 +92,19 @@ app.post("/staff_add", (req, res) => staff.add(req, res))
 app.post("/staff_edit", (req, res) => staff.edit(req, res))
 app.post("/staff_list", (req, res) => staff.list(req, res))
 
+
 import customer from './back/block_request/customer'
 
 app.post("/customer_add", (req, res) => customer.add(req, res))
 app.post("/customer_edit", (req, res) => customer.edit(req, res))
 app.post("/customer_list", (req, res) => customer.list(req, res))
 
+
+import order from './back/block_request/order'
+
+app.post("/order_add", (req, res) => order.add(req, res))
+app.post("/order_edit", (req, res) => order.edit(req, res))
+app.post("/order_list", (req, res) => order.list(req, res))
 
 
 
