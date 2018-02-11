@@ -1,17 +1,13 @@
 import React from 'react';
 
-import getUserListReq from '../../pattern/requests/get_user_list'
-import mainStore from '../../pattern/stores/main_store'
+import { userList } from './request_element'
 
 import { Select, Button, message } from 'antd';
 const Option = Select.Option;
 
-message.config({
-    top: 150,
-    duration: 1,
-});
+import { MessageConfig } from '../../app_constants'
+message.config(MessageConfig)
 
-var mount = false
 
 class UserSelect extends React.Component {
     constructor(props) {
@@ -26,27 +22,20 @@ class UserSelect extends React.Component {
         this.props.data.onChange(value)
     }
     getList() {
-        getUserListReq().then(data => {
-			if(data.success) {
-                if(mount) {
-                    this.setState({list: data.body})
-                }
-            } else {
-                message.error('Ошибка получения списка менеджеров!')
-            }
+        userList().then(data => {
+            this.setState({list: data})
 		}, error => {
-			message.error('Ошибка получения списка менеджеров!')
+			message.error('Ошибка получения списка пользователей!')
 		})
     }
     componentWillReceiveProps(nextProps) {
 
 	}
     componentWillMount() {
-        mount = true
         this.getList()
     }
     componentWillUnmount() {
-        mount = false
+       
     }
     render() {
         const { list } = this.state
@@ -63,7 +52,7 @@ class UserSelect extends React.Component {
                 filterOption={false}
                 style={{ width: 280 }}
                 onSelect={(value) => this.select(value)}>
-                    {list.map(elem => <Option key={elem.id} value={elem.username}>{elem.username}</Option>)}
+                    {list.map(elem => <Option key={elem.id} value={elem.doc.login}>{elem.doc.login}</Option>)}
              
             </Select>
         </div>

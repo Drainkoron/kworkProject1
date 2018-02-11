@@ -3,6 +3,7 @@ import addUserPg from './add_user'
 import viewUserPg from './view_user'
 import authUserPg from './auth_user'
 import addDemoUserPg from './add_demo'
+import getUserListPg from './user_list'
 
 export function addUser(req, res) {
 	addUserPg().then((result) => { 
@@ -52,5 +53,15 @@ export function logout(req, res) {
     res.clearCookie('token')
     res.send(true)
 }
+
+export function userList(req, res) {
+    getUserListPg().then((result) => { 
+        res.send(result)
+    }, (error) => {
+        res.status(error.status).send(error.message)
+    })
+}
+
+
 
 

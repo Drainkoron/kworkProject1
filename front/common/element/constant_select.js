@@ -1,7 +1,7 @@
 import React from 'react';
 
-import getUserListReq from '../../pattern/requests/get_user_list'
-import mainStore from '../../pattern/stores/main_store'
+
+//import mainStore from '../../pattern/stores/main_store'
 
 import { Select, Button } from 'antd';
 const Option = Select.Option;

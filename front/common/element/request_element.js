@@ -80,6 +80,31 @@ export function deleteFile(requestObject) {
 }
 
 
+export function userList() {
+    return new Promise(function(resolve, reject) {
+        fetchGet(`${URL}/user_list`).then((response) => {
+            if(response.status == 200) {
+                response.json().then((data) => {
+                    resolve(data)
+                })
+            } else {
+                response.text().then((data) => {
+                    reject(data)
+                })
+            }
+        }).catch((error) => {
+            reject(error);
+        });
+    })
+}
+
+
+
+
+
+
+
+
 
 
 

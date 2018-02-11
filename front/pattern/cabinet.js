@@ -29,6 +29,7 @@ import TableBlock from './table/block'
 
 /* Custom block */
 import StaffBlock from '../block/staff/block'
+import CustomerBlock from '../block/customer/block'
 
 
 @inject("mainStore") @observer
@@ -58,13 +59,16 @@ class Cabinet extends Component {
                         breakpoint="lg"
                         collapsedWidth="0"
                         onCollapse={(collapsed, type) => { console.log(collapsed, type) }}>
-                        <div className="logo">KingWinch Admin</div>
+                        <div className="logo">123</div>
                         <Menu
                             theme="dark"
                             mode="inline"
                             selectedKeys={[history.location.pathname]}
                             style={{ lineHeight: '64px' }}
                             onClick={(event) => this.self('routing', event.key)}>
+                            <Menu.Item key="/cabinet/customer">
+                                <Icon type="home" />Заказчики
+                            </Menu.Item>
                             <Menu.Item key="/cabinet/staff">
                                 <Icon type="solution" />Персонал
                             </Menu.Item>
@@ -94,6 +98,8 @@ class Cabinet extends Component {
                                     <Route path='/cabinet/users' component={UserBlock}/> 
                                     <Route path='/cabinet/table' component={TableBlock}/> 
                                     <Route path='/cabinet/staff' component={StaffBlock}/> 
+                                    <Route path='/cabinet/customer' component={CustomerBlock}/> 
+                                    
                                     
 
                                     

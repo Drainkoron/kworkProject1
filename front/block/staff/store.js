@@ -5,7 +5,6 @@ import formValidate from '../../common/form_validate'
 import observeModel from '../../common/observe_model'
 import Basic from '../../pattern/basic'
 
-import { Position } from './dictionary'
 import { addReq, editReq, getListReq } from './request'
 
 
@@ -122,7 +121,7 @@ class StaffStore extends Basic {
 		})
     }
 
-    // /* Filter */
+    /* Filter */
 
     @action changeFilterType(value) {
         this.requestObject.filterField.position = value
