@@ -20,7 +20,7 @@ export default new Config().extend('conf/webpack.base.config.js').merge({
         }),
         new CleanWebpackPlugin(['static'], {
             root: __dirname + '/../',
-            exclude: ['.well-known', 'files', 'img', 'script', 'style', 'index.html', 'site.html']
+            exclude: ['.well-known', 'files', 'img', 'index.html']
         }),
         new webpack.optimize.UglifyJsPlugin({
             compress: {
