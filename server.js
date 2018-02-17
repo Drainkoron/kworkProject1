@@ -86,6 +86,14 @@ app.post('/delete_file', deleteFile)
 
 /* Custom */
 
+import tree from './back/block_request/tree'
+app.get("/tree_add", (req, res) => tree.add(req, res))
+app.post("/tree_get", (req, res) => tree.getId(req, res))
+app.post("/tree_edit", (req, res) => tree.edit(req, res))
+
+
+
+
 import staff from './back/block_request/staff'
 
 app.post("/staff_add", (req, res) => staff.add(req, res))

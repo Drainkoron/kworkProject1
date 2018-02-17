@@ -28,10 +28,13 @@ import UserBlock from './users/block'
 import TableBlock from './table/block'
 
 /* Custom block */
-import StaffBlock from '../block/staff/block'
-import CustomerBlock from '../block/customer/block'
-import OrderBlock from '../block/order/block'
-import OrderPage from '../block/order/page'
+import GoodsBlock from '../block/goods/block'
+
+
+// import StaffBlock from '../block/staff/block'
+// import CustomerBlock from '../block/customer/block'
+// import OrderBlock from '../block/order/block'
+// import OrderPage from '../block/order/page'
 
 
 @inject("mainStore") @observer
@@ -68,14 +71,8 @@ class Cabinet extends Component {
                             selectedKeys={[history.location.pathname]}
                             style={{ lineHeight: '64px' }}
                             onClick={(event) => this.self('routing', event.key)}>
-                            <Menu.Item key="/cabinet/order">
-                                <Icon type="database" />Работы
-                            </Menu.Item>
-                            <Menu.Item key="/cabinet/customer">
-                                <Icon type="home" />Заказчики
-                            </Menu.Item>
-                            <Menu.Item key="/cabinet/staff">
-                                <Icon type="solution" />Персонал
+                            <Menu.Item key="/cabinet/goods">
+                                <Icon type="appstore-o" />Товары
                             </Menu.Item>
                             <Menu.Item key="/cabinet/users">
                                 <Icon type="team" />Пользователи
@@ -102,10 +99,8 @@ class Cabinet extends Component {
                                 <Switch>
                                     <Route path='/cabinet/users' component={UserBlock}/> 
                                     <Route path='/cabinet/table' component={TableBlock}/> 
-                                    <Route path='/cabinet/staff' component={StaffBlock}/> 
-                                    <Route path='/cabinet/customer' component={CustomerBlock}/> 
-                                    <Route path='/cabinet/order' component={OrderBlock}/>
-                                    <Route path='/cabinet/order-page/:id' component={OrderPage}/>
+                                    <Route path='/cabinet/goods' component={GoodsBlock}/>
+                                    
                                     
                                     
 
@@ -122,3 +117,7 @@ class Cabinet extends Component {
 }
 
 export default withRouter(Cabinet)
+
+
+// <Route path='/cabinet/order' component={OrderBlock}/>
+// <Route path='/cabinet/order-page/:id' component={OrderPage}/>

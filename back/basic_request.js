@@ -17,6 +17,19 @@ class BasicRequest {
             })
         })
     }
+    getIdPg(id) {
+        var requestString = `SELECT * FROM ${this.name} WHERE id = '${id}'`
+
+        return new Promise(function(resolve, reject) {
+            db.query(requestString, (err, res) => {
+                if (err) {
+                    reject(errorRequest);
+                } else {
+                    resolve(res.rows[0])
+                }
+            })
+        })
+    }
     editPg(object) {
         var doc = JSON.stringify(object)
         var requestString = `UPDATE ${this.name} SET doc = '${doc}' WHERE id = ${object.id} RETURNING id, doc`
