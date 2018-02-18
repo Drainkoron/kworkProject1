@@ -8,24 +8,15 @@ import { getTreeReq, updateTreeReq } from './request'
 
 class TreeStore extends Basic {
     @observable tree
-    @observable currentPath
+    @observable point
     @observable nodeName
 
     constructor() {
         super()
         this.tree = {},
-        this.currentPath = [],
-        this.nodeName = '123123'
-
-    }
-
-    @action getTree() {
-        getTreeReq({id: 2}).then(data => {
-            delete data.doc.id
-            this.tree = data.doc
-        }, error => {
-            message.error('Ошибка получения дерева!')
-        })
+        this.point = [],
+        this.nodeName = ''
+        this.maxLevel = 2
     }
 
     @action changeNodeName(value) {
@@ -34,17 +25,62 @@ class TreeStore extends Basic {
 
     @action addNode() {
         var currentNode = this.tree
-        this.currentPath.forEach(elem => {
-            console.log(elem, 'elem')
-        })
+        if(this.point.length == 1) {
+            if(this.point[0].includes('-')) {
+                this.point[0].split('-').forEach((key, index) => {
+                    if(index < this.maxLevel) {
+                        currentNode = currentNode[key]
+                    }
+                })
+            } else {
+                currentNode = currentNode[this.point[0]]
+            }
+        }
         currentNode[this.nodeName] = {}
+        this.nodeName = ''
         this.updateTree()
+    }
+
+    @action deleteNode() {
+        var currentNode = this.tree
+        if(this.point[0].includes('-')) {
+            var arrayPoint = this.point[0].split('-')
+            arrayPoint.forEach((key, index) => {
+                if(arrayPoint.length - 1 == index) {
+                    delete currentNode[key]
+                } else {
+                    currentNode = currentNode[key]
+                }
+            })
+        } else {
+            delete currentNode[this.point[0]]
+        }
+        this.point = []
+        this.updateTree()        
+    }
+
+    @action selectNode(point) {
+        this.point = point
+    }
+
+    @action setData(data) {
+        this.tree = data.doc
+    }
+
+    @action getTree() {
+        getTreeReq({id: 2}).then(data => {
+            delete data.doc.id
+            this.setData(data)
+        }, error => {
+            message.error('Ошибка получения дерева!')
+        })
     }
 
     @action updateTree() {
         this.tree.id = 2
         updateTreeReq(this.tree).then(data => {
-            console.log(data, 'update')
+            delete data.doc.id
+            this.setData(data)
         }, error => {
             message.error('Ошибка получения дерева!')
         })
