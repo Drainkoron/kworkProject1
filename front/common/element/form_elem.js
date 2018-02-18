@@ -21,14 +21,14 @@ import Dictionary from './dictionary'
 
 const formItemLayout = {
     labelCol: {
-        sm: { span: 8 }
+        sm: { span: 7 }
     },
     wrapperCol: {
-        sm: { span: 16 }
+        sm: { span: 17 }
     },
 };
 
-@inject("staffStore") @observer
+@inject("supplierStore") @observer
 class FormElem extends React.Component {
     constructor(props) {
         super(props);

@@ -80,7 +80,6 @@ class PicturesWall extends React.Component {
 		this.getFiles(this.props.data)
 	}
 	render() {
-		//const { scheme, form, model } = this.props.staffStore
 		const { previewVisible, previewImage, fileList } = this.state
 		const { object, id } = this.props.data
 

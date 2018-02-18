@@ -87,32 +87,17 @@ app.post('/delete_file', deleteFile)
 /* Custom */
 
 import tree from './back/block_request/tree'
+
 app.get("/tree_add", (req, res) => tree.add(req, res))
 app.post("/tree_get", (req, res) => tree.getId(req, res))
 app.post("/tree_edit", (req, res) => tree.edit(req, res))
 
+import supplier from './back/block_request/supplier'
 
+app.post("/supplier_add", (req, res) => supplier.add(req, res))
+app.post("/supplier_edit", (req, res) => supplier.edit(req, res))
+app.post("/supplier_list", (req, res) => supplier.list(req, res))
 
-
-import staff from './back/block_request/staff'
-
-app.post("/staff_add", (req, res) => staff.add(req, res))
-app.post("/staff_edit", (req, res) => staff.edit(req, res))
-app.post("/staff_list", (req, res) => staff.list(req, res))
-
-
-import customer from './back/block_request/customer'
-
-app.post("/customer_add", (req, res) => customer.add(req, res))
-app.post("/customer_edit", (req, res) => customer.edit(req, res))
-app.post("/customer_list", (req, res) => customer.list(req, res))
-
-
-import order from './back/block_request/order'
-
-app.post("/order_add", (req, res) => order.add(req, res))
-app.post("/order_edit", (req, res) => order.edit(req, res))
-app.post("/order_list", (req, res) => order.list(req, res))
 
 
 

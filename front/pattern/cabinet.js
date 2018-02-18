@@ -29,12 +29,7 @@ import TableBlock from './table/block'
 
 /* Custom block */
 import GoodsBlock from '../block/goods/block'
-
-
-// import StaffBlock from '../block/staff/block'
-// import CustomerBlock from '../block/customer/block'
-// import OrderBlock from '../block/order/block'
-// import OrderPage from '../block/order/page'
+import SupplierBlock from '../block/supplier/block'
 
 
 @inject("mainStore") @observer
@@ -74,6 +69,9 @@ class Cabinet extends Component {
                             <Menu.Item key="/cabinet/goods">
                                 <Icon type="appstore-o" />Товары
                             </Menu.Item>
+                            <Menu.Item key="/cabinet/supplier">
+                                <Icon type="global" />Поставщики
+                            </Menu.Item>
                             <Menu.Item key="/cabinet/users">
                                 <Icon type="team" />Пользователи
                             </Menu.Item>
@@ -100,6 +98,7 @@ class Cabinet extends Component {
                                     <Route path='/cabinet/users' component={UserBlock}/> 
                                     <Route path='/cabinet/table' component={TableBlock}/> 
                                     <Route path='/cabinet/goods' component={GoodsBlock}/>
+                                    <Route path='/cabinet/supplier' component={SupplierBlock}/>
                                     
                                     
                                     

@@ -1,13 +1,10 @@
-import { observable, computed, action, toJS, intercept } from 'mobx'
-
 import { message } from 'antd';
-import { MessageConfig } from '../app_constants'
+import { MessageConfig } from '../../app_constants'
 message.config(MessageConfig)
 
-class Basic {
+class Main {
     
     /* message */
-    
     @action messageError(text) {
         message.error(text)
     }
@@ -62,9 +59,8 @@ class Basic {
     /* search */
 
     @action updateList() {
-        console.log(this.getList)
-        // this.requestObject.page = 1
-        // this.getList()
+        this.requestObject.page = 1
+        this.getList()
     }
 
     @action resetSearchModel() {
@@ -123,4 +119,4 @@ class Basic {
     }
 }
 
-export default Basic
+export default Main
