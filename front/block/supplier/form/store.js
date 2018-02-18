@@ -5,7 +5,8 @@ import formValidate from '../../../common/form_validate'
 import observeModel from '../../../common/observe_model'
 import Basic from '../../../pattern/basic'
 
-import { addReq } from './request'
+import ListStore from '../list/store'
+import { addReq, editReq } from './request'
 
 
 
@@ -62,7 +63,7 @@ class FormStore extends Basic {
 
     @action addSuccess(data) {
         this.cancelForm()
-        this.updateList()
+        ListStore.updateList()
     }
 
     @action editForm() {

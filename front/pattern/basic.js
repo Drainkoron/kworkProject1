@@ -62,9 +62,8 @@ class Basic {
     /* search */
 
     @action updateList() {
-        console.log(this.getList)
-        // this.requestObject.page = 1
-        // this.getList()
+        this.requestObject.page = 1
+        this.getList()
     }
 
     @action resetSearchModel() {

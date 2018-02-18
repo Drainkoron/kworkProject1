@@ -24,22 +24,20 @@ export function addReq(requestObject) {
     })
 }
 
-
-
-// export function editReq(requestObject) {
-//     return new Promise(function(resolve, reject) {
-//         fetchPost(`${URL}/${block}_edit`, requestObject).then((response) => {
-//             if(response.status == 200) {
-//                 response.json().then((data) => {
-//                     resolve(data)
-//                 })
-//             } else {
-//                 response.text().then((data) => {
-//                     reject(data)
-//                 })
-//             }
-//         }).catch((error) => {
-//             reject(error);
-//         });
-//     })
-// }
+export function editReq(requestObject) {
+    return new Promise(function(resolve, reject) {
+        fetchPost(`${URL}/${block}_edit`, requestObject).then((response) => {
+            if(response.status == 200) {
+                response.json().then((data) => {
+                    resolve(data)
+                })
+            } else {
+                response.text().then((data) => {
+                    reject(data)
+                })
+            }
+        }).catch((error) => {
+            reject(error);
+        });
+    })
+}
