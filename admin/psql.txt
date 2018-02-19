@@ -7,6 +7,10 @@ sudo apt-get install postgresql postgresql-contrib
 
     sudo su - postgres
 
+	// НЕ ТУПИ ЗАПУСКАЙ ОБОЛОЧКУ
+
+	user postgres - root
+
 >>> Доступы к базам
 
 export PATH=/Library/PostgreSQL/9.5/bin:$PATH
@@ -21,6 +25,10 @@ export PATH=/Library/PostgreSQL/9.5/bin:$PATH
 
 	wh3
 	psql -h localhost wh3 admin
+	712283
+
+	ipapai
+	psql -h localhost ipapai postgres
 	712283
 
 
@@ -63,8 +71,6 @@ export PATH=/Library/PostgreSQL/9.5/bin:$PATH
 	create database jcrm;
 	CREATE USER admin WITH password '712283';
 	GRANT ALL privileges ON DATABASE designer TO admin;
-
-
 
 
 создаём таблицу

@@ -68,21 +68,21 @@ class TreeStore extends Basic {
     }
 
     @action getTree() {
-        getTreeReq({id: 2}).then(data => {
+        getTreeReq({id: 1}).then(data => {
             delete data.doc.id
             this.setData(data)
         }, error => {
-            message.error('Ошибка получения дерева!')
+            this.messageError('Ошибка получения дерева!')
         })
     }
 
     @action updateTree() {
-        this.tree.id = 2
+        this.tree.id = 1
         updateTreeReq(this.tree).then(data => {
             delete data.doc.id
             this.setData(data)
         }, error => {
-            message.error('Ошибка получения дерева!')
+            this.messageError('Ошибка получения дерева!')
         })
     }
 

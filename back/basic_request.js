@@ -23,9 +23,13 @@ class BasicRequest {
         return new Promise(function(resolve, reject) {
             db.query(requestString, (err, res) => {
                 if (err) {
-                    reject(errorRequest);
+                    reject(errorRequest)
                 } else {
-                    resolve(res.rows[0])
+                    if(res.rows[0]) {
+                        resolve(res.rows[0])
+                    } else {
+                        reject(errorNoneData)
+                    }
                 }
             })
         })
@@ -39,7 +43,11 @@ class BasicRequest {
                 if (err) {
                     reject(errorRequest);
                 } else {
-                    resolve(res.rows[0])
+                    if(res.rows[0]) {
+                        resolve(res.rows[0])
+                    } else {
+                        reject(errorNoneData)
+                    }
                 }
             })
         })

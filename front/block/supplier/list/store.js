@@ -39,7 +39,7 @@ class ListStore extends Basic {
         getListReq(this.requestObject).then(data => {
             this.listResult = data
 		}, error => {
-			message.error('Ошибка получения списка поставщиков!')
+			this.messageError('Ошибка получения списка поставщиков!')
         })
     }
 
