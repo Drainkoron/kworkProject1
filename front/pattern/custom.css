@@ -1,6 +1,6 @@
 /* all style custom */
 
-table {
+/* table {
     font-size: 13px;
 }
 
@@ -30,9 +30,10 @@ input {
 
 .ant-menu {
     font-size: 12px !important;
-}
+} */
 
 /* View-form */
+/*
 .view-form {
     font-size: 13px;
     padding: 24px;
@@ -90,4 +91,4 @@ input {
     width: 200px;
     height: 200px;
     background-size: cover;
-}
+} */

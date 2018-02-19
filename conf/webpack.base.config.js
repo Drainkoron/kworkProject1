@@ -2,7 +2,7 @@ import webpack from 'webpack';
 import Config from 'webpack-config';
 import HtmlWebpackPlugin from 'html-webpack-plugin';
 
-console.log(__dirname + '/../static')
+import theme from '../theme'
 
 export default new Config().merge({
     output: {
@@ -31,8 +31,16 @@ export default new Config().merge({
                             importLoaders: 1 
                         } 
                     },
-                    'less-loader'
+                    { loader: "less-loader",
+                        options: {
+                            modifyVars: theme
+                        }
+                    }
                 ]
+            },
+            {
+                test: /\.(png|jpg|gif)$/,
+                use: ['file-loader']
             }
         ]
     },
