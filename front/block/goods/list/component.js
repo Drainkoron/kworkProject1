@@ -84,7 +84,7 @@ class List extends React.Component {
                                 rowKey='id'
                                 onChange={(pagination, filters, sorter)  => this.self('list', 'changeSorterPage', sorter)}
                                 onRow={record => ({
-                                    onClick: () => this.props.supplierStore.form.viewForm(record)
+                                    onClick: () => this.props.goodsStore.page.viewForm(record)
                                 })}
                                 pagination={{
                                     total: listResult.searchCount,

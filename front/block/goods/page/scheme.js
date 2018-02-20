@@ -16,7 +16,7 @@ export function blockScheme(store) {
 			options: {
 				name: "Название",
                 type: "Input",
-				textError: "Укажите название поставщика",
+				textError: "Укажите название товара",
 				min: 3,
 				col: 0
 			},
@@ -28,93 +28,22 @@ export function blockScheme(store) {
 				name: "name"
 			}
 		},
-		url: {
+		category: {
 			options: {
-				name: "URL",
-                type: "Input",
+				name: "Категории",
+				type: "SelectTag",
 				col: 0
 			},
 			elem: {
-				disabled: false,
-				placeholder: "http://",
-				value: '',
-				onChange: event => inputChange(event, store),
-				name: "url"
-			}
-		},
-		country: {
-			options: {
-				name: "Страна",
-				type: "Dictionary",
-				col: 0
-			},
-			elem: {
-                dictionary: 'country',
-                value: '',
-				onChange: (value) => dictionaryChange('country', value, store)
-			}
-		},
-		mail: {
-			options: {
-				name: "eMail",
-                type: "Input",
-				col: 0
-			},
-			elem: {
-				disabled: false,
-				placeholder: "email",
-				value: '',
-				onChange: event => inputChange(event, store),
-				name: "mail"
-			}
-		},
-		skype: {
-			options: {
-				name: "Skype",
-                type: "Input",
-				col: 0
-			},
-			elem: {
-				disabled: false,
-				placeholder: "skype",
-				value: '',
-				onChange: event => inputChange(event, store),
-				name: "skype"
-			}
-		},
-		phone: {
-			options: {
-				name: "Телефон",
-                type: "Input",
-				col: 1
-			},
-			elem: {
-				disabled: false,
-				placeholder: "92 233 444-55-66",
-				value: '',
-				onChange: event => inputChange(event, store),
-				name: "phone"
-			}
-		},
-		wechat: {
-			options: {
-				name: "Wechat",
-                type: "Input",
-				col: 1
-			},
-			elem: {
-				disabled: false,
-				placeholder: "wechat",
-				value: '',
-				onChange: event => inputChange(event, store),
-				name: "wechat"
+				value: [],
+				onChange: (value) => dictionaryChange('category', value, store)
 			}
 		},
 		note: {
 			options: {
 				name: "Дополнительно",
 				type: "Textarea",
-				col: 1
+				col: 0
 			},
 			elem: {
                 rows: 3,

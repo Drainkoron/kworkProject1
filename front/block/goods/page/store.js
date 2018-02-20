@@ -5,8 +5,10 @@ import formValidate from '../../../common/form_validate'
 import observeModel from '../../../common/observe_model'
 import Basic from '../../../pattern/basic'
 
+import mainStore from '../../../pattern/main/main_store'
 import ListStore from '../list/store'
-import { addReq, editReq } from './request'
+
+import { editReq } from './request'
 
 
 
@@ -29,14 +31,10 @@ class PageStore extends Basic {
     formModel() {
         return {
             id: false,
+            category: [],
             name: '',
-            url: '',
-            country: '',
-            mail: '',
-            skype: '',
-            phone: '',
-            wechat: '',
-            note: ''
+            note: '',
+            avatar: ''
         }
     }
 
@@ -45,20 +43,8 @@ class PageStore extends Basic {
     @action validateForm() {
         this.form.error = formValidate(this.scheme)
         if(this.form.error == false) {
-            if(this.model.id) {
-                this.editForm()
-            } else {
-                this.saveForm()
-            }
+            this.editForm()
         }
-    }
-
-    @action saveForm() {
-        addReq(this.model).then(data => {
-            this.addSuccess(data)
-		}, error => {
-			this.messageError('Ошибка сохранения поставщика!')
-		})
     }
 
     @action addSuccess(data) {
@@ -68,16 +54,17 @@ class PageStore extends Basic {
 
     @action editForm() {
         editReq(this.model).then(data => {
-            this.addSuccess(data)
+            console.log(data, 'data')
+            //this.addSuccess(data)
 		}, error => {
-			this.messageError('Ошибка редактирования поставщика!')
+			this.messageError('Ошибка редактирования товара!')
 		})
     }
 
     @action viewForm(elem) {
         elem.doc.id = elem.id
         this.setModel(elem.doc)
-        this.viewModal()
+        mainStore.history.push(`/cabinet/goods-page/${elem.id}`)
     }
 }
 
