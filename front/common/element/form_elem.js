@@ -18,13 +18,15 @@ const RadioGroup = Radio.Group;
 const { TextArea } = Input;
 
 import Dictionary from './dictionary'
+import ConstantSelect from './constant_select'
+import SelectTags from './select_tags'
 
 const formItemLayout = {
     labelCol: {
-        sm: { span: 7 }
+        sm: { span: 8 }
     },
     wrapperCol: {
-        sm: { span: 17 }
+        sm: { span: 16 }
     },
 };
 
@@ -52,6 +54,8 @@ class FormElem extends React.Component {
                     'Dictionary': <Dictionary data={data.elem}/>,
                     'Number': <InputNumber {...data.elem}/>,
                     'Textarea': <TextArea {...data.elem}/>,
+                    'Select': <ConstantSelect data={data.elem}/>,
+                    'SelectTag': <SelectTags data={data.elem}/>,
                 }[data.options.type]}
             </Form.Item>
         );

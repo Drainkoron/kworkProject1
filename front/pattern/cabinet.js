@@ -29,6 +29,7 @@ import TableBlock from './table/block'
 
 /* Custom block */
 import GoodsBlock from '../block/goods/block'
+import GoodsPage from '../block/goods/page/component'
 import SupplierBlock from '../block/supplier/block'
 
 
@@ -98,6 +99,7 @@ class Cabinet extends Component {
                                     <Route path='/cabinet/users' component={UserBlock}/> 
                                     <Route path='/cabinet/table' component={TableBlock}/> 
                                     <Route path='/cabinet/goods' component={GoodsBlock}/>
+                                    <Route path='/cabinet/goods-page/:id' component={GoodsPage}/>
                                     <Route path='/cabinet/supplier' component={SupplierBlock}/>
                                     
                                     
@@ -119,4 +121,4 @@ export default withRouter(Cabinet)
 
 
 // <Route path='/cabinet/order' component={OrderBlock}/>
-// <Route path='/cabinet/order-page/:id' component={OrderPage}/>
+// <Route path='/cabinet/goods-page/:id' component={GoodsPage}/>

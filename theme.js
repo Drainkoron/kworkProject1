@@ -1,5 +1,5 @@
 var theme = {
-    'primary-color': '#ffc928',
+    'primary-color': '#02B7CF',
     'border-radius-base': '4px',
     'layout-header-background': '#313131',
     'layout-footer-background': '#313131',

@@ -4,8 +4,6 @@ import Basic from '../../../pattern/basic'
 
 import { getTreeReq, updateTreeReq } from './request'
 
-
-
 class TreeStore extends Basic {
     @observable tree
     @observable point
@@ -63,6 +61,10 @@ class TreeStore extends Basic {
         this.point = point
     }
 
+    @action getPoint() {
+        return this.point[0].split('-')
+    }
+
     @action setData(data) {
         this.tree = data.doc
     }
@@ -85,6 +87,19 @@ class TreeStore extends Basic {
             this.messageError('Ошибка получения дерева!')
         })
     }
+
+    @action getTags() {
+        var tags = new Set()
+        function destructNode(node) {
+            Object.keys(node).forEach(key => {
+                tags.add(key)
+                destructNode(node[key])
+            }) 
+            
+        }
+        destructNode(this.tree)
+        return [...tags]
+    } 
 
     // this.model = this.formModel()
     //     this.scheme = blockScheme(this)

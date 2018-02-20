@@ -8,6 +8,8 @@ import { Row,
             Button } from 'antd';
 
 import TreeElem from './tree/component'
+import List from './list/component'
+import ModalForm from './form/component'
 
 @inject("goodsStore") @observer
 class GoodsBlock extends React.Component {
@@ -26,14 +28,17 @@ class GoodsBlock extends React.Component {
         //const { form, requestObject } = this.props.orderStore
 
 		return (
-            <Row gutter={16}>
-                <Col span={12}>
-                    <TreeElem />
-                </Col>
-                <Col span={12}>
-                    2
-                </Col>
-            </Row>
+            <div>
+                <ModalForm />
+                <Row gutter={16}>
+                    <Col span={12}>
+                        <TreeElem />
+                    </Col>
+                    <Col span={12}>
+                        <List />
+                    </Col>
+                </Row>
+            </div>
 		)
 	}
 }
