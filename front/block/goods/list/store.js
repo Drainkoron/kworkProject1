@@ -28,6 +28,7 @@ class ListStore extends Basic {
             filterField: {
                 country: 'all',
             },
+            tags: [],
             sortBy: { 
                 field: 'name',
                 reverse: false
@@ -35,11 +36,17 @@ class ListStore extends Basic {
         }
     }
 
+    @action setPoint(tags) {
+        this.requestObject.tags = tags ? tags.split('-') : []
+        this.requestObject.page = 1
+        this.getList()
+    }
+
     @action getList() {
         getListReq(this.requestObject).then(data => {
             this.listResult = data
 		}, error => {
-			this.messageError('Ошибка получения списка поставщиков!')
+			this.messageError('Ошибка получения списка товаров!')
         })
     }
 

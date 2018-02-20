@@ -7,7 +7,10 @@ import { Table,
             Button, 
             Dropdown, 
             Menu, 
-            Icon } from 'antd';
+            Icon,
+            Input } from 'antd';
+
+const Search = Input.Search
 
 @inject("goodsStore") @observer
 class List extends React.Component {
@@ -22,21 +25,6 @@ class List extends React.Component {
                 width: 150,
                 sorter: true,
                 defaultSortOrder: 'ascend'
-            }, {
-                title: 'Сайт',
-                dataIndex: 'doc.url',
-                key: 'doc.url',
-                width: 150,
-            }, {
-                title: 'eMail',
-                dataIndex: 'doc.mail',
-                key: 'doc.mail',
-                width: 150,
-            }, {
-                title: 'Телефон',
-                dataIndex: 'doc.phone',
-                key: 'doc.phone',
-                width: 150,
             }
         ]}
     }
@@ -44,7 +32,7 @@ class List extends React.Component {
 		this.props.goodsStore[store][name](params)
 	}
 	componentWillMount() {
-		//this.props.goodsStore.list.getList()
+		this.props.goodsStore.list.getList()
 	}
 	render() {
         const { listResult, requestObject, viewCount } = this.props.goodsStore.list
@@ -55,6 +43,13 @@ class List extends React.Component {
                 <h3>Товары</h3>
                 <div style={{margin: '20px 0 10px 0'}}>
                     <Row gutter={16}>
+                        <Col span={12}>
+                            <Search onChange={event => this.props.goodsStore.list.onChangeFullSearch(event)}
+                                value={requestObject.fullSearch}
+                                placeholder="Поиск по товарам"
+                                style={{ width: 250 }}
+                                onSearch={value => this.props.goodsStore.list.changeFullSearch(value)}/> 
+                        </Col>
                         <Col span={2}>
                             <Dropdown overlay={<Menu>
                                                     <Menu.Item key="1">Категория</Menu.Item>
@@ -71,7 +66,7 @@ class List extends React.Component {
                                 <Button shape="circle" icon="file-excel"/>
                             </Dropdown>
                         </Col>
-                        <Col span={20}>
+                        <Col span={8}>
                             { point.length ? <Button type="primary" 
                                                         style={{float: 'right'}}
                                                         onClick={() => this.self('form', 'newGoods')}>Добавить товар</Button> : null }

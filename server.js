@@ -92,6 +92,7 @@ app.get("/tree_add", (req, res) => tree.add(req, res))
 app.post("/tree_get", (req, res) => tree.getId(req, res))
 app.post("/tree_edit", (req, res) => tree.edit(req, res))
 
+
 import supplier from './back/block_request/supplier'
 
 app.post("/supplier_add", (req, res) => supplier.add(req, res))
@@ -99,6 +100,11 @@ app.post("/supplier_edit", (req, res) => supplier.edit(req, res))
 app.post("/supplier_list", (req, res) => supplier.list(req, res))
 
 
+import goods from './back/block_request/goods'
+
+app.post("/goods_add", (req, res) => goods.add(req, res))
+app.post("/goods_edit", (req, res) => goods.edit(req, res))
+app.post("/goods_list", (req, res) => goods.list(req, res))
 
 
 

@@ -4,6 +4,8 @@ import Basic from '../../../pattern/basic'
 
 import { getTreeReq, updateTreeReq } from './request'
 
+import listStore from '../list/store'
+
 class TreeStore extends Basic {
     @observable tree
     @observable point
@@ -59,6 +61,7 @@ class TreeStore extends Basic {
 
     @action selectNode(point) {
         this.point = point
+        listStore.setPoint(this.point[0])
     }
 
     @action getPoint() {
@@ -100,119 +103,6 @@ class TreeStore extends Basic {
         destructNode(this.tree)
         return [...tags]
     } 
-
-    // this.model = this.formModel()
-    //     this.scheme = blockScheme(this)
-    //     this.changeSheme = observeModel(this)
-    //     this.form = {
-    //         view: false,
-    //         error: ''
-    //     },
-    //     this.listResult = {},
-    //     this.requestObject = this.searchModel()
-
-    /* model */
-
-    // searchModel() {
-    //     return {
-    //         page: 1,
-    //         limit: 10,
-    //         fullSearch: "",
-    //         filterField: {
-    //             status: 'all',
-    //         },
-    //         sortBy: {
-    //             param: 'date',
-    //             reverse: true
-    //         }
-    //     }
-    // }
-
-    // formModel() {
-    //     return {
-    //         id: false,
-    //         date: moment(Date.now()).utc().format(),
-    //         status: 'Новая',
-    //         manager: mainStore.model.login,
-    //         customer: '',
-    //         persone: '',
-    //         address: '',
-    //         phone: '',
-    //         typeJob: '',
-    //         costHour: '',
-    //         durationHours: '',
-    //         count: '',
-    //         start: moment(Date.now()).utc().format(),
-    //         duration: '',
-    //         source: '',
-    //         constructTable: false
-    //     }
-    // }
-
-    
-    /* Filter */
-
-    // @action changeFilterType(value) {
-    //     this.requestObject.filterField.status = value
-    //     this.requestObject.page = 1
-    //     this.getList()
-    // }
-
-    /* event Form */
-
-    // @action validateForm() {
-    //     this.form.error = formValidate(this.scheme)
-    //     if(this.form.error == false) {
-    //         if(this.keys.customer) {
-    //             this.selectRequest()
-    //         } else {
-    //             this.addCustomer()
-    //         }
-    //     }
-    // }
-
-    // @action selectRequest() {
-    //     if(this.model.id) {
-    //         this.editForm()
-    //     } else {
-    //         this.saveForm()
-    //     }
-    // }
-
-    // @action addCustomer() {
-    //     if(this.model.customer == '') {
-    //         this.form.error = 'Выберите или введите название заказчика!'
-    //     } else {
-    //         customerStore.addCustomerFromOrder(this.model, (id) => {
-    //             this.keys.customer = id
-    //             this.selectRequest()
-    //         })
-    //     }
-    // }
-
-    // @action newForm() {
-    //     this.setModel(this.formModel())
-    //     mainStore.history.push(`/cabinet/order-page/new`)
-    // }
-
-    // @action goList(elem) {
-    //     mainStore.history.push(`/cabinet/order`)
-    // }
-
-    // @action goForm(elem) {
-    //     mainStore.history.push(`/cabinet/order-page/${elem.id}`)
-    // }
-
-    /* Request */
-
-    // @action getList() {
-    //     getListReq(this.requestObject).then(data => {
-    //         this.listResult = data
-	// 	}, error => {
-	// 		message.error('Ошибка получения списка работ!')
-    //     })
-    // }
-
 }
 
 const treeStore = new TreeStore()

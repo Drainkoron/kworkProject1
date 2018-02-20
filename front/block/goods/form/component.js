@@ -33,7 +33,7 @@ class ModalForm extends React.Component {
                 title="Добавление товара"
                 visible={form.view}
                 okText="Сохранить"
-                width={450}
+                width={550}
                 onOk={() => this.self('validateForm')}
                 onCancel={() => this.self('cancelForm')}>
                     <Form className="custom-modal-form">

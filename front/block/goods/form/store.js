@@ -5,9 +5,10 @@ import formValidate from '../../../common/form_validate'
 import observeModel from '../../../common/observe_model'
 import Basic from '../../../pattern/basic'
 
-//import ListStore from '../list/store'
+
 import { addReq, editReq } from './request'
 
+import ListStore from '../list/store'
 import treeStore from '../tree/store'
 
 
@@ -53,11 +54,11 @@ class FormStore extends Basic {
 
     @action saveForm() {
         console.log(this.model)
-        // addReq(this.model).then(data => {
-        //     this.addSuccess(data)
-		// }, error => {
-		// 	this.messageError('Ошибка сохранения товара!')
-		// })
+        addReq(this.model).then(data => {
+            this.addSuccess(data)
+		}, error => {
+			this.messageError('Ошибка сохранения товара!')
+		})
     }
 
     @action addSuccess(data) {
