@@ -8,7 +8,7 @@ const block = 'tree'
 
 export function getTreeReq(requestObject) {
     return new Promise(function(resolve, reject) {
-        fetchPost(`${URL}/tree_get`, requestObject).then((response) => {
+        fetchPost(`${URL}/${block}_get`, requestObject).then((response) => {
             if(response.status == 200) {
                 response.json().then((data) => {
                     resolve(data)
@@ -26,7 +26,7 @@ export function getTreeReq(requestObject) {
 
 export function updateTreeReq(requestObject) {
     return new Promise(function(resolve, reject) {
-        fetchPost(`${URL}/tree_edit`, requestObject).then((response) => {
+        fetchPost(`${URL}/${block}_edit`, requestObject).then((response) => {
             if(response.status == 200) {
                 response.json().then((data) => {
                     resolve(data)

@@ -4,11 +4,11 @@ import fetchPut from '../../../common/fetch_put'
 import fetchGet from '../../../common/fetch_get'
 import fetchDelete from '../../../common/fetch_delete'
 
-const block = 'options'
+const block = 'supplier'
 
-export function editOptionsReq(requestObject) {
+export function addReq(requestObject) {
     return new Promise(function(resolve, reject) {
-        fetchPost(`${URL}/${block}_edit`, requestObject).then((response) => {
+        fetchPost(`${URL}/${block}_add`, requestObject).then((response) => {
             if(response.status == 200) {
                 response.json().then((data) => {
                     resolve(data)
@@ -24,9 +24,9 @@ export function editOptionsReq(requestObject) {
     })
 }
 
-export function getOptionsReq(requestObject) {
+export function editReq(requestObject) {
     return new Promise(function(resolve, reject) {
-        fetchPost(`${URL}/${block}_get`, requestObject).then((response) => {
+        fetchPost(`${URL}/${block}_edit`, requestObject).then((response) => {
             if(response.status == 200) {
                 response.json().then((data) => {
                     resolve(data)

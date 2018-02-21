@@ -1,9 +1,9 @@
 import BasicRequest from '../basic_request'
 
-class Supplier extends BasicRequest {
+class GoodsSupplier extends BasicRequest {
     constructor() {
         super()
-        this.name = 'supplier'
+        this.name = 'goods_supplier'
     }
     add(req, res) {
         this.addPg(req.body).then((result) => { 
@@ -42,16 +42,7 @@ class Supplier extends BasicRequest {
         })
         res.send(resultRequest);
     }
-    select(req, res) {
-        this.selectPg(req.body).then((result) => { 
-            res.send(result);
-        }, (error) => {
-            res.status(error.status).send(error.message);
-        })
-    }
 }
 
-const supplier = new Supplier()
-export default supplier
-
-//_select
+const goodsSupplier = new GoodsSupplier()
+export default goodsSupplier

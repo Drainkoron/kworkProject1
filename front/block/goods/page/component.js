@@ -26,6 +26,8 @@ import FormElem from '../../../common/element/form_elem'
 import PicturesWall from '../../../common/element/pictures_wall'
 import Avatar from '../../../common/element/avatar'
 
+import GoodsSupplierBlock from '../../goods_supplier/block'
+
 
 @inject("goodsStore") @observer
 class Page extends React.Component {
@@ -49,35 +51,41 @@ class Page extends React.Component {
 		return (
             <div> 
                 <Card style={{width: '100%'}}>
-                    <h3>Форма товара</h3>
-                    <Row gutter={40} style={{marginTop: '30px'}}>
-                        <Col span={12}>
-                            {Object.keys(scheme).map(key => {
-                                if(key != 'store') {
-                                    return <FormElem key={key} data={scheme[key]} />
-                                }
-                            })}
-                        </Col>
-                        <Col span={12}>
-                            <Avatar data={{value: model.avatar, 
-                                            change: (value) => this.self('setAvatar', value)}} />
-                            <PicturesWall data={{object: 'goods', id: model.id}}/>
-                        </Col>
-                    </Row>
-                    <div className="page-button-panel">
-                        <Button style={{float: 'left'}} 
-                                onClick={() => this.self('goList')}>В список</Button>
-                        <Button style={{float: 'right', marginLeft: '20px'}} 
-                                onClick={() => this.self('validateForm')}
-                                type="primary">
-                                Сохранить
-                        </Button>
-                    </div>
-                    <Alert message={form.error} 
-                            type="warning"
-                            showIcon
-                            style={form.error != false ? {display: 'block', marginBottom: '30px'} : {display: 'none'}} />
-
+                    <h3 style={{marginBottom: '20px'}}>Форма товара</h3>
+                    <Tabs type="card" >
+                        <TabPane tab="О товаре" key="1">
+                            <Row gutter={40} style={{marginTop: '30px'}}>
+                                <Col span={12}>
+                                    {Object.keys(scheme).map(key => {
+                                        if(key != 'store') {
+                                            return <FormElem key={key} data={scheme[key]} />
+                                        }
+                                    })}
+                                </Col>
+                                <Col span={12}>
+                                    <Avatar data={{value: model.avatar, 
+                                                    change: (value) => this.self('setAvatar', value)}} />
+                                    <PicturesWall data={{object: 'goods', id: model.id}}/>
+                                </Col>
+                            </Row>
+                            <div className="page-button-panel">
+                                <Button style={{float: 'left'}} 
+                                        onClick={() => this.self('goList')}>В список</Button>
+                                <Button style={{float: 'right', marginLeft: '20px'}} 
+                                        onClick={() => this.self('validateForm')}
+                                        type="primary">
+                                        Сохранить
+                                </Button>
+                            </div>
+                            <Alert message={form.error} 
+                                    type="warning"
+                                    showIcon
+                                    style={form.error != false ? {display: 'block', marginBottom: '30px'} : {display: 'none'}} />
+                        </TabPane>
+                        <TabPane tab="Поставщики" key="2">
+                            <GoodsSupplierBlock/>
+                        </TabPane>
+                    </Tabs>
                 </Card> 
 
             </div>

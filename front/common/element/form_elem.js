@@ -20,6 +20,7 @@ const { TextArea } = Input;
 import Dictionary from './dictionary'
 import ConstantSelect from './constant_select'
 import SelectTags from './select_tags'
+import BlockSelect from './select_block'
 
 const formItemLayout = {
     labelCol: {
@@ -58,6 +59,7 @@ class FormElem extends React.Component {
                     'Textarea': <TextArea {...data.elem}/>,
                     'Select': <ConstantSelect data={data.elem}/>,
                     'SelectTag': <SelectTags data={data.elem}/>,
+                    'BlockSelect': <BlockSelect data={data.elem}/>
                 }[data.options.type]}
             </Form.Item>
         );

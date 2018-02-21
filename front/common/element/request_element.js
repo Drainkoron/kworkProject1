@@ -99,6 +99,27 @@ export function userList() {
 }
 
 
+export function getBlockSelectList(requestObject) {
+    return new Promise(function(resolve, reject) {
+        fetchPost(`${URL}/${requestObject.block}_select`, requestObject).then((response) => {
+            if(response.status == 200) {
+                response.json().then((data) => {
+                    resolve(data)
+                })
+            } else {
+                response.text().then((data) => {
+                    reject(data)
+                })
+            }
+        }).catch((error) => {
+            reject(error);
+        });
+    })
+}
+
+
+
+
 
 
 

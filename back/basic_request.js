@@ -100,6 +100,19 @@ class BasicRequest {
             })
         })
     }
+    selectPg(object) {
+        var requestString = `SELECT * FROM ${this.name} WHERE (doc->>'${object.field}') ILIKE '%${object.value}%' 
+                                ORDER BY (doc->>'${object.field}') LIMIT 15`; 
+        return new Promise(function(resolve, reject) {
+            db.query(requestString, (err, res) => {
+                if (err) {
+                    reject(errorRequest)
+                } else {
+                    resolve(res.rows)
+                }
+            })
+        })
+    }
 }
 
 export default BasicRequest

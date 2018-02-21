@@ -87,31 +87,35 @@ app.post('/delete_file', deleteFile)
 /* Custom */
 
 import tree from './back/block_request/tree'
-
 app.get("/tree_add", (req, res) => tree.add(req, res))
 app.post("/tree_get", (req, res) => tree.getId(req, res))
 app.post("/tree_edit", (req, res) => tree.edit(req, res))
 
 
 import supplier from './back/block_request/supplier'
-
 app.post("/supplier_add", (req, res) => supplier.add(req, res))
 app.post("/supplier_edit", (req, res) => supplier.edit(req, res))
 app.post("/supplier_list", (req, res) => supplier.list(req, res))
+app.post("/supplier_select", (req, res) => supplier.select(req, res))
 
 
 import goods from './back/block_request/goods'
-
 app.post("/goods_add", (req, res) => goods.add(req, res))
 app.post("/goods_edit", (req, res) => goods.edit(req, res))
 app.post("/goods_list", (req, res) => goods.list(req, res))
 
 
 import options from './back/block_request/options'
-
 app.get("/options_add", (req, res) => options.add(req, res))
 app.post("/options_get", (req, res) => options.getId(req, res))
 app.post("/options_edit", (req, res) => options.edit(req, res))
+
+
+import goodsSupplier from './back/block_request/goods_supplier'
+app.get("/goods_supplier_add", (req, res) => goodsSupplier.add(req, res))
+app.post("/goods_supplier_get", (req, res) => goodsSupplier.getId(req, res))
+app.post("/goods_supplier_edit", (req, res) => goodsSupplier.edit(req, res))
+
 
 
 
