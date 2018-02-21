@@ -66,6 +66,11 @@ class PageStore extends Basic {
         this.setModel(elem.doc)
         mainStore.history.push(`/cabinet/goods-page/${elem.id}`)
     }
+
+    @action setAvatar(value) {
+        this.model.avatar = value
+        this.editForm()
+    }
 }
 
 const pageStore = new PageStore()

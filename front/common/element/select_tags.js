@@ -47,9 +47,7 @@ class SelectTags extends React.Component {
                         original: tags})
     }
     componentWillReceiveProps(nextProps) {
-		// if(this.props.data.group != nextProps.data.group) {
-		// 	this.getList(nextProps.data)
-		// }
+
 	}
     componentWillMount() {
         mount = true
@@ -60,9 +58,6 @@ class SelectTags extends React.Component {
     }
     render() {
         const { button, list } = this.state
-
-        console.log(this.props.data.value, 'this.props.data.value')
-        console.log(list, 'this.state')
 
         return (
             <div className="ext-search">

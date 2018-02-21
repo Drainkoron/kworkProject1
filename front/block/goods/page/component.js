@@ -23,7 +23,8 @@ const formItemLayout = {
 }
 
 import FormElem from '../../../common/element/form_elem'
-//import SearchCustomer from '../customer/component/search'
+import PicturesWall from '../../../common/element/pictures_wall'
+import Avatar from '../../../common/element/avatar'
 
 
 @inject("goodsStore") @observer
@@ -31,40 +32,26 @@ class Page extends React.Component {
 	constructor(props) {
         super(props);
         this.self = this.self.bind(this)
-        this.setModelValue = this.setModelValue.bind(this)
-        this.setSelect = this.setSelect.bind(this)
-        this.reset = this.reset.bind(this)
         
     }
     self(name, params) {
 		this.props.goodsStore.page[name](params)
     }
-    setModelValue(name, value) {
-        //this.props.orderStore.setModelValue(name, value)
-    }
-    setSelect(elem) {
-
-    }
-    reset() {
-        //this.props.orderStore.setModelKey('customer', false)
-    }
     componentWillReceiveProps(nextProps) {
 
     }
     componentWillMount() {
-        // if(this.props.match.params.id != 'new') {
-        //     this.props.orderStore.getForm(this.props.match.params.id)
-        // }
+
     }
 	render() {
-        const { scheme, form } = this.props.goodsStore.page
+        const { scheme, form, model } = this.props.goodsStore.page
         
 		return (
             <div> 
                 <Card style={{width: '100%'}}>
                     <h3>Форма товара</h3>
-                    <Row type="flex" justify="space-around" style={{marginTop: '30px'}}>
-                        {[...Array(2)].map((num, column) => {
+                    <Row gutter={40} style={{marginTop: '30px'}}>
+                        {[...Array(1)].map((num, column) => {
                             return <Col span={12} key={column}>
                                 {Object.keys(scheme).map(key => {
                                     if(key != 'store' && scheme[key].options.col == column) {
@@ -73,6 +60,10 @@ class Page extends React.Component {
                                 })}
                             </Col>
                         })}
+                        <Col span={12}>
+                            <Avatar data={{value: model.avatar, 
+                                            change: (value) => this.self('setAvatar', value)}} />
+                        </Col>
                     </Row>
                     <div className="page-button-panel">
                         <Button style={{float: 'left'}} 

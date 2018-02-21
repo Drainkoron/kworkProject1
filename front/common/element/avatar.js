@@ -71,17 +71,17 @@ class Avatar extends React.Component {
         );
 
 		return (
-            <div className="clearfix" style={{marginTop: '20px'}}>
-            <Upload
-                name="file"
-                listType="picture-card"
-                className="avatar-uploader"
-                showUploadList={false}
-                action={`${URL}/upload_avatar`}
-                onChange={this.handleChange} >
-                {value ? view : uploadButton}
-            </Upload>
-		  </div>
+            <div>
+                <Upload
+                    name="file"
+                    listType="picture-card"
+                    className="avatar-uploader"
+                    showUploadList={false}
+                    action={`${URL}/upload_avatar`}
+                    onChange={this.handleChange} >
+                    {value ? view : uploadButton}
+                </Upload>
+		    </div>
 		)
 	}
 }
