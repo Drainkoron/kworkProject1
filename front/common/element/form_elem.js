@@ -28,7 +28,9 @@ const formItemLayout = {
     wrapperCol: {
         sm: { span: 16 }
     },
-};
+}
+
+//layout
 
 @inject("supplierStore") @observer
 class FormElem extends React.Component {
@@ -44,10 +46,10 @@ class FormElem extends React.Component {
         
     }
     render() {
-        const { data } = this.props
+        const { data, layout } = this.props
 
         return (
-            <Form.Item label={data.options.name} {...formItemLayout}> 
+            <Form.Item label={data.options.name} {...layout || formItemLayout}> 
                 {{'Input': <Input {...data.elem}/>,
                     'Date': <DatePicker {...data.elem}/>,
                     'Checked': <Checkbox {...data.elem}/>,

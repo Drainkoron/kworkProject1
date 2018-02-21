@@ -16,6 +16,7 @@ import tableStore from './table/store'
 /* Custom block */
 import goodsStore from '../block/goods/store'
 import supplierStore from '../block/supplier/store'
+import optionsStore from '../block/options/store'
 
 // import staffStore from '../block/staff/store'
 // import customerStore from '../block/customer/store'
@@ -25,7 +26,8 @@ const store = { mainStore,
                 userStore, 
                 tableStore,
                 goodsStore,
-                supplierStore }
+                supplierStore,
+                optionsStore }
 
 import Auth from './main/component/auth'
 import NoMatch from './component/no_match'

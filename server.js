@@ -107,6 +107,13 @@ app.post("/goods_edit", (req, res) => goods.edit(req, res))
 app.post("/goods_list", (req, res) => goods.list(req, res))
 
 
+import options from './back/block_request/options'
+
+app.get("/options_add", (req, res) => options.add(req, res))
+app.post("/options_get", (req, res) => options.getId(req, res))
+app.post("/options_edit", (req, res) => options.edit(req, res))
+
+
 
 
 
