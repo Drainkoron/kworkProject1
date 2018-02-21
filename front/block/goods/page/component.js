@@ -51,18 +51,17 @@ class Page extends React.Component {
                 <Card style={{width: '100%'}}>
                     <h3>Форма товара</h3>
                     <Row gutter={40} style={{marginTop: '30px'}}>
-                        {[...Array(1)].map((num, column) => {
-                            return <Col span={12} key={column}>
-                                {Object.keys(scheme).map(key => {
-                                    if(key != 'store' && scheme[key].options.col == column) {
-                                        return <FormElem key={key} data={scheme[key]} />
-                                    }
-                                })}
-                            </Col>
-                        })}
+                        <Col span={12}>
+                            {Object.keys(scheme).map(key => {
+                                if(key != 'store') {
+                                    return <FormElem key={key} data={scheme[key]} />
+                                }
+                            })}
+                        </Col>
                         <Col span={12}>
                             <Avatar data={{value: model.avatar, 
                                             change: (value) => this.self('setAvatar', value)}} />
+                            <PicturesWall data={{object: 'goods', id: model.id}}/>
                         </Col>
                     </Row>
                     <div className="page-button-panel">
@@ -87,6 +86,8 @@ class Page extends React.Component {
 }
 
 export default Page
+
+
 
 
 
