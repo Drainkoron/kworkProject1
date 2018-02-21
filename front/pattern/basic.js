@@ -12,6 +12,10 @@ class Basic {
         message.error(text)
     }
 
+    @action messageSuccess(text) {
+        message.success(text)
+    }
+
     /* key */
 
     get(params) {

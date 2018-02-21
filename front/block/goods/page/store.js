@@ -54,8 +54,8 @@ class PageStore extends Basic {
 
     @action editForm() {
         editReq(this.model).then(data => {
-            console.log(data, 'data')
-            //this.addSuccess(data)
+            this.setModel(data)
+            this.messageSuccess('Товар сохранён')
 		}, error => {
 			this.messageError('Ошибка редактирования товара!')
 		})
@@ -70,6 +70,10 @@ class PageStore extends Basic {
     @action setAvatar(value) {
         this.model.avatar = value
         this.editForm()
+    }
+
+    @action goList(elem) {
+        mainStore.history.push(`/cabinet/goods`)
     }
 }
 
