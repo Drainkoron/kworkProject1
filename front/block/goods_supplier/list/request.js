@@ -6,27 +6,9 @@ import fetchDelete from '../../../common/fetch_delete'
 
 const block = 'goods_supplier'
 
-export function addReq(requestObject) {
+export function getListReq(requestObject) {
     return new Promise(function(resolve, reject) {
-        fetchPost(`${URL}/${block}_add`, requestObject).then((response) => {
-            if(response.status == 200) {
-                response.json().then((data) => {
-                    resolve(data)
-                })
-            } else {
-                response.text().then((data) => {
-                    reject(data)
-                })
-            }
-        }).catch((error) => {
-            reject(error);
-        });
-    })
-}
-
-export function editReq(requestObject) {
-    return new Promise(function(resolve, reject) {
-        fetchPost(`${URL}/${block}_edit`, requestObject).then((response) => {
+        fetchPost(`${URL}/${block}_list/`, requestObject).then((response) => {
             if(response.status == 200) {
                 response.json().then((data) => {
                     resolve(data)

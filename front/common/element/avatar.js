@@ -56,9 +56,7 @@ class Avatar extends React.Component {
 	}
 	render() {
         const { value } = this.props.data
-
-        console.log(value)
-
+        
         const uploadButton = (
             <div>
                 <Icon type={this.state.loading ? 'loading' : 'plus'} />

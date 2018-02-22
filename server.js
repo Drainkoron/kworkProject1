@@ -112,9 +112,10 @@ app.post("/options_edit", (req, res) => options.edit(req, res))
 
 
 import goodsSupplier from './back/block_request/goods_supplier'
-app.get("/goods_supplier_add", (req, res) => goodsSupplier.add(req, res))
+app.post("/goods_supplier_add", (req, res) => goodsSupplier.add(req, res))
 app.post("/goods_supplier_get", (req, res) => goodsSupplier.getId(req, res))
 app.post("/goods_supplier_edit", (req, res) => goodsSupplier.edit(req, res))
+app.post("/goods_supplier_list", (req, res) => goodsSupplier.list(req, res))
 
 
 

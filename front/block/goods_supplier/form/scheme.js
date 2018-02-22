@@ -14,8 +14,10 @@ export function blockScheme(store) {
 		store: store,
 		supplier: {
 			options: {
-				name: "Страна",
+				name: "Поставщик",
 				type: "BlockSelect",
+				textError: "Укажите поставщика",
+				min: 1,
 				col: 0
 			},
 			elem: {
@@ -23,6 +25,30 @@ export function blockScheme(store) {
 				field: 'name',
                 value: '',
 				onChange: (value) => dictionaryChange('supplier', value, store)
+			}
+		},
+		minOrder: {
+			options: {
+				name: "Минимальный заказ",
+				type: "Number",
+				format: 'num',
+				col: 0
+			},
+			elem: {
+				value: '',
+				onChange: value => numberChange('minOrder', value, store),
+				name: "minOrder"
+			}
+		},
+		default: {
+			options: {
+				type: "Checked",
+				name: "По умолчанию"
+			},
+			elem: {
+				checked: false,
+				onChange: (event) => checkChange(event, store),
+				name: "default"
 			}
 		}
 	}	

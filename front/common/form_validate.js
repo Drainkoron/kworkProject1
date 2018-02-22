@@ -9,7 +9,8 @@ export default function formValidate(scheme) {
                 scheme[i].options.type == 'Dictionary' ||
                 scheme[i].options.type == 'Number' || 
                 scheme[i].options.type == 'Select' || 
-                scheme[i].options.type == 'TranslateSelect') {
+                scheme[i].options.type == 'TranslateSelect' || 
+                scheme[i].options.type == 'BlockSelect') {
                 if('regExp' in scheme[i].options && scheme[i].elem.value) {
                     if(!RegExps[scheme[i].options.regExp].test(scheme[i].elem.value)) {
                         return scheme[i].options.textError

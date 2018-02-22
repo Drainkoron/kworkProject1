@@ -24,10 +24,11 @@ class BlockSelect extends React.Component {
         }
     }
     select(value) {
+        this.setState({value: value})
         this.props.data.onChange(value)
     }
     search(value) {
-        this.props.data.onChange(value)
+        this.setState({value: value})
         this.getList({
             value: value
         })
@@ -54,14 +55,17 @@ class BlockSelect extends React.Component {
         }
     }
     componentWillReceiveProps(nextProps) {
-		// if(this.props.data.group != nextProps.data.group) {
-		// 	this.getList(nextProps.data)
-		// }
+		if(this.props.data.block != nextProps.data.block) {
+			this.getList(nextProps.data)
+        }
+        if(this.props.data.value != nextProps.data.value) {
+			this.setState({value: nextProps.data.value})
+		}
 	}
     componentWillMount() {
         mount = true
         this.getList(this.props.data)
-        this.setState({value: data})
+        this.setState({value: this.props.data.value})
     }
     componentWillUnmount() {
         mount = false
@@ -77,6 +81,7 @@ class BlockSelect extends React.Component {
                     value={value}
                     placeholder=""
                     notFoundContent=""
+                    allowClear={true}
                     style={{ width: 240 }}
                     defaultActiveFirstOption={false}
                     showArrow={false}

@@ -10,7 +10,7 @@ import { Row,
             Button } from 'antd';
 
 // import TreeElem from './tree/component'
-// import List from './list/component'
+import List from './list/component'
 import ModalForm from './form/component'
 
 @inject("goodsSupplierStore") @observer
@@ -39,7 +39,7 @@ class GoodsSupplierBlock extends React.Component {
                             Новый поставщик
                     </Button>
                 </div>
-                
+                <List />
             </div>
 		)
 	}

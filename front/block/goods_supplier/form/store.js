@@ -5,10 +5,10 @@ import formValidate from '../../../common/form_validate'
 import observeModel from '../../../common/observe_model'
 import Basic from '../../../pattern/basic'
 
-//import ListStore from '../list/store'
+import GoodsFormStore from '../../goods/page/store'
+import listStore from '../list/store'
+
 import { addReq, editReq } from './request'
-
-
 
 class FormStore extends Basic {
     @observable scheme
@@ -29,7 +29,10 @@ class FormStore extends Basic {
     formModel() {
         return {
             id: false,
+            goods_id: GoodsFormStore.model.id,
             supplier: '',
+            default: false,
+            minOrder: 0
         }
     }
 
@@ -56,7 +59,7 @@ class FormStore extends Basic {
 
     @action addSuccess(data) {
         this.cancelForm()
-        ListStore.updateList()
+        listStore.updateList()
     }
 
     @action editForm() {
