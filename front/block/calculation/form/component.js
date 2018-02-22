@@ -10,34 +10,43 @@ import { Form,
 
 import FormElem from '../../../common/element/form_elem'
 
+const formItemLayout = {
+    labelCol: {
+        sm: { span: 16 }
+    },
+    wrapperCol: {
+        sm: { span: 8 }
+    },
+}
 
-@inject("supplierStore") @observer
+
+@inject("calculationStore") @observer
 class ModalForm extends React.Component {
 	constructor(props) {
         super(props);
         this.self = this.self.bind(this)
     }
     self(name, params) {
-		this.props.supplierStore.form[name](params)
+		this.props.calculationStore.form[name](params)
     }
     setModelValue(name, value) {
-        this.props.supplierStore.form.setModelValue(name, value)
+        this.props.calculationStore.form.setModelValue(name, value)
     }
 	componentWillMount() {
 		
 	}
 	render() {
-        const { scheme, form, model } = this.props.supplierStore.form
+        const { scheme, form, model } = this.props.calculationStore.form
    
 		return (
 			<Modal
                 title="Форма поставщика"
                 visible={form.view}
-                width={850}
+                width={1050}
                 footer={
                     <div>
                         { model.id ? <Button type="danger" style={{float: 'left'}} 
-                                            onClick={() => this.self('deleteForm')}>Удалить</Button> : null }
+                                        onClick={() => this.self('deleteForm')}>Удалить</Button> : null }
                         <Button onClick={() => this.self('cancelForm')}>Отмена</Button>
                         <Button type="primary" onClick={() => this.self('validateForm')}>Сохранить</Button>
                     </div>
@@ -46,11 +55,12 @@ class ModalForm extends React.Component {
                 onCancel={() => this.self('cancelForm')}>
                     <Form className="custom-modal-form">
                         <Row type="flex" justify="space-around">
-                            {[...Array(2)].map((num, column) => {
-                                return <Col span={12} key={column}>
+                            {[...Array(3)].map((num, column) => {
+                                return <Col span={8} key={column}>
+                                    <h4>{scheme.headerCol[column]}</h4>
                                     {Object.keys(scheme).map(key => {
-                                        if(key != 'store' && scheme[key].options.col == column) {
-                                            return <FormElem key={key} data={scheme[key]} />
+                                        if(key != 'store' && key != 'headerCol' && scheme[key].options.col == column) {
+                                            return <FormElem key={key} data={scheme[key]} layout={formItemLayout}/>
                                         }
                                     })}
                                 </Col>

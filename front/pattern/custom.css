@@ -4,12 +4,6 @@
     background: url(../../static/img/dark-blue-pixelline.png) !important;
 } */
 
-.avatar-uploader > .ant-upload {
-    width: 420px;
-    height: 300px;
-    float: right;
-}
-
 .avatar-uploader > .ant-upload > img {
     width: 420px;
     height: 300px;
@@ -18,7 +12,7 @@
 .ant-avatar-img {
     width: 420px;
     height: 300px;
-    background-size: cover;
+    background-size: contain;
 }
 
 /* table {
@@ -95,10 +89,4 @@ input {
     display: flex;
     direction: row;
     justify-content: space-between;
-}
-
-.avatar-uploader > .ant-upload {
-    width: 200px;
-    height: 200px;
-    float: right;
 }

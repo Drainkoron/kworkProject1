@@ -14,7 +14,6 @@ export default function observeModel(self) {
                         break
 
                 default:
-                    console.log(change.newValue)
                     self.scheme[change.name].elem.value = change.newValue
                         break
             }

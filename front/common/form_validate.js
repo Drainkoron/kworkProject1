@@ -3,7 +3,7 @@ import moment from 'moment'
 
 export default function formValidate(scheme) {
     for(var i in scheme) {
-        if(i != 'store') {
+        if(i != 'store' && i != 'headerCol') {
             if(scheme[i].options.type == 'Input' || 
                 scheme[i].options.type == 'User' ||
                 scheme[i].options.type == 'Dictionary' ||

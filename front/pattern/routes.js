@@ -18,6 +18,7 @@ import goodsStore from '../block/goods/store'
 import supplierStore from '../block/supplier/store'
 import optionsStore from '../block/options/store'
 import goodsSupplierStore from '../block/goods_supplier/store'
+import calculationStore from '../block/calculation/store'
 
 // import staffStore from '../block/staff/store'
 // import customerStore from '../block/customer/store'
@@ -29,7 +30,8 @@ const store = { mainStore,
                 goodsStore,
                 supplierStore,
                 optionsStore,
-                goodsSupplierStore }
+                goodsSupplierStore,
+                calculationStore }
 
 import Auth from './main/component/auth'
 import NoMatch from './component/no_match'

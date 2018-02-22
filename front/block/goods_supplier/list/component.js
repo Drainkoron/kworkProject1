@@ -1,7 +1,11 @@
 import React from 'react';
 import { observer, inject } from 'mobx-react';
 
-import { Table, Button } from 'antd';
+import { Table, Button, Tabs } from 'antd';
+
+const TabPane = Tabs.TabPane;
+
+import CalculationBlock from '../../calculation/block'
 
 @inject("goodsSupplierStore") @observer
 class List extends React.Component {
@@ -51,6 +55,14 @@ class List extends React.Component {
                     </h4>
                     <Table columns={this.state.columns} 
                             dataSource={listResult.data.toJS()}
+                            expandedRowRender={record => <Tabs type="card">
+                                                            <TabPane tab="Просчёты" key="1">
+                                                                <CalculationBlock id={record.id}/>
+                                                            </TabPane>
+                                                            <TabPane tab="Сэмплы" key="2">
+                                                            
+                                                            </TabPane>
+                                                        </Tabs>}
                             rowKey='id'
                             onChange={(pagination, filters, sorter)  => this.self('changeSorterPage', sorter)}
                             onRow={record => ({

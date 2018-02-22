@@ -120,6 +120,12 @@ app.post("/goods_supplier_edit", (req, res) => goodsSupplier.edit(req, res))
 app.post("/goods_supplier_list", (req, res) => goodsSupplier.list(req, res))
 
 
+import calculation from './back/block_request/calculation'
+app.post("/calculation_add", (req, res) => calculation.add(req, res))
+app.post("/calculation_edit", (req, res) => calculation.edit(req, res))
+app.post("/calculation_list", (req, res) => calculation.list(req, res))
+app.post("/calculation_delete", (req, res) => calculation.delete(req, res))
+
 
 
 
