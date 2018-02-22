@@ -12,6 +12,7 @@ import { Row,
 // import TreeElem from './tree/component'
 import List from './list/component'
 import ModalForm from './form/component'
+import ModalView from './view/component'
 
 @inject("goodsSupplierStore") @observer
 class GoodsSupplierBlock extends React.Component {
@@ -31,6 +32,7 @@ class GoodsSupplierBlock extends React.Component {
 
 		return (
             <div>
+                <ModalView />
                 <ModalForm />
                 <div style={{height: '50px'}}>
                     <Button style={{float: 'right', marginLeft: '20px'}} 

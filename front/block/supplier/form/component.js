@@ -5,7 +5,8 @@ import { Form,
             Modal,
             Alert,
             Row,
-            Col } from 'antd';
+            Col,
+            Button } from 'antd';
 
 import FormElem from '../../../common/element/form_elem'
 
@@ -32,8 +33,14 @@ class ModalForm extends React.Component {
 			<Modal
                 title="Форма поставщика"
                 visible={form.view}
-                okText="Сохранить"
                 width={850}
+                footer={
+                    <div>
+                        <Button type="danger" style={{float: 'left'}} onClick={() => this.self('deleteForm')}>Удалить</Button>
+                        <Button onClick={() => this.self('cancelForm')}>Отмена</Button>
+                        <Button type="primary" onClick={() => this.self('validateForm')}>Сохранить</Button>
+                    </div>
+                }
                 onOk={() => this.self('validateForm')}
                 onCancel={() => this.self('cancelForm')}>
                     <Form className="custom-modal-form">

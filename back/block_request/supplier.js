@@ -49,6 +49,20 @@ class Supplier extends BasicRequest {
             res.status(error.status).send(error.message);
         })
     }
+    getParams(req, res) {
+        this.getParamsPg(req.body).then((result) => { 
+            res.send(result);
+        }, (error) => {
+            res.status(error.status).send(error.message);
+        })
+    }
+    delete(req, res) {
+        this.deletePg(req.body).then((result) => { 
+            res.send(result);
+        }, (error) => {
+            res.status(error.status).send(error.message);
+        })
+    }
 }
 
 const supplier = new Supplier()

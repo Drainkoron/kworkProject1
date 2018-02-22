@@ -6,7 +6,7 @@ import observeModel from '../../../common/observe_model'
 import Basic from '../../../pattern/basic'
 
 import ListStore from '../list/store'
-import { addReq, editReq } from './request'
+import { addReq, editReq, deleteReq } from './request'
 
 
 
@@ -78,6 +78,14 @@ class FormStore extends Basic {
         elem.doc.id = elem.id
         this.setModel(elem.doc)
         this.viewModal()
+    }
+
+    @action deleteForm() {
+        deleteReq({id: this.model.id}).then(data => {
+            this.addSuccess(data)
+		}, error => {
+			this.messageError('Ошибка удаления поставщика!')
+		})
     }
 }
 

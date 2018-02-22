@@ -4,6 +4,12 @@
     background: url(../../static/img/dark-blue-pixelline.png) !important;
 } */
 
+.avatar-uploader > .ant-upload {
+    width: 420px;
+    height: 300px;
+    float: right;
+}
+
 .avatar-uploader > .ant-upload > img {
     width: 420px;
     height: 300px;
@@ -48,13 +54,13 @@ input {
 } */
 
 /* View-form */
-/*
+
 .view-form {
     font-size: 13px;
     padding: 24px;
     background: #fbfbfb;
     border: 1px solid #d9d9d9;
-    border-radius: 6px;
+    border-radius: 4px;
     width: 100%;
 }
 
@@ -96,5 +102,3 @@ input {
     height: 200px;
     float: right;
 }
-
- */

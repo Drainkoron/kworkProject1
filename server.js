@@ -95,8 +95,10 @@ app.post("/tree_edit", (req, res) => tree.edit(req, res))
 import supplier from './back/block_request/supplier'
 app.post("/supplier_add", (req, res) => supplier.add(req, res))
 app.post("/supplier_edit", (req, res) => supplier.edit(req, res))
+app.post("/supplier_delete", (req, res) => supplier.delete(req, res))
 app.post("/supplier_list", (req, res) => supplier.list(req, res))
 app.post("/supplier_select", (req, res) => supplier.select(req, res))
+app.post("/supplier_get_params", (req, res) => supplier.getParams(req, res))
 
 
 import goods from './back/block_request/goods'

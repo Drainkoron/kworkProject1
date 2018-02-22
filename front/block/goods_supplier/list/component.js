@@ -1,7 +1,7 @@
 import React from 'react';
 import { observer, inject } from 'mobx-react';
 
-import { Table } from 'antd';
+import { Table, Button } from 'antd';
 
 @inject("goodsSupplierStore") @observer
 class List extends React.Component {
@@ -15,7 +15,10 @@ class List extends React.Component {
                 key: 'doc.supplier',
                 width: 150,
                 sorter: true,
-                defaultSortOrder: 'ascend'
+                defaultSortOrder: 'ascend',
+                render: supplier => <span>{supplier} <Button shape="circle" 
+                                                                icon="search" 
+                                                                onClick={event => this.props.goodsSupplierStore.view.viewForm(event, supplier)}/></span>
             }, {
                 title: 'Минимальная партия',
                 dataIndex: 'doc.minOrder',

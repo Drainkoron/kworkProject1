@@ -17,6 +17,23 @@ class BasicRequest {
             })
         })
     }
+    getParamsPg(object) {
+        var requestString = `SELECT * FROM ${this.name} WHERE (doc->>'${object.field}') ILIKE '${object.value}'`
+
+        return new Promise(function(resolve, reject) {
+            db.query(requestString, (err, res) => {
+                if (err) {
+                    reject(errorRequest)
+                } else {
+                    if(res.rows[0]) {
+                        resolve(res.rows[0])
+                    } else {
+                        reject(errorNoneData)
+                    }
+                }
+            })
+        })
+    }
     getIdPg(id) {
         var requestString = `SELECT * FROM ${this.name} WHERE id = '${id}'`
 
@@ -38,6 +55,22 @@ class BasicRequest {
         var doc = JSON.stringify(object)
         var requestString = `UPDATE ${this.name} SET doc = '${doc}' WHERE id = ${object.id} RETURNING id, doc`
 
+        return new Promise(function(resolve, reject) {
+            db.query(requestString, (err, res) => {
+                if (err) {
+                    reject(errorRequest);
+                } else {
+                    if(res.rows[0]) {
+                        resolve(res.rows[0])
+                    } else {
+                        reject(errorNoneData)
+                    }
+                }
+            })
+        })
+    }
+    deletePg(object) {
+        var requestString = `DELETE FROM ${this.name} WHERE id = ${object.id} RETURNING id, doc`;
         return new Promise(function(resolve, reject) {
             db.query(requestString, (err, res) => {
                 if (err) {
