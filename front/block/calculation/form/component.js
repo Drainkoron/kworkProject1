@@ -59,13 +59,14 @@ class ModalForm extends React.Component {
                                 return <Col span={8} key={column}>
                                     <h4>{scheme.headerCol[column]}</h4>
                                     {Object.keys(scheme).map(key => {
-                                        if(key != 'store' && key != 'headerCol' && scheme[key].options.col == column) {
+                                        if(key != 'store' && key != 'headerCol' && key != 'note' && scheme[key].options.col == column) {
                                             return <FormElem key={key} data={scheme[key]} layout={formItemLayout}/>
                                         }
                                     })}
                                 </Col>
                             })}
                         </Row>
+                        <FormElem data={scheme['note']} layout={formItemLayout}/>
                         <Alert message={form.error} 
                                 type="warning"
                                 showIcon

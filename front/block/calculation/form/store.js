@@ -17,6 +17,7 @@ class FormStore extends Basic {
 
     constructor() {
         super()
+        this.goodsSupplierId = 0
         this.model = this.formModel()
         this.scheme = blockScheme(this)
         this.changeSheme = observeModel(this)
@@ -55,10 +56,11 @@ class FormStore extends Basic {
     /* Form */
 
     @action setIdGoodsSupplier(id) {
-        this.model.goods_supplier_id = id
+        this.goodsSupplierId = id
     }
 
     @action validateForm() {
+        this.model.goods_supplier_id = this.goodsSupplierId
         this.form.error = formValidate(this.scheme)
         if(this.form.error == false) {
             if(this.model.id) {
