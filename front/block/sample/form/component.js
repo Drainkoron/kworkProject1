@@ -20,27 +20,27 @@ const formItemLayout = {
 }
 
 
-@inject("calculationStore") @observer
+@inject("sampleStore") @observer
 class ModalForm extends React.Component {
 	constructor(props) {
         super(props);
         this.self = this.self.bind(this)
     }
     self(name, params) {
-		this.props.calculationStore.form[name](params)
+		this.props.sampleStore.form[name](params)
     }
     setModelValue(name, value) {
-        this.props.calculationStore.form.setModelValue(name, value)
+        this.props.sampleStore.form.setModelValue(name, value)
     }
 	componentWillMount() {
 		
 	}
 	render() {
-        const { scheme, form, model } = this.props.calculationStore.form
+        const { scheme, form, model } = this.props.sampleStore.form
    
 		return (
 			<Modal
-                title="Форма просчёта"
+                title="Форма сэмпла"
                 visible={form.view}
                 width={1050}
                 footer={

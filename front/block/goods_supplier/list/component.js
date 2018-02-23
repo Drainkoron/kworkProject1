@@ -6,6 +6,7 @@ import { Table, Button, Tabs } from 'antd';
 const TabPane = Tabs.TabPane;
 
 import CalculationBlock from '../../calculation/block'
+import SampleBlock from '../../sample/block'
 
 @inject("goodsSupplierStore") @observer
 class List extends React.Component {
@@ -60,7 +61,7 @@ class List extends React.Component {
                                                                 <CalculationBlock id={record.id} current={expandedRows}/>
                                                             </TabPane>
                                                             <TabPane tab="Сэмплы" key="2">
-                                                            
+                                                                <SampleBlock id={record.id} current={expandedRows}/>
                                                             </TabPane>
                                                         </Tabs>}
                             expandedRowKeys={expandedRows.toJS()}

@@ -127,6 +127,13 @@ app.post("/calculation_list", (req, res) => calculation.list(req, res))
 app.post("/calculation_delete", (req, res) => calculation.delete(req, res))
 
 
+import sample from './back/block_request/sample'
+app.post("/sample_add", (req, res) => sample.add(req, res))
+app.post("/sample_edit", (req, res) => sample.edit(req, res))
+app.post("/sample_list", (req, res) => sample.list(req, res))
+app.post("/sample_delete", (req, res) => sample.delete(req, res))
+
+
 
 
 
