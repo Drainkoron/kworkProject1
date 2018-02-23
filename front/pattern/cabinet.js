@@ -61,7 +61,7 @@ class Cabinet extends Component {
                         breakpoint="lg"
                         collapsedWidth="0"
                         onCollapse={(collapsed, type) => { console.log(collapsed, type) }}>
-                        <div className="logo">123</div>
+                        <div id="logo"/>
                         <Menu
                             theme="dark"
                             mode="inline"

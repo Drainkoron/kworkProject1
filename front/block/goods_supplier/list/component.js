@@ -56,14 +56,16 @@ class List extends React.Component {
                     </h4>
                     <Table columns={this.state.columns} 
                             dataSource={listResult.data.toJS()}
-                            expandedRowRender={record => <Tabs type="card">
-                                                            <TabPane tab="Просчёты" key="1">
-                                                                <CalculationBlock id={record.id} current={expandedRows}/>
-                                                            </TabPane>
-                                                            <TabPane tab="Сэмплы" key="2">
-                                                                <SampleBlock id={record.id} current={expandedRows}/>
-                                                            </TabPane>
-                                                        </Tabs>}
+                            expandedRowRender={record => <div style={{backgroundColor: '#fbfbfb', padding: '10px'}}>
+                                                            <Tabs type="card">
+                                                                <TabPane tab="Просчёты" key="1">
+                                                                    <CalculationBlock id={record.id} current={expandedRows}/>
+                                                                </TabPane>
+                                                                <TabPane tab="Сэмплы" key="2">
+                                                                    <SampleBlock id={record.id} current={expandedRows}/>
+                                                                </TabPane>
+                                                            </Tabs>
+                                                        </div>}
                             expandedRowKeys={expandedRows.toJS()}
                             onExpand={(expanded, record) => this.self('onExpand', {expanded: expanded, 
                                                                                         rows: record.id})}

@@ -36,6 +36,7 @@ class FormStore extends Basic {
             cost: 0,
             weight: 0,
             course: 0,
+            time_production: 0,
             time_branding: 0,
             default: false,
             fast_time: 0,

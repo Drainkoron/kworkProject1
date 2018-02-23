@@ -81,6 +81,19 @@ export function blockScheme(store) {
 				name: "course"
 			}
 		},
+		time_production: {
+			options: {
+				name: "Срок производства",
+				type: "Number",
+				format: 'num',
+				col: 0
+			},
+			elem: {
+				value: '',
+				onChange: value => numberChange('time_production', value, store),
+				name: "time_production"
+			}
+		},
 		time_branding: {
 			options: {
 				name: "Срок брендирования",

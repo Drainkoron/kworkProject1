@@ -47,7 +47,7 @@ class List extends React.Component {
             <div style={{marginTop: '20px'}}>
                 {listResult.data ? <div>
                     <h4 className='header-table'>
-                        Список персонала: показаны с {(requestObject.page * requestObject.limit) - requestObject.limit + 1} по {viewCount} - 
+                        Список поставщиков: показаны с {(requestObject.page * requestObject.limit) - requestObject.limit + 1} по {viewCount} - 
                         найдены {listResult.searchCount} из {listResult.count}
                     </h4>
                     <Table columns={this.state.columns} 

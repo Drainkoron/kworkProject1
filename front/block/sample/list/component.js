@@ -13,19 +13,17 @@ class List extends React.Component {
                 title: 'Тираж',
                 dataIndex: 'doc.count',
                 key: 'doc.count',
-                width: 150,
                 sorter: true,
                 defaultSortOrder: 'ascend'
             }, {
                 title: 'Цена',
                 dataIndex: 'doc.cost',
                 key: 'doc.cost',
-                width: 150,
+                sorter: true
             }, {
-                title: 'Вес',
-                dataIndex: 'doc.weight',
-                key: 'doc.weight',
-                width: 150,
+                title: 'Срок производства',
+                dataIndex: 'doc.time_production',
+                key: 'doc.time_production',
             }, {
                 title: 'Примечание',
                 dataIndex: 'doc.note',

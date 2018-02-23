@@ -1,8 +1,14 @@
 /* all style custom */
 
-/* body {
-    background: url(../../static/img/dark-blue-pixelline.png) !important;
-} */
+body {
+    background: url(../img/dark-blue-pixelline.png) !important;
+}
+
+#logo {
+    width: 200px;
+    height: 62px;
+    background: url(../img/logo.png) no-repeat center center;
+}
 
 .avatar-uploader > .ant-upload > img {
     width: 420px;

@@ -1,9 +1,9 @@
 var theme = {
     'primary-color': '#02B7CF',
     'border-radius-base': '4px',
-    'layout-header-background': '#313131',
-    'layout-footer-background': '#313131',
-    'card-head-background': '#ececec'
+    'card-head-background': '#ececec',
+    'font-size-base': '12px',
+    'border-radius-base': '2px'
 }
 export default theme
 

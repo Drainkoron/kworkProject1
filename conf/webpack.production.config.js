@@ -2,7 +2,7 @@ import webpack from 'webpack';
 import Config from 'webpack-config';
 import CleanWebpackPlugin from 'clean-webpack-plugin';
 
-const SERVER = 'http://wh3.dev-base.ru'
+const SERVER = 'http://ipapai.dev-base.ru'
 
 export default new Config().extend('conf/webpack.base.config.js').merge({
     entry: ['babel-polyfill', 
