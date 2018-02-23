@@ -8,7 +8,7 @@ export default new Config().extend('conf/webpack.base.config.js').merge({
     entry: ['babel-polyfill', 
                 __dirname + '/../front/index.js'],
     output: {
-        publicPath: SERVER,
+        publicPath: 'http://ipapai.dev-base.ru/',
         filename: '[hash].min.js'
     },
     plugins: [
