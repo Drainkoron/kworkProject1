@@ -44,7 +44,7 @@ class List extends React.Component {
 		this.props.goodsSupplierStore.list.getList()
 	}
 	render() {
-        const { listResult, requestObject, viewCount } = this.props.goodsSupplierStore.list
+        const { listResult, requestObject, viewCount, expandedRows } = this.props.goodsSupplierStore.list
 
 		return (
             <div>
@@ -57,13 +57,16 @@ class List extends React.Component {
                             dataSource={listResult.data.toJS()}
                             expandedRowRender={record => <Tabs type="card">
                                                             <TabPane tab="Просчёты" key="1">
-                                                                <CalculationBlock id={record.id}/>
+                                                                <CalculationBlock id={record.id} current={expandedRows}/>
                                                             </TabPane>
                                                             <TabPane tab="Сэмплы" key="2">
                                                             
                                                             </TabPane>
                                                         </Tabs>}
-                            rowKey='id'
+                            expandedRowKeys={expandedRows.toJS()}
+                            onExpand={(expanded, record) => this.self('onExpand', {expanded: expanded, 
+                                                                                        rows: record.id})}
+                            rowKey={record => record.id}
                             onChange={(pagination, filters, sorter)  => this.self('changeSorterPage', sorter)}
                             onRow={record => ({
                                 onClick: () => this.props.goodsSupplierStore.form.viewForm(record)

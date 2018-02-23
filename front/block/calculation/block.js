@@ -14,6 +14,13 @@ class CalculationBlock extends React.Component {
 	constructor(props) {
         super(props);
     }
+    componentWillReceiveProps(nextProps) {
+        // Компоненты разные стор общий, стор обслуживает текущий компонент
+        if(nextProps.current.includes(nextProps.id)) {
+            this.props.calculationStore.list.setIdGoodsSupplier(nextProps.id)
+            this.props.calculationStore.form.setIdGoodsSupplier(nextProps.id)
+        }
+    }
 	componentWillMount() {
         this.props.calculationStore.list.setIdGoodsSupplier(this.props.id)
         this.props.calculationStore.form.setIdGoodsSupplier(this.props.id)

@@ -10,13 +10,13 @@ import GoodsFormStore from '../../goods/page/store'
 class ListStore extends Basic {
     @observable listResult
     @observable requestObject
-    @observable currentRow
+    @observable expandedRows
 
     constructor() {
         super()
         this.listResult = {},
         this.requestObject = this.searchModel()
-        this.currentRow = null
+        this.expandedRows = []
     }
 
     /* model */
@@ -43,6 +43,15 @@ class ListStore extends Basic {
 		}, error => {
 			this.messageError('Ошибка получения списка поставщиков!')
         })
+    }
+
+    @action onExpand(data) {
+        if(data.expanded) {
+            this.expandedRows = [data.rows]
+        } else {
+            this.expandedRows = []
+        }
+        
     }
 
     /* Filter */
