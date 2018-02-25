@@ -1,8 +1,8 @@
 /* all style custom */
 
-body {
+/* body {
     background: url(../img/dark-blue-pixelline.png) !important;
-}
+} */
 
 #logo {
     width: 200px;
@@ -95,4 +95,9 @@ input {
     display: flex;
     direction: row;
     justify-content: space-between;
+}
+
+/* Table */
+.ant-table-row {
+    cursor: pointer;
 }

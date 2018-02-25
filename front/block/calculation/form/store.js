@@ -31,9 +31,11 @@ class FormStore extends Basic {
         return {
             id: false,
             goods_supplier_id: 0,
+            name: '',
             note: '',
             count: 0,
             cost: 0,
+            currency: 'USD',
             weight: 0,
             course: 0,
             time_production: 0,

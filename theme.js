@@ -3,7 +3,9 @@ var theme = {
     'border-radius-base': '4px',
     'card-head-background': '#ececec',
     'font-size-base': '12px',
-    'border-radius-base': '2px'
+    'border-radius-base': '2px',
+    'layout-header-background': '#3f3f3f',
+    'body-background': '#3f3f3f',
 }
 export default theme
 

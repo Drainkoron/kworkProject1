@@ -16,3 +16,7 @@ ssh-keygen
 копируем rsa 
 
 
+// переключить ветку
+
+git branch
+

@@ -10,11 +10,16 @@ class List extends React.Component {
         this.self = this.self.bind(this)
         this.state = {
             columns: [{
+                title: 'Название',
+                dataIndex: 'doc.name',
+                key: 'doc.name',
+                sorter: true,
+                defaultSortOrder: 'ascend'
+            }, {
                 title: 'Тираж',
                 dataIndex: 'doc.count',
                 key: 'doc.count',
                 sorter: true,
-                defaultSortOrder: 'ascend'
             }, {
                 title: 'Цена',
                 dataIndex: 'doc.cost',

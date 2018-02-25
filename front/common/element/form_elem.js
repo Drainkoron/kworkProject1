@@ -11,8 +11,10 @@ import { Form,
             Checkbox,
             Row,
             Col,
-            InputNumber } from 'antd';
+            InputNumber,
+            Select } from 'antd';
 
+const Option = Select.Option;
 const RadioButton = Radio.Button;
 const RadioGroup = Radio.Group;
 const { TextArea } = Input;
@@ -42,11 +44,25 @@ class FormElem extends React.Component {
     }
     componentWillReceiveProps(nextProps) {
         
-	}
-    componentWillMount() {
-        
+    }
+    addAddon(name) {
+        var addon = this.props.scheme[name].elem
+        switch(addon.type) {
+            case 'Select':
+                this.props.data.elem[addon.position] = <Select value={addon.value} 
+                                                               style={{ width: addon.width }}
+                                                               onChange={value => addon.onChange(value)}>
+                                                            {addon.list.map((elem, index) => <Option key={index} value={elem}>{elem}</Option>)}
+                                                        </Select>
+                    break
+        }
     }
     render() {
+
+        if('addon' in this.props.data.options) {
+            this.addAddon(this.props.data.options.addon)
+        }
+
         const { data, layout } = this.props
 
         return (

@@ -27,6 +27,22 @@ export function blockScheme(store) {
 				name: "note"
 			}
 		},
+		name: {
+			options: {
+				name: "Название",
+                type: "Input",
+				textError: "Укажите название",
+				min: 3,
+				col: 0
+			},
+			elem: {
+				disabled: false,
+				placeholder: "Название",
+				value: '',
+				onChange: event => inputChange(event, store),
+				name: "name"
+			}
+		},
 		count: {
 			options: {
 				name: "Тираж",
@@ -44,15 +60,30 @@ export function blockScheme(store) {
 		},
 		cost: {
 			options: {
-				name: "Цена",
-				type: "Number",
+				name: "Цена поставщик",
+				type: "Input",
 				format: 'num',
-				col: 0
+				col: 0,
+				addon: 'currency'
 			},
 			elem: {
 				value: '',
-				onChange: value => numberChange('cost', value, store),
+				onChange: event => inputChange(event, store, 'cost'),
 				name: "cost"
+			}
+		},
+		currency: {
+			options: {
+				type: 'addon',
+				col: 0
+			},
+			elem: {
+				position: 'addonAfter',
+				width: 80,
+				type: 'Select',
+				list: ['USD', 'Руб'],
+				value: 'USD',
+				onChange: value => addonChange('currency', value, store)
 			}
 		},
 		weight: {

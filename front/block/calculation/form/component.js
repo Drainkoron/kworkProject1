@@ -12,10 +12,19 @@ import FormElem from '../../../common/element/form_elem'
 
 const formItemLayout = {
     labelCol: {
-        sm: { span: 16 }
+        sm: { span: 12 }
     },
     wrapperCol: {
-        sm: { span: 8 }
+        sm: { span: 12 }
+    },
+}
+
+const formItemLayoutHeader = {
+    labelCol: {
+        sm: { span: 6 }
+    },
+    wrapperCol: {
+        sm: { span: 16 }
     },
 }
 
@@ -54,19 +63,29 @@ class ModalForm extends React.Component {
                 onOk={() => this.self('validateForm')}
                 onCancel={() => this.self('cancelForm')}>
                     <Form className="custom-modal-form">
+                        <Row>
+                            <Col span={12}>
+                                <FormElem data={scheme['name']} layout={formItemLayoutHeader}/>
+                            </Col>
+                            <Col span={12}>
+                                <FormElem data={scheme['note']} layout={formItemLayoutHeader}/>
+                            </Col>
+                        </Row>
                         <Row type="flex" justify="space-around">
                             {[...Array(3)].map((num, column) => {
                                 return <Col span={8} key={column}>
                                     <h4 style={{textAlign: 'center', marginBottom: '20px'}}>{scheme.headerCol[column]}</h4>
                                     {Object.keys(scheme).map(key => {
-                                        if(key != 'store' && key != 'headerCol' && key != 'note' && scheme[key].options.col == column) {
-                                            return <FormElem key={key} data={scheme[key]} layout={formItemLayout}/>
+                                        if(key != 'store' && key != 'headerCol' && key != 'note' && key != 'name' && scheme[key].options.col == column && scheme[key].options.type != 'addon') {
+                                            return <FormElem key={key} 
+                                                                data={scheme[key]} 
+                                                                layout={formItemLayout} 
+                                                                scheme={scheme}/>
                                         }
                                     })}
                                 </Col>
                             })}
                         </Row>
-                        <FormElem data={scheme['note']} layout={formItemLayout}/>
                         <Alert message={form.error} 
                                 type="warning"
                                 showIcon

@@ -1,0 +1,16 @@
+1. изменить ip в nginx
+
+cd /etc/nginx/sites-available/
+sudo nano wh3.dev-base.ru 
+sudo service nginx reload
+
+2. расшарить ветку
+
+git pull
+git checkout -b iPapai origin/iPapai
+
+3. Инит базы???
+
+4. Пуск
+
+pm2 start index.js --max-memory-restart 100M --name ipapai
