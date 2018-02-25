@@ -21,10 +21,16 @@ class List extends React.Component {
                 key: 'doc.count',
                 sorter: true,
             }, {
-                title: 'Цена',
+                title: 'Цена поставщик',
                 dataIndex: 'doc.cost',
                 key: 'doc.cost',
                 sorter: true
+            }, {
+                title: 'Закуп цена с РБ',
+                dataIndex: 'doc.fast_cost_in_brand',
+                key: 'doc.fast_cost_in_brand',
+                sorter: true,
+                render: (text, row) => text || row.doc.rus_cost_in_brand
             }, {
                 title: 'Срок производства',
                 dataIndex: 'doc.time_production',

@@ -18,22 +18,24 @@ class List extends React.Component {
                 title: 'Название поставщика',
                 dataIndex: 'doc.supplier',
                 key: 'doc.supplier',
-                width: 150,
+                width: 200,
                 sorter: true,
                 defaultSortOrder: 'ascend',
                 render: supplier => <span>{supplier} <Button shape="circle" 
                                                                 icon="search" 
                                                                 onClick={event => this.props.goodsSupplierStore.view.viewForm(event, supplier)}/></span>
             }, {
+                title: 'Страна',
+                dataIndex: 'doc.country',
+                key: 'doc.country',
+            }, {
                 title: 'Минимальная партия',
                 dataIndex: 'doc.minOrder',
                 key: 'doc.minOrder',
-                width: 150,
             }, {
                 title: 'По умолчанию',
                 dataIndex: 'doc.default',
                 key: 'doc.default',
-                width: 150,
                 render: values => values ? 'Да' : 'Нет'
             }
         ]}
@@ -59,10 +61,14 @@ class List extends React.Component {
                             expandedRowRender={record => <div style={{backgroundColor: '#fbfbfb', padding: '10px'}}>
                                                             <Tabs type="card">
                                                                 <TabPane tab="Просчёты" key="1">
-                                                                    <CalculationBlock id={record.id} current={expandedRows}/>
+                                                                    <CalculationBlock id={record.id} 
+                                                                                        country={record.doc.country} 
+                                                                                        current={expandedRows}/>
                                                                 </TabPane>
                                                                 <TabPane tab="Сэмплы" key="2">
-                                                                    <SampleBlock id={record.id} current={expandedRows}/>
+                                                                    <SampleBlock id={record.id} 
+                                                                                country={record.doc.country} 
+                                                                                current={expandedRows}/>
                                                                 </TabPane>
                                                             </Tabs>
                                                         </div>}

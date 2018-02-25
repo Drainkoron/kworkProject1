@@ -18,12 +18,12 @@ class SampleBlock extends React.Component {
         // Компоненты разные стор общий, стор обслуживает текущий компонент
         if(nextProps.current.includes(nextProps.id)) {
             this.props.sampleStore.list.setIdGoodsSupplier(nextProps.id)
-            this.props.sampleStore.form.setIdGoodsSupplier(nextProps.id)
+            this.props.sampleStore.form.setIdGoodsSupplier(nextProps.id, nextProps.country)
         }
     }
 	componentWillMount() {
         this.props.sampleStore.list.setIdGoodsSupplier(this.props.id)
-        this.props.sampleStore.form.setIdGoodsSupplier(this.props.id)
+        this.props.sampleStore.form.setIdGoodsSupplier(this.props.id, this.props.country)
 	}
 	render() {
 		return (

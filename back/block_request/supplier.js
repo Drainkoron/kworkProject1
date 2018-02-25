@@ -55,7 +55,7 @@ class Supplier extends BasicRequest {
         }, (error) => {
             res.status(error.status).send(error.message);
         })
-    }
+    } 
     delete(req, res) {
         this.deletePg(req.body).then((result) => { 
             res.send(result);

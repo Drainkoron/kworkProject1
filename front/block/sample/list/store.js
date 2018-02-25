@@ -41,7 +41,6 @@ class ListStore extends Basic {
     }
 
     @action getList() {
-        console.log(this.requestObject.filterField.goods_supplier_id, 'request')
         getListReq(this.requestObject).then(data => {
             this.listResult = data
 		}, error => {

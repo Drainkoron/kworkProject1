@@ -8,7 +8,7 @@ import Basic from '../../../pattern/basic'
 import GoodsFormStore from '../../goods/page/store'
 import listStore from '../list/store'
 
-import { addReq, editReq } from './request'
+import { addReq, editReq, supplierGetParamsReq } from './request'
 
 class FormStore extends Basic {
     @observable scheme
@@ -31,6 +31,7 @@ class FormStore extends Basic {
             id: false,
             goods_id: GoodsFormStore.model.id,
             supplier: '',
+            country: '',
             default: false,
             minOrder: 0
         }
@@ -38,9 +39,19 @@ class FormStore extends Basic {
 
     /* Form */
 
-    @action validateForm() {
+    @action async validateForm() {
         this.form.error = formValidate(this.scheme)
         if(this.form.error == false) {
+            var requestObject = {
+                field: 'name',
+                value: this.model.supplier
+            }
+            await supplierGetParamsReq(requestObject).then(data => {
+                this.model.country = data.doc.country
+            }, error => {
+                this.messageError('Ошибка получения поставщика!')
+            })
+
             if(this.model.id) {
                 this.editForm()
             } else {
@@ -53,7 +64,7 @@ class FormStore extends Basic {
         addReq(this.model).then(data => {
             this.addSuccess(data)
 		}, error => {
-			this.messageError('Ошибка сохранения поставщика!')
+			this.messageError('Ошибка сохранения поставщика товара!')
 		})
     }
 
@@ -66,7 +77,7 @@ class FormStore extends Basic {
         editReq(this.model).then(data => {
             this.addSuccess(data)
 		}, error => {
-			this.messageError('Ошибка редактирования поставщика!')
+			this.messageError('Ошибка редактирования поставщика товара!')
 		})
     }
 

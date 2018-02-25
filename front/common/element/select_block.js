@@ -58,7 +58,7 @@ class BlockSelect extends React.Component {
 		if(this.props.data.block != nextProps.data.block) {
 			this.getList(nextProps.data)
         }
-        if(this.props.data.value != nextProps.data.value) {
+        if(this.state.value != nextProps.data.value) {
 			this.setState({value: nextProps.data.value})
 		}
 	}

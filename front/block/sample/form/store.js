@@ -14,10 +14,12 @@ class FormStore extends Basic {
     @observable scheme
     @observable model
     @observable form
+    @observable country
 
     constructor() {
         super()
-        this.goodsSupplierId = 0
+        this.goodsSupplierId = 0,
+        this.country = '',
         this.model = this.formModel()
         this.scheme = blockScheme(this)
         this.changeSheme = observeModel(this)
@@ -31,9 +33,12 @@ class FormStore extends Basic {
         return {
             id: false,
             goods_supplier_id: 0,
+            country: '',
+            name: '',
             note: '',
             count: 0,
             cost: 0,
+            currency: 'USD',
             weight: 0,
             course: 0,
             time_production: 0,
@@ -51,17 +56,25 @@ class FormStore extends Basic {
             slow_cost_out: 0,
             slow_cost_in_brand: 0,
             slow_cost_out_brand: 0,
+            rus_time: 0,
+            rus_rate: 0,
+            rus_cost_in: 0,
+            rus_cost_out: 0,
+            rus_cost_in_brand: 0,
+            rus_cost_out_brand: 0
         }
     }
 
     /* Form */
 
-    @action setIdGoodsSupplier(id) {
+    @action setIdGoodsSupplier(id, country) {
         this.goodsSupplierId = id
+        this.country = country
     }
 
     @action validateForm() {
         this.model.goods_supplier_id = this.goodsSupplierId
+        this.model.country = this.country
         this.form.error = formValidate(this.scheme)
         if(this.form.error == false) {
             if(this.model.id) {

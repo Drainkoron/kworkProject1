@@ -13,7 +13,7 @@ import addonChange from '../../../common/addon_change'
 export function blockScheme(store) {
 	const scheme = {
 		store: store,
-		headerCol: ['Основная информация', 'Быстрая закупка', 'Медленная закупка'],
+		headerCol: ['Основная информация', 'Быстрая закупка', 'Медленная закупка', 'Закупка в России'],
 		note: {
 			options: {
 				name: "Примечание",
@@ -304,6 +304,84 @@ export function blockScheme(store) {
 				value: '',
 				onChange: value => numberChange('slow_cost_out_brand', value, store),
 				name: "slow_cost_out_brand"
+			}
+		},
+		rus_time: {
+			options: {
+				name: "Ставка доставки",
+				type: "Number",
+				format: 'num',
+				col: 3
+			},
+			elem: {
+				value: '',
+				onChange: value => numberChange('rus_time', value, store),
+				name: "rus_time"
+			}
+		},
+		rus_rate: {
+			options: {
+				name: "Срок доставки",
+				type: "Number",
+				format: 'num',
+				col: 3
+			},
+			elem: {
+				value: '',
+				onChange: value => numberChange('rus_rate', value, store),
+				name: "rus_rate"
+			}
+		},
+		rus_cost_in: {
+			options: {
+				name: "Цена закупки без БР",
+				type: "Number",
+				format: 'num',
+				col: 3
+			},
+			elem: {
+				value: '',
+				onChange: value => numberChange('rus_cost_in', value, store),
+				name: "rus_cost_in"
+			}
+		},
+		rus_cost_out: {
+			options: {
+				name: "Цена продажи без БР",
+				type: "Number",
+				format: 'num',
+				col: 3
+			},
+			elem: {
+				value: '',
+				onChange: value => numberChange('rus_cost_out', value, store),
+				name: "rus_cost_out"
+			}
+		},
+		rus_cost_in_brand: {
+			options: {
+				name: "Цена закупки с БР",
+				type: "Number",
+				format: 'num',
+				col: 3
+			},
+			elem: {
+				value: '',
+				onChange: value => numberChange('rus_cost_in_brand', value, store),
+				name: "rus_cost_in_brand"
+			}
+		},
+		rus_cost_out_brand: {
+			options: {
+				name: "Цена продажи с БР",
+				type: "Number",
+				format: 'num',
+				col: 3
+			},
+			elem: {
+				value: '',
+				onChange: value => numberChange('rus_cost_out_brand', value, store),
+				name: "rus_cost_out_brand"
 			}
 		}
 	}	

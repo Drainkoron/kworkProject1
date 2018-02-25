@@ -34,6 +34,9 @@ class ModalForm extends React.Component {
 	constructor(props) {
         super(props);
         this.self = this.self.bind(this)
+        this.state = {
+            idForm: null
+        }
     }
     self(name, params) {
 		this.props.calculationStore.form[name](params)
@@ -43,10 +46,13 @@ class ModalForm extends React.Component {
     }
 	componentWillMount() {
 		
-	}
+    }
+    componentWillUnmount() {
+        
+    }
 	render() {
-        const { scheme, form, model } = this.props.calculationStore.form
-   
+        const { scheme, form, model, country } = this.props.calculationStore.form
+
 		return (
 			<Modal
                 title="Форма просчёта"
@@ -72,7 +78,7 @@ class ModalForm extends React.Component {
                             </Col>
                         </Row>
                         <Row type="flex" justify="space-around">
-                            {[...Array(3)].map((num, column) => {
+                            {country != 'Россия' ? [...Array(3)].map((num, column) => {
                                 return <Col span={8} key={column}>
                                     <h4 style={{textAlign: 'center', marginBottom: '20px'}}>{scheme.headerCol[column]}</h4>
                                     {Object.keys(scheme).map(key => {
@@ -83,8 +89,19 @@ class ModalForm extends React.Component {
                                                                 scheme={scheme}/>
                                         }
                                     })}
-                                </Col>
-                            })}
+                                </Col>}) : [...Array(4)].map((num, column) => {
+                                    if(column == 0 || column == 3 ) {
+                                        return <Col span={12} key={column}>
+                                            <h4 style={{textAlign: 'center', marginBottom: '20px'}}>{scheme.headerCol[column]}</h4>
+                                            {Object.keys(scheme).map(key => {
+                                                if(key != 'store' && key != 'headerCol' && key != 'note' && key != 'name' && key != 'course' && scheme[key].options.col == column && scheme[key].options.type != 'addon') {
+                                                    return <FormElem key={key} 
+                                                                        data={scheme[key]} 
+                                                                        layout={formItemLayout} 
+                                                                        scheme={scheme}/>
+                                                }
+                                            })}
+                                    </Col>}})}
                         </Row>
                         <Alert message={form.error} 
                                 type="warning"

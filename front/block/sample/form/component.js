@@ -12,10 +12,10 @@ import FormElem from '../../../common/element/form_elem'
 
 const formItemLayout = {
     labelCol: {
-        sm: { span: 16 }
+        sm: { span: 12 }
     },
     wrapperCol: {
-        sm: { span: 8 }
+        sm: { span: 12 }
     },
 }
 
@@ -45,7 +45,7 @@ class ModalForm extends React.Component {
 		
 	}
 	render() {
-        const { scheme, form, model } = this.props.sampleStore.form
+        const { scheme, form, model, country } = this.props.sampleStore.form
    
 		return (
 			<Modal
@@ -72,16 +72,30 @@ class ModalForm extends React.Component {
                             </Col>
                         </Row>
                         <Row type="flex" justify="space-around">
-                            {[...Array(3)].map((num, column) => {
+                            {country != 'Россия' ? [...Array(3)].map((num, column) => {
                                 return <Col span={8} key={column}>
                                     <h4 style={{textAlign: 'center', marginBottom: '20px'}}>{scheme.headerCol[column]}</h4>
                                     {Object.keys(scheme).map(key => {
-                                        if(key != 'store' && key != 'headerCol' && key != 'note' && scheme[key].options.col == column) {
-                                            return <FormElem key={key} data={scheme[key]} layout={formItemLayout}/>
+                                        if(key != 'store' && key != 'headerCol' && key != 'note' && key != 'name' && scheme[key].options.col == column && scheme[key].options.type != 'addon') {
+                                            return <FormElem key={key} 
+                                                                data={scheme[key]} 
+                                                                layout={formItemLayout} 
+                                                                scheme={scheme}/>
                                         }
                                     })}
-                                </Col>
-                            })}
+                                </Col>}) : [...Array(4)].map((num, column) => {
+                                    if(column == 0 || column == 3 ) {
+                                        return <Col span={12} key={column}>
+                                            <h4 style={{textAlign: 'center', marginBottom: '20px'}}>{scheme.headerCol[column]}</h4>
+                                            {Object.keys(scheme).map(key => {
+                                                if(key != 'store' && key != 'headerCol' && key != 'note' && key != 'name' && key != 'course' && scheme[key].options.col == column && scheme[key].options.type != 'addon') {
+                                                    return <FormElem key={key} 
+                                                                        data={scheme[key]} 
+                                                                        layout={formItemLayout} 
+                                                                        scheme={scheme}/>
+                                                }
+                                            })}
+                                    </Col>}})}
                         </Row>
                         <Alert message={form.error} 
                                 type="warning"
