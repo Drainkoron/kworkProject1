@@ -70,12 +70,15 @@ class Page extends React.Component {
                             </Row>
                             <div className="page-button-panel">
                                 <Button style={{float: 'left'}} 
-                                        onClick={() => this.self('goList')}>В список</Button>
+                                        type="danger"
+                                        onClick={() => this.self('deleteForm')}>Удалить</Button>
                                 <Button style={{float: 'right', marginLeft: '20px'}} 
                                         onClick={() => this.self('validateForm')}
                                         type="primary">
                                         Сохранить
                                 </Button>
+                                <Button style={{float: 'right'}} 
+                                        onClick={() => this.self('goList')}>В список</Button>
                             </div>
                             <Alert message={form.error} 
                                     type="warning"

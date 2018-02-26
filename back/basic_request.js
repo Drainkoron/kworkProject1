@@ -98,7 +98,7 @@ class BasicRequest {
         })
     }
     searchCount(object) {
-        var requestString = `SELECT count(*) FROM ${this.name} WHERE (doc::text) ILIKE '%${object.fullSearch}%'`; 
+        var requestString = `SELECT count(*) FROM ${this.name} WHERE (doc::text) ILIKE '%${object.fullSearch}%'`;
         for(var name in object.filterField) {
             if(object.filterField[name] != '' && object.filterField[name] != 'all') {
                 requestString += `AND (doc->>'${name}') ILIKE '${object.filterField[name]}'`

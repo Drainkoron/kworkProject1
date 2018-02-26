@@ -8,7 +8,7 @@ import Basic from '../../../pattern/basic'
 import mainStore from '../../../pattern/main/main_store'
 import ListStore from '../list/store'
 
-import { editReq } from './request'
+import { editReq, deleteReq } from './request'
 
 
 
@@ -58,6 +58,14 @@ class PageStore extends Basic {
             this.messageSuccess('Товар сохранён')
 		}, error => {
 			this.messageError('Ошибка редактирования товара!')
+		})
+    }
+
+    @action deleteForm() {
+        deleteReq({id: this.model.id}).then(data => {
+            console.log(data, 'data delete')
+		}, error => {
+			this.messageError('Ошибка удаления товара!')
 		})
     }
 

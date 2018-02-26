@@ -27,7 +27,7 @@ class SampleBlock extends React.Component {
 	}
 	render() {
 		return (
-            <div>
+            this.props.id == this.props.current[0] ? <div>
                 <ModalForm />
                 <div style={{height: '40px'}}>
                     <Button style={{ float: 'right' }} 
@@ -35,7 +35,7 @@ class SampleBlock extends React.Component {
                             type="primary">Добавить сэмпл</Button>
                 </div>
                 <List />
-            </div>
+            </div> : null
 		)
 	}
 }

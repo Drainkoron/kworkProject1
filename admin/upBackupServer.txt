@@ -14,3 +14,11 @@ git checkout -b iPapai origin/iPapai
 4. Пуск
 
 pm2 start index.js --max-memory-restart 100M --name ipapai
+
+
+
+update
+
+cd /var/www/wh3.dev-base.ru
+
+pm2 list
