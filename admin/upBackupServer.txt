@@ -21,4 +21,8 @@ update
 
 cd /var/www/wh3.dev-base.ru
 
+git pull
+
 pm2 list
+
+pm2 restart ipapai

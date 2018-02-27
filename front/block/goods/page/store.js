@@ -63,7 +63,7 @@ class PageStore extends Basic {
 
     @action deleteForm() {
         deleteReq({id: this.model.id}).then(data => {
-            console.log(data, 'data delete')
+            mainStore.history.push(`/cabinet/goods`)
 		}, error => {
 			this.messageError('Ошибка удаления товара!')
 		})
