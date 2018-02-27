@@ -34,8 +34,10 @@ class PageStore extends Basic {
             course: 0,
             fast_time: 0,
             fast_rate: 0,
+            fast_сommission: 0,
             slow_time: 0,
-            slow_rate: 0
+            slow_rate: 0,
+            slow_сommission: 0,
         }
     }
 
@@ -56,7 +58,7 @@ class PageStore extends Basic {
     }
 
     @action addSuccess(data) {
-        console.log(data, 'edit')
+        this.messageSuccess('Настройки сохранены!')
     }
 
     @action editForm() {

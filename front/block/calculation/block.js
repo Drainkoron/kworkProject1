@@ -34,7 +34,7 @@ class CalculationBlock extends React.Component {
                 <ModalForm />
                 <div style={{height: '40px'}}>
                     <Button style={{ float: 'right' }} 
-                            onClick={() => this.props.calculationStore.form.newForm()}
+                            onClick={() => this.props.calculationStore.form.addForm()}
                             type="primary">Добавить просчёт</Button>
                 </div>
                 <List />

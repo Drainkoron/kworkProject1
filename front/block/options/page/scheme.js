@@ -34,7 +34,7 @@ export function blockScheme(store) {
 				format: 'num',
 				textError: "Укажите срок быстрой доставки",
 				min: 1,
-				col: 0
+				col: 1
 			},
 			elem: {
 				value: '',
@@ -49,12 +49,27 @@ export function blockScheme(store) {
 				format: 'num',
 				textError: "Укажите ставку быстрой доставки",
 				min: 1,
-				col: 0
+				col: 1
 			},
 			elem: {
 				value: '',
 				onChange: value => numberChange('fast_rate', value, store),
 				name: "fast_rate"
+			}
+		},
+		fast_сommission: {
+			options: {
+				name: "Комиссия быстрой доставки",
+				type: "Number",
+				format: 'num',
+				textError: "Укажите комиссию быстрой доставки",
+				min: 1,
+				col: 1
+			},
+			elem: {
+				value: '',
+				onChange: value => numberChange('fast_сommission', value, store),
+				name: "fast_сommission"
 			}
         },
         slow_time: {
@@ -64,7 +79,7 @@ export function blockScheme(store) {
 				format: 'num',
 				textError: "Укажите срок медленной доставки",
 				min: 1,
-				col: 0
+				col: 2
 			},
 			elem: {
 				value: '',
@@ -79,7 +94,7 @@ export function blockScheme(store) {
 				format: 'num',
 				textError: "Укажите ставку медленной доставки",
 				min: 1,
-				col: 0
+				col: 2
 			},
 			elem: {
 				value: '',
@@ -87,6 +102,21 @@ export function blockScheme(store) {
 				name: "slow_rate"
 			}
 		},
+		slow_сommission: {
+			options: {
+				name: "Комиссия медленной доставки",
+				type: "Number",
+				format: 'num',
+				textError: "Укажите комиссию медленной доставки",
+				min: 1,
+				col: 2
+			},
+			elem: {
+				value: '',
+				onChange: value => numberChange('slow_сommission', value, store),
+				name: "slow_сommission"
+			}
+        },
 	}	
 	return scheme
 }	

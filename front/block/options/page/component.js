@@ -5,7 +5,9 @@ import moment from 'moment'
 import { Card,
             Button,
             Alert,
-            Form } from 'antd';            
+            Form,
+            Row,
+            Col } from 'antd';            
 
 const formItemLayout = {
     labelCol: {
@@ -39,15 +41,21 @@ class Page extends React.Component {
         
 		return (
             <div> 
-                <Card title="Параметры" style={{width: '400px'}}>
+                <Card title="Параметры" style={{width: '1000px'}}>
                     <Form className="custom-modal-form">
-                        {Object.keys(scheme).map(key => {
-                            if(key != 'store') {
-                                return <FormElem key={key} data={scheme[key]} layout={formItemLayout}/>
-                            }
-                        })}
+                        <Row type="flex" justify="space-around">
+                            {[...Array(3)].map((num, column) => {
+                                return <Col span={8} key={column}>
+                                    {Object.keys(scheme).map(key => {
+                                        if(key != 'store' && scheme[key].options.col == column) {
+                                            return <FormElem key={key} data={scheme[key]} layout={formItemLayout}/>
+                                        }
+                                    })}
+                                </Col>
+                            })}
+                        </Row>
                     </Form>
-                    <div style={{height: '50px'}}>
+                    <div style={{height: '30px'}}>
                         <Button style={{float: 'right', marginLeft: '20px'}} 
                                 onClick={() => this.self('validateForm')}
                                 type="primary">

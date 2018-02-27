@@ -13,7 +13,14 @@ import addonChange from '../../../common/addon_change'
 export function blockScheme(store) {
 	const scheme = {
 		store: store,
-		headerCol: ['Основная информация', 'Быстрая закупка', 'Медленная закупка', 'Закупка в России'],
+		headerCol: [{name: 'main',
+						text: 'Основная информация'},
+					{name: 'fast',
+						text: 'Быстрая закупка'},
+					{name: 'slow',
+						text: 'Медленная закупка'},
+					{name: 'rus',
+						text: 'Закупка в России'}],
 		note: {
 			options: {
 				name: "Примечание",
@@ -202,6 +209,19 @@ export function blockScheme(store) {
 				name: "fast_cost_out"
 			}
 		},
+		fast_cost_brand: {
+			options: {
+				name: "Себестоимость БР",
+				type: "Number",
+				format: 'num',
+				col: 1
+			},
+			elem: {
+				value: '',
+				onChange: value => numberChange('fast_cost_brand', value, store),
+				name: "fast_cost_brand"
+			}
+		},
 		fast_cost_in_brand: {
 			options: {
 				name: "Цена закупки с БР",
@@ -280,6 +300,19 @@ export function blockScheme(store) {
 				name: "slow_cost_out"
 			}
 		},
+		slow_cost_brand: {
+			options: {
+				name: "Себестоимость БР",
+				type: "Number",
+				format: 'num',
+				col: 2
+			},
+			elem: {
+				value: '',
+				onChange: value => numberChange('slow_cost_brand', value, store),
+				name: "slow_cost_brand"
+			}
+		},
 		slow_cost_in_brand: {
 			options: {
 				name: "Цена закупки с БР",
@@ -356,6 +389,19 @@ export function blockScheme(store) {
 				value: '',
 				onChange: value => numberChange('rus_cost_out', value, store),
 				name: "rus_cost_out"
+			}
+		},
+		rus_cost_brand: {
+			options: {
+				name: "Себестоимость БР",
+				type: "Number",
+				format: 'num',
+				col: 3
+			},
+			elem: {
+				value: '',
+				onChange: value => numberChange('rus_cost_brand', value, store),
+				name: "rus_cost_brand"
 			}
 		},
 		rus_cost_in_brand: {

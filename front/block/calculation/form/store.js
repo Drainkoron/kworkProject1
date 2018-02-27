@@ -6,7 +6,7 @@ import observeModel from '../../../common/observe_model'
 import Basic from '../../../pattern/basic'
 
 import ListStore from '../list/store'
-import { addReq, editReq, deleteReq } from './request'
+import { addReq, editReq, deleteReq, getOptionsReq } from './request'
 
 
 
@@ -27,6 +27,7 @@ class FormStore extends Basic {
             view: false,
             error: ''
         }
+        this.options = null
     }
 
     formModel() {
@@ -48,18 +49,21 @@ class FormStore extends Basic {
             fast_rate: 0,
             fast_cost_in: 0,
             fast_cost_out: 0,
+            fast_cost_brand: 0,
             fast_cost_in_brand: 0,
             fast_cost_out_brand: 0,
             slow_time: 0,
             slow_rate: 0,
             slow_cost_in: 0,
             slow_cost_out: 0,
+            slow_cost_brand: 0,
             slow_cost_in_brand: 0,
             slow_cost_out_brand: 0,
             rus_time: 0,
             rus_rate: 0,
             rus_cost_in: 0,
             rus_cost_out: 0,
+            rus_cost_brand: 0,
             rus_cost_in_brand: 0,
             rus_cost_out_brand: 0,
         }
@@ -70,6 +74,50 @@ class FormStore extends Basic {
     @action setIdGoodsSupplier(id, country) {
         this.goodsSupplierId = id
         this.country = country
+    }
+
+    @action addForm() {
+        this.setModel(this.formModel())
+        this.setOptions()
+        this.viewModal()
+    }
+
+    @action async setOptions() {
+        if(!this.options) {
+            await getOptionsReq({id:1}).then(data => {
+                this.options = data.doc
+            }, error => {
+                this.messageError('Ошибка получения настроек!')
+            })
+        }
+        console.log(this.options)
+        for(var i in this.options) {
+            if(i in this.model) {
+                if(this.model[i] == 0 && i != 'id') {
+                    this.model[i] = this.options[i]
+                }
+            }
+        }
+    }
+
+    @action calcForm(name) {
+       
+        if(name != 'rus') {
+            this.model[`${name}_cost_in_brand`] = this.model[`${name}_cost_in`]  + this.model[`${name}_cost_brand`]
+            this.model[`${name}_cost_out`] = this.model[`${name}_cost_in`] * this.options[`${name}_сommission`] + this.options[`${name}_rate`] * 1.08 * this.model.weight
+            this.model[`${name}_cost_out_brand`] = this.model[`${name}_cost_in_brand`] * this.options[`${name}_сommission`] + this.options[`${name}_rate`] * 1.08 * this.model.weight
+        } else {
+            this.model.rus_cost_out = this.model.rus_rate + this.model.course
+        }
+
+        // course: 0,
+        //     fast_time: 0,
+        //     fast_rate: 0,
+        //     fast_сommission: 0,
+        //     slow_time: 0,
+        //     slow_rate: 0,
+        //     slow_сommission: 0,
+        
     }
 
     @action validateForm() {
@@ -89,7 +137,7 @@ class FormStore extends Basic {
         addReq(this.model).then(data => {
             this.addSuccess(data)
 		}, error => {
-			this.messageError('Ошибка сохранения поставщика!')
+			this.messageError('Ошибка сохранения просчёта!')
 		})
     }
 
@@ -102,13 +150,14 @@ class FormStore extends Basic {
         editReq(this.model).then(data => {
             this.addSuccess(data)
 		}, error => {
-			this.messageError('Ошибка редактирования поставщика!')
+			this.messageError('Ошибка редактирования просчёта!')
 		})
     }
 
     @action viewForm(elem) {
         elem.doc.id = elem.id
         this.setModel(elem.doc)
+        this.setOptions()
         this.viewModal()
     }
 
