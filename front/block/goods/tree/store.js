@@ -2,9 +2,10 @@ import { observable, computed, action, toJS, intercept } from 'mobx'
 
 import Basic from '../../../pattern/basic'
 
-import { getTreeReq, updateTreeReq } from './request'
+import { getTreeReq, updateTreeReq, getGoodsCategoryReq } from './request'
 
 import listStore from '../list/store'
+import selectListStore from '../select_list/store'
 
 class TreeStore extends Basic {
     @observable tree
@@ -62,6 +63,15 @@ class TreeStore extends Basic {
     @action selectNode(point) {
         this.point = point
         listStore.setPoint(this.point[0])
+    }
+
+    @action checkNode() {
+        var tags = this.point[0] ? this.point[0].split('-') : []
+        getGoodsCategoryReq({tags: tags}).then(data => {
+            selectListStore.onSelectTag(data)
+        }, error => {
+            this.messageError('Ошибка получения товаров по категории!')
+        })
     }
 
     @action getPoint() {

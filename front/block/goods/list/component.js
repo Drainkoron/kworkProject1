@@ -37,6 +37,7 @@ class List extends React.Component {
 	render() {
         const { listResult, requestObject, viewCount } = this.props.goodsStore.list
         const { nodeName, point } = this.props.goodsStore.tree
+        const { getSelectKeys } = this.props.goodsStore.selectList
 
 		return (
             <div>
@@ -93,7 +94,12 @@ class List extends React.Component {
                                     pageSize: requestObject.limit,
                                     showSizeChanger: true,
                                     onShowSizeChange: (current, pageSize) => this.self('list', 'changePaginationSizePage', pageSize)
-                                }} />
+                                }} 
+                                rowSelection={{
+                                    selectedRowKeys: getSelectKeys,
+                                    onSelect: record => this.props.goodsStore.selectList.onSelect(record, true),
+                                    onSelectAll: (selected, selectedRows, changeRows) => this.props.goodsStore.selectList.onSelectPage(changeRows)
+                                }}/>
                         </div> : ''}
                 </div>
             </div>

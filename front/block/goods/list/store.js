@@ -5,7 +5,6 @@ import Basic from '../../../pattern/basic'
 
 import { getListReq } from './request'
 
-
 class ListStore extends Basic {
     @observable listResult
     @observable requestObject

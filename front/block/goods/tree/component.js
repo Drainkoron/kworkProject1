@@ -57,11 +57,17 @@ class TreeElem extends React.Component {
                                     value={nodeName}
                                     onChange={(event) => this.self('changeNodeName', event.target.value)}/>
                         </Col>
-                        <Col span={6}>
+                        <Col span={5}>
                             { nodeName ? <Button type="primary" 
                                                     onClick={() => this.self('addNode')}>Добавить</Button> : null }
                         </Col>
-                        <Col span={4}>
+                        <Col span={2}>
+                            { point.length && !nodeName ? <Button shape="circle"
+                                                            type="primary" 
+                                                            icon="check" 
+                                                            onClick={() => this.self('checkNode')}/> : null }
+                        </Col>
+                        <Col span={2}>
                             { point.length && !nodeName ? <Button shape="circle" 
                                                             type="danger" 
                                                             icon="delete" 

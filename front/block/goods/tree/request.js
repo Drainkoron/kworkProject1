@@ -42,6 +42,24 @@ export function updateTreeReq(requestObject) {
     })
 }
 
+export function getGoodsCategoryReq(requestObject) {
+    return new Promise(function(resolve, reject) {
+        fetchPost(`${URL}/get_goods_category`, requestObject).then((response) => {
+            if(response.status == 200) {
+                response.json().then((data) => {
+                    resolve(data)
+                })
+            } else {
+                response.text().then((data) => {
+                    reject(data)
+                })
+            }
+        }).catch((error) => {
+            reject(error);
+        });
+    })
+}
+
 // export function addReq(requestObject) {
 //     return new Promise(function(resolve, reject) {
 //         fetchPost(`${URL}/${block}_add`, requestObject).then((response) => {

@@ -43,6 +43,26 @@ class Goods extends BasicRequest {
             })
         })
     }
+    categoryGoods(req, res) {
+        this.categoryGoodsReq(req.body).then((result) => { 
+            res.send(result);
+        }, (error) => {
+            res.status(error.status).send(error.message);
+        })
+    }
+    categoryGoodsReq(object) {
+        var tags = JSON.stringify(object.tags).replace(/"/g, "'")
+        var requestString = `SELECT * FROM ${this.name} WHERE (doc->'category') ?& array${tags}`
+        return new Promise(function(resolve, reject) {
+            db.query(requestString, (err, res) => {
+                if (err) {
+                    reject(errorRequest)
+                } else {
+                    resolve(res.rows)
+                }
+            })
+        })
+    }
     pageGoods(object) {
         var requestString = `SELECT * FROM ${this.name} WHERE (doc::text) ILIKE '%${object.fullSearch}%'`; 
         for(var name in object.filterField) {

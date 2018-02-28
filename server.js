@@ -106,6 +106,8 @@ app.post("/goods_add", (req, res) => goods.add(req, res))
 app.post("/goods_edit", (req, res) => goods.edit(req, res))
 app.post("/goods_list", (req, res) => goods.list(req, res))
 app.post("/goods_delete", (req, res) => goods.delete(req, res))
+app.post("/get_goods_category", (req, res) => goods.categoryGoods(req, res))
+
 
 
 import options from './back/block_request/options'
