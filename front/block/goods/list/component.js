@@ -41,7 +41,6 @@ class List extends React.Component {
 
 		return (
             <div>
-                <h3>Товары</h3>
                 <div style={{margin: '20px 0 10px 0'}}>
                     <Row gutter={16}>
                         <Col span={12}>
@@ -51,23 +50,7 @@ class List extends React.Component {
                                 style={{ width: 250 }}
                                 onSearch={value => this.props.goodsStore.list.changeFullSearch(value)}/> 
                         </Col>
-                        <Col span={2}>
-                            <Dropdown overlay={<Menu>
-                                                    <Menu.Item key="1">Категория</Menu.Item>
-                                                    <Menu.Item key="2">Выбранные</Menu.Item>
-                                                </Menu>}>
-                                <Button shape="circle" icon="file-pdf"/>
-                            </Dropdown>
-                        </Col>
-                        <Col span={2}>
-                            <Dropdown overlay={<Menu>
-                                                    <Menu.Item key="1">Категория</Menu.Item>
-                                                    <Menu.Item key="2">Выбранные</Menu.Item>
-                                                </Menu>}>
-                                <Button shape="circle" icon="file-excel"/>
-                            </Dropdown>
-                        </Col>
-                        <Col span={8}>
+                        <Col span={12}>
                             { point.length ? <Button type="primary" 
                                                         style={{float: 'right'}}
                                                         onClick={() => this.self('form', 'newGoods')}>Добавить товар</Button> : null }

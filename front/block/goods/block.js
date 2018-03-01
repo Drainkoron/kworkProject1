@@ -5,11 +5,15 @@ import { Row,
             Col, 
             Menu, 
             Icon, 
-            Button } from 'antd';
+            Button,
+            Tabs } from 'antd';
+
+const TabPane = Tabs.TabPane;
 
 import TreeElem from './tree/component'
 import List from './list/component'
 import ModalForm from './form/component'
+import SelectList from './select_list/component'
 
 @inject("goodsStore") @observer
 class GoodsBlock extends React.Component {
@@ -35,7 +39,14 @@ class GoodsBlock extends React.Component {
                         <TreeElem />
                     </Col>
                     <Col span={12}>
-                        <List />
+                        <Tabs defaultActiveKey="1">
+                            <TabPane tab="Товары" key="1">
+                                <List />
+                            </TabPane>
+                            <TabPane tab="Товары для экспорта" key="2">
+                                <SelectList />
+                            </TabPane>
+                        </Tabs>
                     </Col>
                 </Row>
             </div>

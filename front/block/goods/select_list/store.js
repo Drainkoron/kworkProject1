@@ -48,7 +48,19 @@ class SelectListStore extends Basic {
         })
         return keys
     }
-    
+
+    @action deleteGoods(data) {
+        data.event.stopPropagation()
+        var includes = null
+        this.list.forEach((elem, index) => {
+            if(elem.id == data.id) {
+                includes = index
+            }
+        })
+        if(includes != null) {
+            this.list.splice(includes, 1)
+        }
+    }
 }
 
 const selectListStore = new SelectListStore()
