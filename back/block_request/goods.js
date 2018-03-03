@@ -15,6 +15,14 @@ class Goods extends BasicRequest {
             res.status(error.status).send(error.message);
         })
     }
+    getId(req, res) {
+        console.log(req.body, 'req.body')
+        this.getIdPg(req.body.id).then((result) => { 
+            res.send(result);
+        }, (error) => {
+            res.status(error.status).send(error.message);
+        })
+    }
     edit(req, res) {
         this.editPg(req.body).then((result) => { 
             res.send(result);

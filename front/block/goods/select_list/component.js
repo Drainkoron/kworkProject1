@@ -43,7 +43,7 @@ class SelectList extends React.Component {
 
 		return (
             <div>
-                <div style={{margin: '20px 0 10px 0'}}>
+                <div style={{margin: '10px 0 10px 0'}}>
                     <Row gutter={16}>
                         <Col span={20}>
                             

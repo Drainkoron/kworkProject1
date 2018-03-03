@@ -63,7 +63,6 @@ class TreeElem extends React.Component {
                         </Col>
                         <Col span={2}>
                             { point.length && !nodeName ? <Button shape="circle"
-                                                            type="primary" 
                                                             icon="check" 
                                                             onClick={() => this.self('checkNode')}/> : null }
                         </Col>

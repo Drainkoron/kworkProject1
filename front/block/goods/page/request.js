@@ -41,3 +41,21 @@ export function deleteReq(requestObject) {
         });
     })
 }
+
+export function getReq(requestObject) {
+    return new Promise(function(resolve, reject) {
+        fetchPost(`${URL}/${block}_get`, requestObject).then((response) => {
+            if(response.status == 200) {
+                response.json().then((data) => {
+                    resolve(data)
+                })
+            } else {
+                response.text().then((data) => {
+                    reject(data)
+                })
+            }
+        }).catch((error) => {
+            reject(error);
+        });
+    })
+}

@@ -8,7 +8,7 @@ import Basic from '../../../pattern/basic'
 import mainStore from '../../../pattern/main/main_store'
 import ListStore from '../list/store'
 
-import { editReq, deleteReq } from './request'
+import { editReq, deleteReq, getReq } from './request'
 
 
 
@@ -39,6 +39,13 @@ class PageStore extends Basic {
     }
 
     /* Form */
+    @action getForm(id) {
+        getReq({id: id}).then(data => {
+            this.viewForm(data)
+		}, error => {
+			this.messageError('Ошибка получения товара!')
+		})
+    }
 
     @action validateForm() {
         this.form.error = formValidate(this.scheme)

@@ -103,6 +103,7 @@ app.post("/supplier_get_params", (req, res) => supplier.getParams(req, res))
 
 import goods from './back/block_request/goods'
 app.post("/goods_add", (req, res) => goods.add(req, res))
+app.post("/goods_get", (req, res) => goods.getId(req, res))
 app.post("/goods_edit", (req, res) => goods.edit(req, res))
 app.post("/goods_list", (req, res) => goods.list(req, res))
 app.post("/goods_delete", (req, res) => goods.delete(req, res))

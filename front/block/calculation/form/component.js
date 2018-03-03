@@ -82,10 +82,10 @@ class ModalForm extends React.Component {
                         <Row type="flex" justify="space-around">
                             {country != 'Россия' ? [...Array(3)].map((num, column) => {
                                 return <Col span={8} key={column}>
-                                    <div style={{textAlign: 'center', marginBottom: '20px'}}>
+                                    {scheme.headerCol[column].name != 'main' ? <div style={{textAlign: 'center', marginBottom: '20px'}}>
                                         <Button onClick={() => this.self('calcForm', scheme.headerCol[column].name)} 
                                                 type="primary">{scheme.headerCol[column].text}</Button>
-                                    </div>
+                                    </div> : <div style={{height: '52px'}}></div>}
                                     {Object.keys(scheme).map(key => {
                                         if(key != 'store' && key != 'headerCol' && key != 'note' && key != 'name' && scheme[key].options.col == column && scheme[key].options.type != 'addon') {
                                             return <FormElem key={key} 
@@ -97,10 +97,10 @@ class ModalForm extends React.Component {
                                 </Col>}) : [...Array(4)].map((num, column) => {
                                     if(column == 0 || column == 3 ) {
                                         return <Col span={12} key={column}>
-                                            <div style={{textAlign: 'center', marginBottom: '20px'}}>
+                                            {scheme.headerCol[column].name != 'main' ? <div style={{textAlign: 'center', marginBottom: '20px'}}>
                                                 <Button onClick={() => this.self('calcForm', scheme.headerCol[column].name)} 
                                                         type="primary">{scheme.headerCol[column].text}</Button>
-                                            </div>
+                                            </div> : <div style={{height: '52px'}}></div>}
                                             {Object.keys(scheme).map(key => {
                                                 if(key != 'store' && key != 'headerCol' && key != 'note' && key != 'name' && key != 'course' && scheme[key].options.col == column && scheme[key].options.type != 'addon') {
                                                     return <FormElem key={key} 

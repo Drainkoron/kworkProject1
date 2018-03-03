@@ -90,13 +90,14 @@ export function blockScheme(store) {
 		weight: {
 			options: {
 				name: "Вес",
-				type: "Number",
+				type: "Input",
 				format: 'num',
 				col: 0
 			},
 			elem: {
+				addonAfter: 'кг',
 				value: '',
-				onChange: value => numberChange('weight', value, store),
+				onChange: event => inputChange(event, store, 'weight'),
 				name: "weight"
 			}
 		},
@@ -153,7 +154,7 @@ export function blockScheme(store) {
 		},
 		fast_time: {
 			options: {
-				name: "Ставка доставки",
+				name: "Срок доставки",
 				type: "Number",
 				format: 'num',
 				col: 1
@@ -166,7 +167,7 @@ export function blockScheme(store) {
 		},
 		fast_rate: {
 			options: {
-				name: "Срок доставки",
+				name: "Ставка доставки",
 				type: "Number",
 				format: 'num',
 				col: 1
@@ -244,7 +245,7 @@ export function blockScheme(store) {
 		},
 		slow_time: {
 			options: {
-				name: "Ставка доставки",
+				name: "Срок доставки",
 				type: "Number",
 				format: 'num',
 				col: 2
@@ -257,7 +258,7 @@ export function blockScheme(store) {
 		},
 		slow_rate: {
 			options: {
-				name: "Срок доставки",
+				name: "Ставка доставки",
 				type: "Number",
 				format: 'num',
 				col: 2
@@ -335,7 +336,7 @@ export function blockScheme(store) {
 		},
 		rus_time: {
 			options: {
-				name: "Ставка доставки",
+				name: "Срок доставки",
 				type: "Number",
 				format: 'num',
 				col: 3
@@ -348,7 +349,7 @@ export function blockScheme(store) {
 		},
 		rus_rate: {
 			options: {
-				name: "Срок доставки",
+				name: "Ставка доставки",
 				type: "Number",
 				format: 'num',
 				col: 3

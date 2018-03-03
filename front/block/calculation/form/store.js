@@ -101,13 +101,11 @@ class FormStore extends Basic {
     }
 
     @action calcForm(name) {
-       
         if(name != 'rus') {
-            this.model[`${name}_cost_in_brand`] = this.model[`${name}_cost_in`]  + this.model[`${name}_cost_brand`]
-            this.model[`${name}_cost_out`] = this.model[`${name}_cost_in`] * this.options[`${name}_сommission`] + this.options[`${name}_rate`] * 1.08 * this.model.weight
-            this.model[`${name}_cost_out_brand`] = this.model[`${name}_cost_in_brand`] * this.options[`${name}_сommission`] + this.options[`${name}_rate`] * 1.08 * this.model.weight
+            this.model[`${name}_cost_in`] = ((this.model.cost * 1) * this.options[`${name}_сommission`] + (this.model.weight * 1) * 1.08 * this.model[`${name}_rate`]) * this.model.course
+            this.model[`${name}_cost_in_brand`] = this.model[`${name}_cost_in`] + this.model[`${name}_cost_brand`]
         } else {
-            this.model.rus_cost_out = this.model.rus_rate + this.model.course
+            this.model.rus_cost_in = this.model.rus_rate + (this.model.cost * 1)
         }
 
         // course: 0,

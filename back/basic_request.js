@@ -35,6 +35,7 @@ class BasicRequest {
         })
     }
     getIdPg(id) {
+        console.log(id, 'id')
         var requestString = `SELECT * FROM ${this.name} WHERE id = '${id}'`
 
         return new Promise(function(resolve, reject) {

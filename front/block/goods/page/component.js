@@ -43,7 +43,9 @@ class Page extends React.Component {
 
     }
     componentWillMount() {
-
+        if(!this.props.goodsStore.page.model.id) {
+            this.props.goodsStore.page.getForm(this.props.match.params.id)
+        }
     }
 	render() {
         const { scheme, form, model } = this.props.goodsStore.page

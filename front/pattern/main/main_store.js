@@ -62,7 +62,13 @@ class MainStore extends Basic {
 
 	@action async enterApp(data) {
 		this.setModel(data)
-		this.history.push('/cabinet/goods')
+
+		// set Location
+		if(this.history.location.pathname == '/') {
+			this.history.push('/cabinet/goods')
+		} else {
+			this.history.push(this.history.location.pathname)
+		}
 	}
 
 	@action routing(path) {
