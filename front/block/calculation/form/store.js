@@ -83,13 +83,11 @@ class FormStore extends Basic {
     }
 
     @action async setOptions() {
-        if(!this.options) {
-            await getOptionsReq({id:1}).then(data => {
-                this.options = data.doc
-            }, error => {
-                this.messageError('Ошибка получения настроек!')
-            })
-        }
+        await getOptionsReq({id:1}).then(data => {
+            this.options = data.doc
+        }, error => {
+            this.messageError('Ошибка получения настроек!')
+        })
         for(var i in this.options) {
             if(i in this.model) {
                 if(this.model[i] == 0 && i != 'id') {
@@ -101,10 +99,13 @@ class FormStore extends Basic {
 
     @action calcForm(name) {
         if(name != 'rus') {
-            this.model[`${name}_cost_in`] = ((this.model.cost * 1) * this.options[`${name}_сommission`] + (this.model.weight * 1) * 1.08 * this.model[`${name}_rate`]) * this.model.course
-            this.model[`${name}_cost_in_brand`] = this.model[`${name}_cost_in`] + this.model[`${name}_cost_brand`]
+            var costIn = ((this.model.cost * 1) * this.options[`${name}_сommission`] + (this.model.weight * 1) * 1.08 * this.model[`${name}_rate`]) * this.model.course
+            this.model[`${name}_cost_in`] = costIn.toFixed(2)
+            var costInBrand = (this.model[`${name}_cost_in`] * 1) + (this.model[`${name}_cost_brand`] * 1)
+            this.model[`${name}_cost_in_brand`] = costInBrand.toFixed(2)
         } else {
-            this.model.rus_cost_in = this.model.rus_rate + (this.model.cost * 1)
+            var rusCostIn = this.model.rus_rate + (this.model.cost * 1)
+            this.model.rus_cost_in = rusCostIn.toFixed(2)
         }
 
         // course: 0,
