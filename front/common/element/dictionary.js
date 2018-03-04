@@ -89,7 +89,7 @@ class Dictionary extends React.Component {
                     value={this.props.data.value}
                     placeholder=""
                     notFoundContent=""
-                    style={{ width: 240 }}
+                    style={{ width: '80%' }}
                     defaultActiveFirstOption={false}
                     showArrow={false}
                     filterOption={false}
@@ -99,6 +99,7 @@ class Dictionary extends React.Component {
                 
                 </Select>
                 {button ? <Button onClick={this.add}
+                                    style={{marginLeft: '20px'}}
                                     shape="circle" 
                                     icon="plus" /> : null}
                 

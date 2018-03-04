@@ -40,12 +40,14 @@ class TreeElem extends React.Component {
                     })}
                 </TreeNode>
         } else {
-            return <TreeNode title={key} key={pointer} />
+            return <TreeNode title={key} key={pointer} />  
         }
         
     }
 	render() {
         const { nodeName, tree, point } = this.props.goodsStore.tree
+
+        console.log(point, 'point')
 
 		return (
             <div>
@@ -76,13 +78,13 @@ class TreeElem extends React.Component {
                 </div>
                 <div style={{margin: '10px 0 10px 0'}}>
                     <Tree 
+                        defaultSelectedKeys={point.toJS()}
+                        defaultExpandedKeys={point.toJS()}
                         showLine
                         onSelect={keys => this.self('selectNode', keys)}>
                         {Object.keys(tree).map((key) => {
                             return this.getNode(tree, key)
                         })}
-                        
-        
                     </Tree>
                 </div>
             </div>

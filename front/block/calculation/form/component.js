@@ -64,6 +64,8 @@ class ModalForm extends React.Component {
                     <div>
                         { model.id ? <Button type="danger" style={{float: 'left'}} 
                                         onClick={() => this.self('deleteForm')}>Удалить</Button> : null }
+                        { model.id ? <Button style={{float: 'left'}} 
+                                        onClick={() => this.self('copyForm')}>Сохранить копию</Button> : null }
                         <Button onClick={() => this.self('cancelForm')}>Отмена</Button>
                         <Button type="primary" onClick={() => this.self('validateForm')}>Сохранить</Button>
                     </div>

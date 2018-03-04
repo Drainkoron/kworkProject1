@@ -90,7 +90,6 @@ class FormStore extends Basic {
                 this.messageError('Ошибка получения настроек!')
             })
         }
-        console.log(this.options)
         for(var i in this.options) {
             if(i in this.model) {
                 if(this.model[i] == 0 && i != 'id') {
@@ -109,12 +108,12 @@ class FormStore extends Basic {
         }
 
         // course: 0,
-        //     fast_time: 0,
-        //     fast_rate: 0,
-        //     fast_сommission: 0,
-        //     slow_time: 0,
-        //     slow_rate: 0,
-        //     slow_сommission: 0,
+        // fast_time: 0,
+        // fast_rate: 0,
+        // fast_сommission: 0,
+        // slow_time: 0,
+        // slow_rate: 0,
+        // slow_сommission: 0,
         
     }
 
@@ -129,6 +128,12 @@ class FormStore extends Basic {
                 this.saveForm()
             }
         }
+    }
+
+    @action copyForm() {
+        this.model.id = null
+        this.model.name += ' copy'
+        this.validateForm()
     }
 
     @action saveForm() {

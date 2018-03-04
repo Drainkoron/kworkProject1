@@ -61,6 +61,7 @@ class TreeStore extends Basic {
     }
 
     @action selectNode(point) {
+        console.log(point, 'point')
         this.point = point
         listStore.setPoint(this.point[0])
     }
@@ -79,12 +80,12 @@ class TreeStore extends Basic {
     }
 
     @action setData(data) {
-        this.tree = data.doc
+        delete data.doc.id
+        this.tree = Object.assign({}, data.doc)
     }
 
     @action getTree() {
         getTreeReq({id: 1}).then(data => {
-            delete data.doc.id
             this.setData(data)
         }, error => {
             this.messageError('Ошибка получения дерева!')
@@ -94,7 +95,6 @@ class TreeStore extends Basic {
     @action updateTree() {
         this.tree.id = 1
         updateTreeReq(this.tree).then(data => {
-            delete data.doc.id
             this.setData(data)
         }, error => {
             this.messageError('Ошибка получения дерева!')

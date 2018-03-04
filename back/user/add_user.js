@@ -1,7 +1,7 @@
 import db from '../db'
 import { errorRequest, errorNoneData } from '../error_request'
 
-export default function addUserPg() {
+export default function addUserPg(object) {
 
     var object = {
         type: 'admin',
