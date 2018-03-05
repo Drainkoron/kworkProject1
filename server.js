@@ -50,7 +50,7 @@ app.all(['/', '/cabinet', '/cabinet/*'], function(req, res) {
 
 
 /* User */
-import { addAdmin, addUser, addDemoUser, viewUser, authUser, logout, userList } from './back/user/request'
+import { addAdmin, addUser, addDemoUser, viewUser, authUser, logout, userList, editUser, deleteUser } from './back/user/request'
 import checkToken from './back/cookie_middleware'
 
 app.get("/init_admin", addAdmin)
@@ -60,8 +60,10 @@ app.get("/view_user", viewUser)
 app.post("/auth_user", authUser)
 app.use(checkToken)
 app.get("/logout", logout)
-app.get("/user_list", userList)
-app.get("/user_add", addUser)
+app.post("/user_list", userList)
+app.post("/user_add", addUser)
+app.post("/user_edit", editUser)
+app.post("/user_delete", deleteUser)
 
 /* Table */
 import { getTable, createTable, dropTable } from './back/admin/request'

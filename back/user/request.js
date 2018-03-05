@@ -5,9 +5,27 @@ import viewUserPg from './view_user'
 import authUserPg from './auth_user'
 import addDemoUserPg from './add_demo'
 import getUserListPg from './user_list'
+import editUserPg from './edit_user'
+import deleteUserPg from './delete_user'
 
 export function addUser(req, res) {
-	addUserPg().then((result) => { 
+	addUserPg(req.body).then((result) => { 
+        res.send(result);
+    }, (error) => {
+        res.status(error.status).send(error.message);
+    })
+}
+
+export function editUser(req, res) {
+	editUserPg(req.body).then((result) => { 
+        res.send(result);
+    }, (error) => {
+        res.status(error.status).send(error.message);
+    })
+}
+
+export function deleteUser(req, res) {
+	deleteUserPg(req.body).then((result) => { 
         res.send(result);
     }, (error) => {
         res.status(error.status).send(error.message);

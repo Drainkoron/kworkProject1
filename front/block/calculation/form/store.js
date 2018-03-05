@@ -106,16 +106,7 @@ class FormStore extends Basic {
         } else {
             var rusCostIn = this.model.rus_rate + (this.model.cost * 1)
             this.model.rus_cost_in = rusCostIn.toFixed(2)
-        }
-
-        // course: 0,
-        // fast_time: 0,
-        // fast_rate: 0,
-        // fast_сommission: 0,
-        // slow_time: 0,
-        // slow_rate: 0,
-        // slow_сommission: 0,
-        
+        }        
     }
 
     @action validateForm() {

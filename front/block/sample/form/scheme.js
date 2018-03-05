@@ -13,7 +13,14 @@ import addonChange from '../../../common/addon_change'
 export function blockScheme(store) {
 	const scheme = {
 		store: store,
-		headerCol: ['Основная информация', 'Быстрая закупка', 'Медленная закупка', 'Закупка в России'],
+		headerCol: [{name: 'main',
+						text: 'Основная информация'},
+					{name: 'fast',
+						text: 'Быстрая закупка'},
+					{name: 'slow',
+						text: 'Медленная закупка'},
+					{name: 'rus',
+						text: 'Закупка в России'}],
 		note: {
 			options: {
 				name: "Примечание",

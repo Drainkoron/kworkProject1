@@ -15,7 +15,7 @@ class List extends React.Component {
                 key: 'doc.name',
                 sorter: true,
                 defaultSortOrder: 'ascend'
-            },{
+            }, {
                 title: 'Тираж',
                 dataIndex: 'doc.count',
                 key: 'doc.count',
@@ -56,7 +56,7 @@ class List extends React.Component {
             <div style={{marginTop: '20px'}}>
                 {listResult.data ? <div>
                     <h4 className='header-table'>
-                        Список сэмплов: показаны с {(requestObject.page * requestObject.limit) - requestObject.limit + 1} по {viewCount} - 
+                        Список просчётов: показаны с {(requestObject.page * requestObject.limit) - requestObject.limit + 1} по {viewCount} - 
                         найдены {listResult.searchCount} из {listResult.count}
                     </h4>
                     <Table columns={this.state.columns} 

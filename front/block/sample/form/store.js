@@ -6,7 +6,7 @@ import observeModel from '../../../common/observe_model'
 import Basic from '../../../pattern/basic'
 
 import ListStore from '../list/store'
-import { addReq, editReq, deleteReq } from './request'
+import { addReq, editReq, deleteReq, getOptionsReq } from './request'
 
 
 
@@ -27,6 +27,7 @@ class FormStore extends Basic {
             view: false,
             error: ''
         }
+        this.options = null
     }
 
     formModel() {
@@ -64,15 +65,48 @@ class FormStore extends Basic {
             rus_cost_out: 0,
             rus_cost_brand: 0,
             rus_cost_in_brand: 0,
-            rus_cost_out_brand: 0
+            rus_cost_out_brand: 0,
         }
-    }
+    }   
 
     /* Form */
 
     @action setIdGoodsSupplier(id, country) {
         this.goodsSupplierId = id
         this.country = country
+    }
+
+    @action addForm() {
+        this.setModel(this.formModel())
+        this.setOptions()
+        this.viewModal()
+    }
+
+    @action async setOptions() {
+        await getOptionsReq({id:1}).then(data => {
+            this.options = data.doc
+        }, error => {
+            this.messageError('Ошибка получения настроек!')
+        })
+        for(var i in this.options) {
+            if(i in this.model) {
+                if(this.model[i] == 0 && i != 'id') {
+                    this.model[i] = this.options[i]
+                }
+            }
+        }
+    }
+
+    @action calcForm(name) {
+        if(name != 'rus') {
+            var costIn = ((this.model.cost * 1) * this.options[`${name}_сommission`] + (this.model.weight * 1) * 1.08 * this.model[`${name}_rate`]) * this.model.course
+            this.model[`${name}_cost_in`] = costIn.toFixed(2)
+            var costInBrand = (this.model[`${name}_cost_in`] * 1) + (this.model[`${name}_cost_brand`] * 1)
+            this.model[`${name}_cost_in_brand`] = costInBrand.toFixed(2)
+        } else {
+            var rusCostIn = this.model.rus_rate + (this.model.cost * 1)
+            this.model.rus_cost_in = rusCostIn.toFixed(2)
+        }        
     }
 
     @action validateForm() {
@@ -88,11 +122,17 @@ class FormStore extends Basic {
         }
     }
 
+    @action copyForm() {
+        this.model.id = null
+        this.model.name += ' copy'
+        this.validateForm()
+    }
+
     @action saveForm() {
         addReq(this.model).then(data => {
             this.addSuccess(data)
 		}, error => {
-			this.messageError('Ошибка сохранения поставщика!')
+			this.messageError('Ошибка сохранения просчёта!')
 		})
     }
 
@@ -105,13 +145,14 @@ class FormStore extends Basic {
         editReq(this.model).then(data => {
             this.addSuccess(data)
 		}, error => {
-			this.messageError('Ошибка редактирования поставщика!')
+			this.messageError('Ошибка редактирования просчёта!')
 		})
     }
 
     @action viewForm(elem) {
         elem.doc.id = elem.id
         this.setModel(elem.doc)
+        this.setOptions()
         this.viewModal()
     }
 

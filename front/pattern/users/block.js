@@ -1,7 +1,10 @@
 import React from 'react';
 import { observer, inject } from 'mobx-react';
 
-//import UserList from './user_list' 
+import { Button } from 'antd';
+
+import ModalForm from './form/component' 
+import List from './list/component'
 
 @inject("mainStore", "userStore") @observer
 class UserBlock extends React.Component {
@@ -13,10 +16,14 @@ class UserBlock extends React.Component {
 		// this.props.userStore.setAppError = this.props.mainStore.setAppError
 	}
 	render() {
-		const { mainStore } = this.props
+		
 		return (
 			<div>
-				
+				<ModalForm />
+				<Button style={{ float: 'right' }} 
+						onClick={() => this.props.userStore.form.newForm()}
+						type="primary">Добавить пользователя</Button>
+				<List />
 			</div>
 		)
 	}

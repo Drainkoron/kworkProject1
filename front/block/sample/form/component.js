@@ -34,28 +34,35 @@ class ModalForm extends React.Component {
 	constructor(props) {
         super(props);
         this.self = this.self.bind(this)
+        this.state = {
+            idForm: null
+        }
     }
     self(name, params) {
 		this.props.sampleStore.form[name](params)
     }
-    setModelValue(name, value) {
-        this.props.sampleStore.form.setModelValue(name, value)
-    }
 	componentWillMount() {
 		
-	}
+    }
+    componentWillUnmount() {
+        
+    }
 	render() {
         const { scheme, form, model, country } = this.props.sampleStore.form
-   
+
+        console.log(scheme.headerCol)
+
 		return (
 			<Modal
-                title="Форма сэмпла"
+                title="Форма просчёта"
                 visible={form.view}
                 width={1050}
                 footer={
                     <div>
                         { model.id ? <Button type="danger" style={{float: 'left'}} 
                                         onClick={() => this.self('deleteForm')}>Удалить</Button> : null }
+                        { model.id ? <Button style={{float: 'left'}} 
+                                        onClick={() => this.self('copyForm')}>Сохранить копию</Button> : null }
                         <Button onClick={() => this.self('cancelForm')}>Отмена</Button>
                         <Button type="primary" onClick={() => this.self('validateForm')}>Сохранить</Button>
                     </div>
@@ -74,7 +81,10 @@ class ModalForm extends React.Component {
                         <Row type="flex" justify="space-around">
                             {country != 'Россия' ? [...Array(3)].map((num, column) => {
                                 return <Col span={8} key={column}>
-                                    <h4 style={{textAlign: 'center', marginBottom: '20px'}}>{scheme.headerCol[column]}</h4>
+                                    {scheme.headerCol[column].name != 'main' ? <div style={{textAlign: 'center', marginBottom: '20px'}}>
+                                        <Button onClick={() => this.self('calcForm', scheme.headerCol[column].name)} 
+                                                type="primary">{scheme.headerCol[column].text}</Button>
+                                    </div> : <div style={{height: '52px'}}></div>}
                                     {Object.keys(scheme).map(key => {
                                         if(key != 'store' && key != 'headerCol' && key != 'note' && key != 'name' && scheme[key].options.col == column && scheme[key].options.type != 'addon') {
                                             return <FormElem key={key} 
@@ -86,7 +96,10 @@ class ModalForm extends React.Component {
                                 </Col>}) : [...Array(4)].map((num, column) => {
                                     if(column == 0 || column == 3 ) {
                                         return <Col span={12} key={column}>
-                                            <h4 style={{textAlign: 'center', marginBottom: '20px'}}>{scheme.headerCol[column]}</h4>
+                                            {scheme.headerCol[column].name != 'main' ? <div style={{textAlign: 'center', marginBottom: '20px'}}>
+                                                <Button onClick={() => this.self('calcForm', scheme.headerCol[column].name)} 
+                                                        type="primary">{scheme.headerCol[column].text}</Button>
+                                            </div> : <div style={{height: '52px'}}></div>}
                                             {Object.keys(scheme).map(key => {
                                                 if(key != 'store' && key != 'headerCol' && key != 'note' && key != 'name' && key != 'course' && scheme[key].options.col == column && scheme[key].options.type != 'addon') {
                                                     return <FormElem key={key} 

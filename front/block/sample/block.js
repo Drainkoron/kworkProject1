@@ -31,7 +31,7 @@ class SampleBlock extends React.Component {
                 <ModalForm />
                 <div style={{height: '40px'}}>
                     <Button style={{ float: 'right' }} 
-                            onClick={() => this.props.sampleStore.form.newForm()}
+                            onClick={() => this.props.sampleStore.form.addForm()}
                             type="primary">Добавить сэмпл</Button>
                 </div>
                 <List />

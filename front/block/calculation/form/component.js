@@ -41,9 +41,6 @@ class ModalForm extends React.Component {
     self(name, params) {
 		this.props.calculationStore.form[name](params)
     }
-    setModelValue(name, value) {
-        this.props.calculationStore.form.setModelValue(name, value)
-    }
 	componentWillMount() {
 		
     }
