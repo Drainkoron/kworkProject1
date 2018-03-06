@@ -20,9 +20,11 @@ class UserBlock extends React.Component {
 		return (
 			<div>
 				<ModalForm />
-				<Button style={{ float: 'right' }} 
-						onClick={() => this.props.userStore.form.newForm()}
-						type="primary">Добавить пользователя</Button>
+					<div style={{ height: '40px' }}>
+						<Button style={{ float: 'right' }} 
+								onClick={() => this.props.userStore.form.newForm()}
+								type="primary">Добавить пользователя</Button>
+					</div>
 				<List />
 			</div>
 		)

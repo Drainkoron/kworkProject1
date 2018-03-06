@@ -9,28 +9,19 @@ import { getListReq } from './request'
 class ListStore extends Basic {
     @observable listResult
     @observable requestObject
-    @observable currentRow
 
     constructor() {
         super()
-        this.listResult = {},
+        this.listResult = [],
         this.requestObject = this.searchModel()
-        this.currentRow = null
     }
 
     /* model */
 
     searchModel() {
         return {
-            page: 1,
-            limit: 10,
-            fullSearch: '',
             filterField: {
                 goods_supplier_id: 0,
-            },
-            sortBy: { 
-                field: 'name',
-                reverse: false
             }
         }
     }
@@ -46,14 +37,6 @@ class ListStore extends Basic {
 		}, error => {
 			this.messageError('Ошибка получения списка просчётов!')
         })
-    }
-
-
-    /* Filter */
-    @action changeFilterType(value) {
-        this.requestObject.filterField.country = value
-        this.requestObject.page = 1
-        this.getList()
     }
 }
 

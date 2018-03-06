@@ -27,14 +27,12 @@ class ConstantSelect extends React.Component {
         return (
         <div className="ext-search">
             <Select
-                size="large"
                 mode="combobox"
                 allowClear={true}
                 value={value}
                 notFoundContent=""
                 showArrow={false}
                 filterOption={false}
-                style={{ width: 280 }}
                 onSelect={(value) => this.select(value)}>
                     {list.map(elem => <Option key={elem.id} value={elem.name}>{elem.name}</Option>)}
              

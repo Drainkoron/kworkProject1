@@ -50,30 +50,24 @@ class List extends React.Component {
 
 	}
 	render() {
-        const { listResult, requestObject, viewCount } = this.props.calculationStore.list
+        const { listResult } = this.props.calculationStore.list
+
+        console.log(listResult, 'listResult')
 
 		return (
             <div style={{marginTop: '20px'}}>
-                {listResult.data ? <div>
+                {listResult.length ? <div>
                     <h4 className='header-table'>
-                        Список просчётов: показаны с {(requestObject.page * requestObject.limit) - requestObject.limit + 1} по {viewCount} - 
-                        найдены {listResult.searchCount} из {listResult.count}
+                        Список просчётов: {listResult.length}
                     </h4>
                     <Table columns={this.state.columns} 
-                            dataSource={listResult.data.toJS()}
+                            dataSource={listResult.toJS()}
                             rowKey='id'
                             onChange={(pagination, filters, sorter)  => this.self('changeSorterPage', sorter)}
                             onRow={record => ({
                                 onClick: () => this.props.calculationStore.form.viewForm(record)
                             })}
-                            pagination={{
-                                total: listResult.searchCount,
-                                current: requestObject.page,
-                                onChange: page => this.self('changePaginationPage', page),
-                                pageSize: requestObject.limit,
-                                showSizeChanger: true,
-                                onShowSizeChange: (current, pageSize) => this.self('changePaginationSizePage', pageSize)
-                            }} />
+                            pagination={true} />
                     </div> : ''}
             </div>
 		)

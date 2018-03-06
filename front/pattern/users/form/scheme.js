@@ -40,8 +40,8 @@ export function blockScheme(store) {
 				name: "Логин",
 				type: "Input",
 				format: "eng",
-				textError: "Логин не может быть короче короче",
-				min: 5,
+				textError: "Логин не может быть короче 4 символов",
+				min: 3,
 				col: 0
 			},
 			elem: {
@@ -57,8 +57,8 @@ export function blockScheme(store) {
 				name: "Пароль",
 				type: "Input",
 				format: "eng",
-				textError: "Пароль не может быть короче короче 5 символов",
-				min: 4,
+				textError: "Пароль не может быть короче короче 4 символов",
+				min: 3,
 				col: 0
 			},
 			elem: {

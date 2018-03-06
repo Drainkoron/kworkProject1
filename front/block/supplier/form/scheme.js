@@ -46,6 +46,8 @@ export function blockScheme(store) {
 			options: {
 				name: "Страна",
 				type: "Dictionary",
+				textError: "Укажите страну поставщика",
+				min: 1,
 				col: 0
 			},
 			elem: {

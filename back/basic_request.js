@@ -97,6 +97,23 @@ class BasicRequest {
             })
         })
     }
+    searchAll(object) {
+        var requestString = `SELECT * FROM ${this.name} WHERE`
+        for(var name in object.filterField) {
+            if(object.filterField[name] != '' && object.filterField[name] != 'all') {
+                requestString += ` (doc->>'${name}') ILIKE '${object.filterField[name]}'`
+            }
+        }
+        return new Promise(function(resolve, reject) {
+            db.query(requestString, (err, res) => {
+                if (err) {
+                    reject(errorRequest)
+                } else {
+                    resolve(res.rows)
+                }
+            })
+        })
+    }
     searchCount(object) {
         var requestString = `SELECT count(*) FROM ${this.name} WHERE (doc::text) ILIKE '%${object.fullSearch}%'`;
         for(var name in object.filterField) {
