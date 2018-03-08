@@ -47,8 +47,6 @@ class TreeElem extends React.Component {
 	render() {
         const { nodeName, tree, point } = this.props.goodsStore.tree
 
-        console.log(point, 'point')
-
 		return (
             <div>
                 <h3>Категории</h3>

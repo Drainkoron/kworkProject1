@@ -2,7 +2,7 @@ import { observable, computed, action, toJS, intercept } from 'mobx'
 import Basic from '../../../pattern/basic'
 
 //import { getListReq } from './request'
-
+import pdfObject from '../../../generate/pdf/make'
 
 class SelectListStore extends Basic {
     @observable list
@@ -60,6 +60,10 @@ class SelectListStore extends Basic {
         if(includes != null) {
             this.list.splice(includes, 1)
         }
+    }
+
+    @action makePdf() {
+        pdfObject.start(this.list.toJS())
     }
 }
 

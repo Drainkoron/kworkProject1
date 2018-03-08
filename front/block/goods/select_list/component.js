@@ -49,7 +49,9 @@ class SelectList extends React.Component {
                             
                         </Col>
                         <Col span={2}>
-                            <Button shape="circle" icon="file-pdf"/>
+                            <Button shape="circle" 
+                                    icon="file-pdf"
+                                    onClick={() => this.self('selectList', 'makePdf')}/>
                         </Col>
                         <Col span={2}>
                             <Button shape="circle" icon="file-excel"/>
