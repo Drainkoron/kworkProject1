@@ -44,7 +44,7 @@ class Goods extends BasicRequest {
         return new Promise(function(resolve, reject) {
             db.query(requestString, (err, res) => {
                 if (err) {
-                    reject(err)
+                    reject(errorRequest)
                 } else {
                     resolve(res.rows[0].count * 1)
                 }

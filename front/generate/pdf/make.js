@@ -3,7 +3,7 @@
 // Запросы / картинки / просчёты
 
 import { fetchImg } from '../../common/fetch_img'
-import { getFileList } from './request'
+import { getFileList, getCalcList } from './request'
 import { URL } from '../../app_constants'
 import { header, line } from './img'
 
@@ -12,7 +12,7 @@ var pdfObject = {
     count: 0,
     countImg: 0,
     start(goods) {
-        this.goods = goods
+        this.goods = Object.assign({}, goods)  
         this.count = 0
         this.countImg = 0
         this.pdfGenerate()
@@ -65,16 +65,25 @@ var pdfObject = {
             })
         }
 
+        // Запрос за таблицой
+        getCalcList({id: elem.id}).then(data => {
+            console.log(data, 'data')
+		}, error => {
+			
+		})
+
         this.docDefinition.content.push(this.constructRow(elem))
 
         this.pdfMakeStart()
     },
     constructRow(elem) {
 
+        
+
         return [{
                     text: elem.doc.name.toUpperCase(),
                     style: {
-                        fontSize: 22,
+                        fontSize: 16,
                         alignment: 'left',
                         color: '#02B7CF',
                         font: 'Avant',
@@ -83,32 +92,65 @@ var pdfObject = {
                 }, {
                     image: line,
 	                width: 100,
+                }, {
+                    width: 100,
+                    text: 'артикул',
+                    color: '#888888',
+                    margin: [0, 5, 0, 20],
                 }, { 
                 columns: [
                     [{
-                        width: 100,
-                        text: 'артикул'
+                        text: elem.doc.note,
+                        margin: [0, 10, 0, 10]
                     }, {
-                        width: '*',
-                        text: elem.doc.name
-                    }], [{
-                        image: elem.doc.img1,
-                        width: 60,
-                        height: 60,
-                        margin: 5
+                        text: 'ТИРАЖ',
+                        margin: [0, 5, 0, 5],
+                        style: 'tableName',
                     }, {
-                        image: elem.doc.img2,
-                        width: 60,
-                        height: 60,
-                        margin: 5
-                    }], {
+                        width: 350,
+                        table: {
+                            headerRows: 1,
+                            widths: [ 80, 30, 30, 55, 30, 55 ],
+                            body: [
+                              [ {text: 'ПРИМЕЧАНИЕ', style: 'tableHeader', alignment: 'center'}, 
+                                {text: 'КОЛ-ВО', style: 'tableHeader', alignment: 'center'}, 
+                                {text: 'СРОК', style: 'tableHeader', alignment: 'center'}, 
+                                {text: 'СРОК ЭКСПРЕСС', style: 'tableHeader', alignment: 'center'},
+                                {text: 'ЦЕНА', style: 'tableHeader', alignment: 'center'},
+                                {text: 'ЦЕНА ЭКСПРЕСС', style: 'tableHeader', alignment: 'center'} ],
+                              [ {text: '100 рэ', style: 'tableRow', alignment: 'center'}, 'Value 2', 'Value 3', 'Value 4', 'Value 4', 'Value 4' ],
+                              [ { text: 'Bold value', bold: true }, 'Val 2', 'Val 3', 'Val 4', 'Value 4', 'Value 4' ]
+                            ]
+                        },
+                        layout: {
+                            defaultBorder: false,
+                        }
+                    }], 
+                    [{
+                        width: 180,
+                        columns: [
+                            {
+                                image: elem.doc.img1,
+                                width: 80,
+                                height: 80,
+                            },
+                            {
+                                image: elem.doc.img2,
+                                width: 80,
+                                height: 80,
+                            },
+                        ],
+                        columnGap: 20
+                    }, {
                         image: elem.doc.avatar64,
-                        width: 150,
-                        height: 150
-                    }
+                        width: 180,
+                        height: 180,
+                        margin: [0, 20, 0, 0]
+                    }],
                 ],
-                style: ['row'],
-                margin: 5 }]
+                columnGap: 20,
+                style: ['row'] 
+            }]
     },
     pdfMakeStart() {
         pdfMake.fonts = {
@@ -140,14 +182,24 @@ var pdfObject = {
             row: {
                     bold: true,
                     height: 50
-                }
+            },
+            tableHeader: {
+                fontSize: 6,
+                color: '#ffffff',
+                fillColor: '#02B7CF'
+            },
+            tableName: {
+                fontSize: 10,
+                color: '#02B7CF',
+            },
+            tableRow: {
+                fontSize: 6
+            }
         }
     },
 }
 
 
 export default pdfObject
-
-
 
 

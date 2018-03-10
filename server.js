@@ -140,6 +140,9 @@ app.post("/sample_list", (req, res) => sample.list(req, res))
 app.post("/sample_delete", (req, res) => sample.delete(req, res))
 
 
+import generate from './back/block_request/generate'
+app.post("/generate_calc", (req, res) => generate.getCalc(req, res))
+
 
 
 

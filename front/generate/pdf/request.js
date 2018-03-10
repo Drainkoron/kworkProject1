@@ -19,3 +19,21 @@ export function getFileList(requestObject) {
         });
     })
 }
+
+export function getCalcList(requestObject) {
+    return new Promise(function(resolve, reject) {
+        fetchPost(`${URL}/generate_calc/`, requestObject).then((response) => {
+            if(response.status == 200) {
+                response.json().then((data) => {
+                    resolve(data)
+                })
+            } else {
+                response.text().then((data) => {
+                    reject(data)
+                })
+            }
+        }).catch((error) => {
+            reject(error);
+        });
+    })
+}
