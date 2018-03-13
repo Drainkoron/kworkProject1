@@ -3,9 +3,9 @@
 // Запросы / картинки / просчёты
 
 import { fetchImg } from '../../common/fetch_img'
-import { getFileList, getCalcList } from './request'
+import { getFileList, getCalcList, getSampleList } from './request'
 import { URL } from '../../app_constants'
-import { header, line } from './img'
+import { header, line, pattern } from './img'
 
 var pdfObject = {
     goods: [],
@@ -19,22 +19,16 @@ var pdfObject = {
     },
     count: 0,
     pdfGenerate() {
-
         if(this.goods[this.count]) {
             this.elemRequest(this.goods[this.count])
         } else {
-            
+            this.pdfMakeStart()
         }
-        
-
-        // this.docDefinition.content.push(col)
-        // 
     },
     async elemRequest(elem) {
         if(elem.doc.avatar) {
             await fetchImg(elem.doc.avatar).then(base64 => {
                 elem.doc.avatar64 = base64
-                console.log('аватар')
             }, error => {
                 
             })
@@ -50,7 +44,6 @@ var pdfObject = {
         if(img[0]) {
             await fetchImg(`${URL}/${img[0].doc.path}`).then(base64 => {
                 elem.doc.img1 = base64
-                console.log('фото 1')
             }, error => {
                 
             })
@@ -59,26 +52,58 @@ var pdfObject = {
         if(img[1]) {
             await fetchImg(`${URL}/${img[1].doc.path}`).then(base64 => {
                 elem.doc.img2 = base64
-                console.log('фото 2')
             }, error => {
                 
             })
         }
 
-        // Запрос за таблицой
-        getCalcList({id: elem.id}).then(data => {
-            console.log(data, 'data')
+        await getCalcList({id: elem.id}).then(data => {
+            elem.calcRows = [[{text: 'ПРИМЕЧАНИЕ', style: 'tableHeader', alignment: 'center'}, 
+                                {text: 'КОЛ-ВО', style: 'tableHeader', alignment: 'center'}, 
+                                {text: 'СРОК', style: 'tableHeader', alignment: 'center'}, 
+                                {text: 'СРОК ЭКСПРЕСС', style: 'tableHeader', alignment: 'center'},
+                                {text: 'ЦЕНА', style: 'tableHeader', alignment: 'center'},
+                                {text: 'ЦЕНА ЭКСПРЕСС', style: 'tableHeader', alignment: 'center'}]]
+            data.forEach(row => {
+                elem.calcRows.push([
+                    { text: `${row.doc.note}`, style: 'tableRow', alignment: 'center' },
+                    { text: `${row.doc.count} шт.`, style: 'tableRow', alignment: 'center' },
+                    { text: `${row.doc.slow_rate} д.`, style: 'tableRow', alignment: 'center' },
+                    { text: `${row.doc.fast_rate} д.`, style: 'tableRow', alignment: 'center' },
+                    { text: `${(row.doc.fast_cost_out / row.doc.count).toFixed(2)} р/шт.`, style: 'tableRow', alignment: 'center' }, 
+                    { text: `${(row.doc.slow_cost_out / row.doc.count).toFixed(2)} р/шт.`, style: 'tableRow', alignment: 'center' }
+                ])
+            })
+		}, error => {
+			
+        })
+        
+        await getSampleList({id: elem.id}).then(data => {
+            elem.sampleRows = [[{text: 'ПРИМЕЧАНИЕ', style: 'tableHeader', alignment: 'center'}, 
+                                {text: 'КОЛ-ВО', style: 'tableHeader', alignment: 'center'}, 
+                                {text: 'СРОК', style: 'tableHeader', alignment: 'center'}, 
+                                {text: 'СРОК ЭКСПРЕСС', style: 'tableHeader', alignment: 'center'},
+                                {text: 'ЦЕНА', style: 'tableHeader', alignment: 'center'},
+                                {text: 'ЦЕНА ЭКСПРЕСС', style: 'tableHeader', alignment: 'center'}]]
+            data.forEach(row => {
+                elem.sampleRows.push([
+                    { text: `${row.doc.note}`, style: 'tableRow', alignment: 'center' },
+                    { text: `${row.doc.count} шт.`, style: 'tableRow', alignment: 'center' },
+                    { text: `${row.doc.slow_rate} д.`, style: 'tableRow', alignment: 'center' },
+                    { text: `${row.doc.fast_rate} д.`, style: 'tableRow', alignment: 'center' },
+                    { text: `${(row.doc.fast_cost_out / row.doc.count).toFixed(2)} р/шт.`, style: 'tableRow', alignment: 'center' }, 
+                    { text: `${(row.doc.slow_cost_out / row.doc.count).toFixed(2)} р/шт.`, style: 'tableRow', alignment: 'center' }
+                ])
+            })
 		}, error => {
 			
 		})
 
         this.docDefinition.content.push(this.constructRow(elem))
-
-        this.pdfMakeStart()
+        this.count++
+        this.pdfGenerate()
     },
     constructRow(elem) {
-
-        
 
         return [{
                     text: elem.doc.name.toUpperCase(),
@@ -88,7 +113,7 @@ var pdfObject = {
                         color: '#02B7CF',
                         font: 'Avant',
                     },
-                    margin: [0, 10, 0, 5],
+                    margin: [0, 35, 0, 5],
                 }, {
                     image: line,
 	                width: 100,
@@ -110,17 +135,22 @@ var pdfObject = {
                         width: 350,
                         table: {
                             headerRows: 1,
-                            widths: [ 80, 30, 30, 55, 30, 55 ],
-                            body: [
-                              [ {text: 'ПРИМЕЧАНИЕ', style: 'tableHeader', alignment: 'center'}, 
-                                {text: 'КОЛ-ВО', style: 'tableHeader', alignment: 'center'}, 
-                                {text: 'СРОК', style: 'tableHeader', alignment: 'center'}, 
-                                {text: 'СРОК ЭКСПРЕСС', style: 'tableHeader', alignment: 'center'},
-                                {text: 'ЦЕНА', style: 'tableHeader', alignment: 'center'},
-                                {text: 'ЦЕНА ЭКСПРЕСС', style: 'tableHeader', alignment: 'center'} ],
-                              [ {text: '100 рэ', style: 'tableRow', alignment: 'center'}, 'Value 2', 'Value 3', 'Value 4', 'Value 4', 'Value 4' ],
-                              [ { text: 'Bold value', bold: true }, 'Val 2', 'Val 3', 'Val 4', 'Value 4', 'Value 4' ]
-                            ]
+                            widths: [ 70, 30, 30, 55, 40, 55 ],
+                            body: elem.calcRows
+                        },
+                        layout: {
+                            defaultBorder: false,
+                        }
+                    }, {
+                        text: 'СЭМПЛ',
+                        margin: [0, 25, 0, 5],
+                        style: 'tableName',
+                    }, {
+                        width: 350,
+                        table: {
+                            headerRows: 1,
+                            widths: [ 70, 30, 30, 55, 40, 55 ],
+                            body: elem.sampleRows
                         },
                         layout: {
                             defaultBorder: false,
@@ -130,19 +160,19 @@ var pdfObject = {
                         width: 180,
                         columns: [
                             {
-                                image: elem.doc.img1,
+                                image: elem.doc.img1 || pattern,
                                 width: 80,
                                 height: 80,
                             },
                             {
-                                image: elem.doc.img2,
+                                image: elem.doc.img2 || pattern,
                                 width: 80,
                                 height: 80,
                             },
                         ],
                         columnGap: 20
                     }, {
-                        image: elem.doc.avatar64,
+                        image: elem.doc.avatar64 || pattern,
                         width: 180,
                         height: 180,
                         margin: [0, 20, 0, 0]
@@ -193,13 +223,13 @@ var pdfObject = {
                 color: '#02B7CF',
             },
             tableRow: {
-                fontSize: 6
+                fontSize: 6,
+                color: '#333333',
             }
         }
-    },
+    }
 }
 
 
 export default pdfObject
-
 

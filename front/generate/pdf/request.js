@@ -37,3 +37,21 @@ export function getCalcList(requestObject) {
         });
     })
 }
+
+export function getSampleList(requestObject) {
+    return new Promise(function(resolve, reject) {
+        fetchPost(`${URL}/generate_sample/`, requestObject).then((response) => {
+            if(response.status == 200) {
+                response.json().then((data) => {
+                    resolve(data)
+                })
+            } else {
+                response.text().then((data) => {
+                    reject(data)
+                })
+            }
+        }).catch((error) => {
+            reject(error);
+        });
+    })
+}
