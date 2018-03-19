@@ -16,8 +16,8 @@ class Generate {
     }
     
     getCalcReq(object) {
-        var requestString = `SELECT * FROM calculation WHERE (doc->>'goods_supplier_id')::int IN 
-                             (SELECT id FROM goods_supplier WHERE (doc->>'goods_id')::int = ${object.id})`; 
+        var requestString = `SELECT * FROM calculation WHERE (doc->>'default') LIKE 'true' 
+                                AND (doc->>'goods_supplier_id')::int IN (SELECT id FROM goods_supplier WHERE (doc->>'goods_id')::int = ${object.id})`;  
 
         return new Promise(function(resolve, reject) {
             db.query(requestString, (err, res) => {
@@ -40,8 +40,8 @@ class Generate {
     }
     
     getSampleReq(object) {
-        var requestString = `SELECT * FROM sample WHERE (doc->>'goods_supplier_id')::int IN 
-                             (SELECT id FROM goods_supplier WHERE (doc->>'goods_id')::int = ${object.id})`; 
+        var requestString = `SELECT * FROM sample WHERE (doc->>'default') LIKE 'true' 
+                                AND (doc->>'goods_supplier_id')::int IN (SELECT id FROM goods_supplier WHERE (doc->>'goods_id')::int = ${object.id})`; 
 
         return new Promise(function(resolve, reject) {
             db.query(requestString, (err, res) => {

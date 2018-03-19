@@ -15,6 +15,7 @@ var pdfObject = {
         this.goods = Object.assign({}, goods)  
         this.count = 0
         this.countImg = 0
+        this.docDefinition.content = []
         this.pdfGenerate()
     },
     count: 0,
@@ -58,6 +59,7 @@ var pdfObject = {
         }
 
         await getCalcList({id: elem.id}).then(data => {
+            console.log(data, 'data')
             elem.calcRows = [[{text: 'ПРИМЕЧАНИЕ', style: 'tableHeader', alignment: 'center'}, 
                                 {text: 'КОЛ-ВО', style: 'tableHeader', alignment: 'center'}, 
                                 {text: 'СРОК', style: 'tableHeader', alignment: 'center'}, 
@@ -65,36 +67,63 @@ var pdfObject = {
                                 {text: 'ЦЕНА', style: 'tableHeader', alignment: 'center'},
                                 {text: 'ЦЕНА ЭКСПРЕСС', style: 'tableHeader', alignment: 'center'}]]
             data.forEach(row => {
-                elem.calcRows.push([
-                    { text: `${row.doc.note}`, style: 'tableRow', alignment: 'center' },
-                    { text: `${row.doc.count} шт.`, style: 'tableRow', alignment: 'center' },
-                    { text: `${row.doc.slow_rate} д.`, style: 'tableRow', alignment: 'center' },
-                    { text: `${row.doc.fast_rate} д.`, style: 'tableRow', alignment: 'center' },
-                    { text: `${(row.doc.fast_cost_out / row.doc.count).toFixed(2)} р/шт.`, style: 'tableRow', alignment: 'center' }, 
-                    { text: `${(row.doc.slow_cost_out / row.doc.count).toFixed(2)} р/шт.`, style: 'tableRow', alignment: 'center' }
-                ])
+                if(row.doc.country == 'Россия') {
+                    elem.calcRows.push([
+                        { text: `${row.doc.name}`, style: 'tableRow', alignment: 'center' },
+                        { text: `${row.doc.count} шт.`, style: 'tableRow', alignment: 'center' },
+                        { text: `${row.doc.rus_rate} д.`, style: 'tableRow', alignment: 'center' },
+                        { text: '', style: 'tableRow', alignment: 'center' },
+                        { text: `${(row.doc.rus_cost_out / row.doc.count).toFixed(2)} р/шт.`, style: 'tableRow', alignment: 'center' }, 
+                        { text: '', style: 'tableRow', alignment: 'center' }
+                    ])
+                } else {
+                    elem.calcRows.push([
+                        { text: `${row.doc.name}`, style: 'tableRow', alignment: 'center' },
+                        { text: `${row.doc.count} шт.`, style: 'tableRow', alignment: 'center' },
+                        { text: `${row.doc.slow_rate} д.`, style: 'tableRow', alignment: 'center' },
+                        { text: `${row.doc.fast_rate} д.`, style: 'tableRow', alignment: 'center' },
+                        { text: `${(row.doc.fast_cost_out / row.doc.count).toFixed(2)} р/шт.`, style: 'tableRow', alignment: 'center' }, 
+                        { text: `${(row.doc.slow_cost_out / row.doc.count).toFixed(2)} р/шт.`, style: 'tableRow', alignment: 'center' }
+                    ])
+                }
             })
 		}, error => {
 			
         })
         
         await getSampleList({id: elem.id}).then(data => {
-            elem.sampleRows = [[{text: 'ПРИМЕЧАНИЕ', style: 'tableHeader', alignment: 'center'}, 
-                                {text: 'КОЛ-ВО', style: 'tableHeader', alignment: 'center'}, 
-                                {text: 'СРОК', style: 'tableHeader', alignment: 'center'}, 
-                                {text: 'СРОК ЭКСПРЕСС', style: 'tableHeader', alignment: 'center'},
-                                {text: 'ЦЕНА', style: 'tableHeader', alignment: 'center'},
-                                {text: 'ЦЕНА ЭКСПРЕСС', style: 'tableHeader', alignment: 'center'}]]
-            data.forEach(row => {
-                elem.sampleRows.push([
-                    { text: `${row.doc.note}`, style: 'tableRow', alignment: 'center' },
-                    { text: `${row.doc.count} шт.`, style: 'tableRow', alignment: 'center' },
-                    { text: `${row.doc.slow_rate} д.`, style: 'tableRow', alignment: 'center' },
-                    { text: `${row.doc.fast_rate} д.`, style: 'tableRow', alignment: 'center' },
-                    { text: `${(row.doc.fast_cost_out / row.doc.count).toFixed(2)} р/шт.`, style: 'tableRow', alignment: 'center' }, 
-                    { text: `${(row.doc.slow_cost_out / row.doc.count).toFixed(2)} р/шт.`, style: 'tableRow', alignment: 'center' }
-                ])
-            })
+            if(data.length) {
+                elem.sampleRows = [[{text: 'ПРИМЕЧАНИЕ', style: 'tableHeader', alignment: 'center'}, 
+                                    {text: 'КОЛ-ВО', style: 'tableHeader', alignment: 'center'}, 
+                                    {text: 'СРОК', style: 'tableHeader', alignment: 'center'}, 
+                                    {text: 'СРОК ЭКСПРЕСС', style: 'tableHeader', alignment: 'center'},
+                                    {text: 'ЦЕНА', style: 'tableHeader', alignment: 'center'},
+                                    {text: 'ЦЕНА ЭКСПРЕСС', style: 'tableHeader', alignment: 'center'}]]
+                data.forEach(row => {
+                    if(row.doc.country == 'Россия') {
+                        elem.sampleRows.push([
+                            { text: `${row.doc.name}`, style: 'tableRow', alignment: 'center' },
+                            { text: `${row.doc.count} шт.`, style: 'tableRow', alignment: 'center' },
+                            { text: `${row.doc.rus_rate} д.`, style: 'tableRow', alignment: 'center' },
+                            { text: '', style: 'tableRow', alignment: 'center' },
+                            { text: `${(row.doc.rus_cost_out / row.doc.count).toFixed(2)} р/шт.`, style: 'tableRow', alignment: 'center' }, 
+                            { text: '', style: 'tableRow', alignment: 'center' }
+                        ])
+                    } else {
+                        elem.sampleRows.push([
+                            { text: `${row.doc.name}`, style: 'tableRow', alignment: 'center' },
+                            { text: `${row.doc.count} шт.`, style: 'tableRow', alignment: 'center' },
+                            { text: `${row.doc.slow_rate} д.`, style: 'tableRow', alignment: 'center' },
+                            { text: `${row.doc.fast_rate} д.`, style: 'tableRow', alignment: 'center' },
+                            { text: `${(row.doc.fast_cost_out / row.doc.count).toFixed(2)} р/шт.`, style: 'tableRow', alignment: 'center' }, 
+                            { text: `${(row.doc.slow_cost_out / row.doc.count).toFixed(2)} р/шт.`, style: 'tableRow', alignment: 'center' }
+                        ])
+                    }
+                })
+            } else {
+                elem.sampleRows = false
+            }
+            
 		}, error => {
 			
 		})
@@ -105,82 +134,91 @@ var pdfObject = {
     },
     constructRow(elem) {
 
-        return [{
-                    text: elem.doc.name.toUpperCase(),
-                    style: {
-                        fontSize: 16,
-                        alignment: 'left',
-                        color: '#02B7CF',
-                        font: 'Avant',
-                    },
-                    margin: [0, 35, 0, 5],
-                }, {
-                    image: line,
-	                width: 100,
-                }, {
-                    width: 100,
-                    text: 'артикул',
-                    color: '#888888',
-                    margin: [0, 5, 0, 20],
-                }, { 
-                columns: [
-                    [{
-                        text: elem.doc.note,
-                        margin: [0, 10, 0, 10]
-                    }, {
-                        text: 'ТИРАЖ',
-                        margin: [0, 5, 0, 5],
-                        style: 'tableName',
-                    }, {
-                        width: 350,
-                        table: {
-                            headerRows: 1,
-                            widths: [ 70, 30, 30, 55, 40, 55 ],
-                            body: elem.calcRows
+        let row = [{
+                        text: elem.doc.name.toUpperCase(),
+                        style: {
+                            fontSize: 16,
+                            alignment: 'left',
+                            color: '#02B7CF',
+                            font: 'Avant',
                         },
-                        layout: {
-                            defaultBorder: false,
-                        }
+                        margin: [0, 35, 0, 5],
                     }, {
-                        text: 'СЭМПЛ',
-                        margin: [0, 25, 0, 5],
-                        style: 'tableName',
+                        image: line,
+                        width: 100,
                     }, {
-                        width: 350,
-                        table: {
-                            headerRows: 1,
-                            widths: [ 70, 30, 30, 55, 40, 55 ],
-                            body: elem.sampleRows
-                        },
-                        layout: {
-                            defaultBorder: false,
-                        }
-                    }], 
-                    [{
-                        width: 180,
-                        columns: [
-                            {
-                                image: elem.doc.img1 || pattern,
-                                width: 80,
-                                height: 80,
+                        width: 100,
+                        text: `10${elem.id}`,
+                        color: '#888888',
+                        margin: [0, 5, 0, 20],
+                    }, { 
+                    columns: [
+                        [{
+                            text: elem.doc.note,
+                            margin: [0, 10, 0, 10],
+                            style: 'goodsNote',
+                        }, {
+                            text: 'ТИРАЖ',
+                            margin: [0, 5, 0, 5],
+                            style: 'tableName',
+                        }, {
+                            width: 350,
+                            table: {
+                                headerRows: 1,
+                                widths: [ 70, 30, 30, 55, 40, 55 ],
+                                body: elem.calcRows
                             },
-                            {
-                                image: elem.doc.img2 || pattern,
-                                width: 80,
-                                height: 80,
-                            },
-                        ],
-                        columnGap: 20
-                    }, {
-                        image: elem.doc.avatar64 || pattern,
-                        width: 180,
-                        height: 180,
-                        margin: [0, 20, 0, 0]
-                    }],
-                ],
-                columnGap: 20,
-                style: ['row'] 
-            }]
+                            layout: {
+                                defaultBorder: false,
+                            }
+                        }], 
+                        [{
+                            width: 180,
+                            columns: [
+                                {
+                                    image: elem.doc.img1 || pattern,
+                                    width: 80,
+                                    height: 80,
+                                },
+                                {
+                                    image: elem.doc.img2 || pattern,
+                                    width: 80,
+                                    height: 80,
+                                },
+                            ],
+                            columnGap: 20
+                        }, {
+                            image: elem.doc.avatar64 || pattern,
+                            width: 180,
+                            height: 180,
+                            margin: [0, 20, 0, 0]
+                        }],
+                    ],
+                    columnGap: 20,
+                    style: ['row'] 
+                }]
+
+        
+
+        if(elem.sampleRows) {
+            row[3].columns[0].push({
+                text: 'ОБРАЗЕЦ',
+                margin: [0, 25, 0, 5],
+                style: 'tableName',
+            })
+            row[3].columns[0].push({
+                width: 350,
+                table: {
+                    headerRows: 1,
+                    widths: [ 70, 30, 30, 55, 40, 55 ],
+                    body: elem.sampleRows
+                },
+                layout: {
+                    defaultBorder: false,
+                }
+            })
+        }
+        return row
     },
     pdfMakeStart() {
         pdfMake.fonts = {
@@ -197,6 +235,7 @@ var pdfObject = {
                 bolditalics: 'Avant.ttf'
             },
         }
+
         pdfMake.createPdf(this.docDefinition).open()
     },
     docDefinition: {
@@ -225,6 +264,10 @@ var pdfObject = {
             tableRow: {
                 fontSize: 6,
                 color: '#333333',
+            },
+            goodsNote: {
+                fontSize: 8,
+                color: '#666666',
             }
         }
     }

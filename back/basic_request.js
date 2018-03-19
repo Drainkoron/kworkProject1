@@ -18,7 +18,7 @@ class BasicRequest {
         })
     }
     getParamsPg(object) {
-        var requestString = `SELECT * FROM ${this.name} WHERE (doc->'${object.field}') ILIKE '${object.value}'`
+        var requestString = `SELECT * FROM ${this.name} WHERE (doc->>'${object.field}') ILIKE '${object.value}'`
 
         return new Promise(function(resolve, reject) {
             db.query(requestString, (err, res) => {
