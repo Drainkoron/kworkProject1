@@ -42,7 +42,6 @@ class ModalForm extends React.Component {
                         <Button type="primary" onClick={() => this.self('validateForm')}>Сохранить</Button>
                     </div>
                 }
-                onOk={() => this.self('validateForm')}
                 onCancel={() => this.self('cancelForm')}>
                     <Form className="custom-modal-form">
                         <Row type="flex" justify="space-around">

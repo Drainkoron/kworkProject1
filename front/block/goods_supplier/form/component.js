@@ -5,7 +5,8 @@ import { Form,
             Modal,
             Alert,
             Row,
-            Col } from 'antd';
+            Col,
+            Button } from 'antd';
 
 import FormElem from '../../../common/element/form_elem'
 
@@ -23,7 +24,7 @@ class ModalForm extends React.Component {
 		
 	}
 	render() {
-        const { scheme, form } = this.props.goodsSupplierStore.form
+        const { scheme, form, model } = this.props.goodsSupplierStore.form
    
 		return (
 			<Modal
@@ -31,7 +32,14 @@ class ModalForm extends React.Component {
                 visible={form.view}
                 okText="Сохранить"
                 width={550}
-                onOk={() => this.self('validateForm')}
+                footer={
+                    <div>
+                        { model.id ? <Button type="danger" style={{float: 'left'}} 
+                                            onClick={() => this.self('deleteForm')}>Удалить</Button> : null }
+                        <Button onClick={() => this.self('cancelForm')}>Отмена</Button>
+                        <Button type="primary" onClick={() => this.self('validateForm')}>Сохранить</Button>
+                    </div>
+                }
                 onCancel={() => this.self('cancelForm')}>
                     <Form className="custom-modal-form">
                         {Object.keys(scheme).map(key => {
@@ -50,3 +58,5 @@ class ModalForm extends React.Component {
 }
 
 export default ModalForm
+
+

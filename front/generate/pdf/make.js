@@ -177,20 +177,17 @@ var pdfObject = {
                             columns: [
                                 {
                                     image: elem.doc.img1 || pattern,
-                                    width: 80,
-                                    height: 80,
+                                    width: 80
                                 },
                                 {
                                     image: elem.doc.img2 || pattern,
-                                    width: 80,
-                                    height: 80,
+                                    width: 80
                                 },
                             ],
                             columnGap: 20
                         }, {
                             image: elem.doc.avatar64 || pattern,
                             width: 180,
-                            height: 180,
                             margin: [0, 20, 0, 0]
                         }],
                     ],

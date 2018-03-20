@@ -59,3 +59,21 @@ export function supplierGetParamsReq(requestObject) {
         });
     })
 }
+
+export function deleteReq(requestObject) {
+    return new Promise(function(resolve, reject) {
+        fetchPost(`${URL}/${block}_delete`, requestObject).then((response) => {
+            if(response.status == 200) {
+                response.json().then((data) => {
+                    resolve(data)
+                })
+            } else {
+                response.text().then((data) => {
+                    reject(data)
+                })
+            }
+        }).catch((error) => {
+            reject(error);
+        });
+    })
+}

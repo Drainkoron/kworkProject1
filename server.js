@@ -124,6 +124,7 @@ app.post("/goods_supplier_add", (req, res) => goodsSupplier.add(req, res))
 app.post("/goods_supplier_get", (req, res) => goodsSupplier.getId(req, res))
 app.post("/goods_supplier_edit", (req, res) => goodsSupplier.edit(req, res))
 app.post("/goods_supplier_list", (req, res) => goodsSupplier.list(req, res))
+app.post("/goods_supplier_delete", (req, res) => goodsSupplier.delete(req, res))
 
 
 import calculation from './back/block_request/calculation'

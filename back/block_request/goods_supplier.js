@@ -1,4 +1,6 @@
 import BasicRequest from '../basic_request'
+import db from '../db'
+import { errorRequest, errorNoneData } from '../error_request'
 
 class GoodsSupplier extends BasicRequest {
     constructor() {
@@ -41,6 +43,20 @@ class GoodsSupplier extends BasicRequest {
             res.status(error.status).send(error.message);
         })
         res.send(resultRequest);
+    }
+    delete(req, res) {
+        console.log(req.body.id, 'req.body.id')
+        this.deletePg(req.body).then((result) => { 
+            try {
+                db.query(`DELETE FROM calculation WHERE (doc->'goods_supplier_id') = '${req.body.id}'`)
+                db.query(`DELETE FROM sample WHERE (doc->'goods_supplier_id') = '${req.body.id}'`)
+                res.send(result)
+            } catch (err) {
+                res.status(errorRequest.status).send(errorRequest.message);
+            }
+        }, (error) => {
+            res.status(error.status).send(error.message);
+        })
     }
 }
 

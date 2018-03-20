@@ -41,7 +41,7 @@ export function blockScheme(store) {
 		},
 		note: {
 			options: {
-				name: "Дополнительно",
+				name: "Описание",
 				type: "Textarea",
 				col: 0
 			},

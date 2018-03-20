@@ -8,7 +8,7 @@ import Basic from '../../../pattern/basic'
 import GoodsFormStore from '../../goods/page/store'
 import listStore from '../list/store'
 
-import { addReq, editReq, supplierGetParamsReq } from './request'
+import { addReq, editReq, supplierGetParamsReq, deleteReq } from './request'
 
 class FormStore extends Basic {
     @observable scheme
@@ -85,6 +85,14 @@ class FormStore extends Basic {
         elem.doc.id = elem.id
         this.setModel(elem.doc)
         this.viewModal()
+    }
+
+    @action deleteForm() {
+        deleteReq({id: this.model.id}).then(data => {
+            this.addSuccess(data)
+		}, error => {
+			this.messageError('Ошибка удаления поставщика товара!')
+		})
     }
 }
 

@@ -356,7 +356,7 @@ export function blockScheme(store) {
 		},
 		rus_rate: {
 			options: {
-				name: "Ставка доставки",
+				name: "Цена доставки",
 				type: "Number",
 				format: 'num',
 				col: 3

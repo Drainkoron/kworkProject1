@@ -106,6 +106,8 @@ class FormStore extends Basic {
         } else {
             var rusCostIn = this.model.rus_rate + (this.model.cost * 1)
             this.model.rus_cost_in = rusCostIn.toFixed(2)
+            var costInBrand = (this.model.rus_cost_in * 1) + (this.model.rus_cost_brand * 1)
+            this.model.rus_cost_in_brand = costInBrand.toFixed(2)
         }        
     }
 
