@@ -59,7 +59,6 @@ var pdfObject = {
         }
 
         await getCalcList({id: elem.id}).then(data => {
-            console.log(data, 'data')
             elem.calcRows = [[{text: 'ПРИМЕЧАНИЕ', style: 'tableHeader', alignment: 'center'}, 
                                 {text: 'КОЛ-ВО', style: 'tableHeader', alignment: 'center'}, 
                                 {text: 'СРОК', style: 'tableHeader', alignment: 'center'}, 
@@ -136,13 +135,9 @@ var pdfObject = {
 
         let row = [{
                         text: elem.doc.name.toUpperCase(),
-                        style: {
-                            fontSize: 16,
-                            alignment: 'left',
-                            color: '#02B7CF',
-                            font: 'Avant',
-                        },
-                        margin: [0, 35, 0, 5],
+                        style: 'blockHeader',
+                        margin: [0, 15, 0, 5],
+                        pageBreak: this.count ? 'before' : null
                     }, {
                         image: line,
                         width: 100,
@@ -162,10 +157,10 @@ var pdfObject = {
                             margin: [0, 5, 0, 5],
                             style: 'tableName',
                         }, {
-                            width: 350,
+                            width: 400,
                             table: {
                                 headerRows: 1,
-                                widths: [ 70, 30, 30, 55, 40, 55 ],
+                                widths: [ 100, 50, 50, 80, 60, 70 ],
                                 body: elem.calcRows
                             },
                             layout: {
@@ -173,26 +168,29 @@ var pdfObject = {
                             }
                         }], 
                         [{
-                            width: 180,
+                            width: 280,
                             columns: [
                                 {
                                     image: elem.doc.img1 || pattern,
-                                    width: 80
+                                    fit: [130, 130],
+                                    width: 130
                                 },
                                 {
                                     image: elem.doc.img2 || pattern,
-                                    width: 80
+                                    fit: [130, 130],
+                                    width: 130
                                 },
                             ],
                             columnGap: 20
                         }, {
                             image: elem.doc.avatar64 || pattern,
-                            width: 180,
+                            fit: [280, 280],
+                            hight: 280,
                             margin: [0, 20, 0, 0]
                         }],
                     ],
                     columnGap: 20,
-                    style: ['row'] 
+                    style: ['row']
                 }]
 
         
@@ -204,10 +202,10 @@ var pdfObject = {
                 style: 'tableName',
             })
             row[3].columns[0].push({
-                width: 350,
+                width: 400,
                 table: {
                     headerRows: 1,
-                    widths: [ 70, 30, 30, 55, 40, 55 ],
+                    widths: [ 100, 50, 50, 80, 60, 70 ],
                     body: elem.sampleRows
                 },
                 layout: {
@@ -221,7 +219,7 @@ var pdfObject = {
         pdfMake.fonts = {
             Plumb: {
                 normal: 'Plumb-medium.ttf',
-                bold: 'Plumb-medium.ttf',
+                bold: 'Plumb-bold.ttf',
                 italics: 'Plumb-medium.ttf',
                 bolditalics: 'Plumb-medium.ttf'
             },
@@ -230,41 +228,44 @@ var pdfObject = {
                 bold: 'Avant.ttf',
                 italics: 'Avant.ttf',
                 bolditalics: 'Avant.ttf'
-            },
+            }
         }
 
         pdfMake.createPdf(this.docDefinition).open()
     },
     docDefinition: {
+        pageOrientation: 'landscape',
         header: [{
             image: header,
-	        width: 600
+	        width: 850
 		}],
         content: [],
         defaultStyle: {
             font: 'Plumb'
         },
         styles: {
-            row: {
-                    bold: true,
-                    height: 50
+            blockHeader: {
+                fontSize: 20,
+                alignment: 'left',
+                color: '#02B7CF',
             },
             tableHeader: {
-                fontSize: 6,
+                fontSize: 8,
                 color: '#ffffff',
-                fillColor: '#02B7CF'
+                fillColor: '#02B7CF',
+                bold: true
             },
             tableName: {
-                fontSize: 10,
+                fontSize: 12,
                 color: '#02B7CF',
             },
             tableRow: {
-                fontSize: 6,
+                fontSize: 8,
                 color: '#333333',
             },
             goodsNote: {
-                fontSize: 8,
-                color: '#666666',
+                fontSize: 12,
+                color: '#333333',
             }
         }
     }

@@ -19,6 +19,13 @@ class List extends React.Component {
         this.self = this.self.bind(this)
         this.state = {
             columns: [{
+                title: 'Миниатюра',
+                dataIndex: 'doc.avatar',
+                key: 'doc.avatar',
+                width: 70,
+                render: (avatar) => <div className="list-goods-avatar" style={{backgroundImage: `url(${avatar})`}}></div>
+                
+            }, {
                 title: 'Название',
                 dataIndex: 'doc.name',
                 key: 'doc.name',
