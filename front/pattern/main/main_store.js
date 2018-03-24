@@ -65,7 +65,7 @@ class MainStore extends Basic {
 
 		// set Location
 		if(this.history.location.pathname == '/') {
-			this.history.push('/cabinet/goods')
+			this.history.push('/cabinet/goods/null')
 		} else {
 			this.history.push(this.history.location.pathname)
 		}
