@@ -24,7 +24,6 @@ class List extends React.Component {
                 key: 'doc.avatar',
                 width: 70,
                 render: (avatar) => <div className="list-goods-avatar" style={{backgroundImage: `url(${avatar})`}}></div>
-                
             }, {
                 title: 'Название',
                 dataIndex: 'doc.name',

@@ -25,8 +25,7 @@ class GoodsBlock extends React.Component {
 		this.props.goodsStore[name](params)
 	}
 	componentWillMount() {
-        // this.props.goodsStore.getTree()
-        // this.props.orderStore.getList()
+        this.props.goodsStore.selectList.setSelect(this.props.match.params.keys)
 	}
 	render() {
         //const { form, requestObject } = this.props.orderStore

@@ -68,7 +68,7 @@ class Cabinet extends Component {
                             selectedKeys={[history.location.pathname]}
                             style={{ lineHeight: '64px' }}
                             onClick={(event) => this.self('routing', event.key)}>
-                            <Menu.Item key="/cabinet/goods">
+                            <Menu.Item key="/cabinet/goods/null">
                                 <Icon type="appstore-o" />Товары
                             </Menu.Item>
                             <Menu.Item key="/cabinet/supplier">
@@ -105,16 +105,10 @@ class Cabinet extends Component {
                                 <Switch>
                                     <Route path='/cabinet/users' component={UserBlock}/> 
                                     <Route path='/cabinet/table' component={TableBlock}/> 
-                                    <Route path='/cabinet/goods' component={GoodsBlock}/>
+                                    <Route path='/cabinet/goods/:keys' component={GoodsBlock}/>
                                     <Route path='/cabinet/goods-page/:id' component={GoodsPage}/>
                                     <Route path='/cabinet/supplier' component={SupplierBlock}/>
                                     <Route path='/cabinet/options' component={OptionsBlock}/>
-                                    
-                                    
-                                    
-                                    
-
-                                    
                                 </Switch>
                             </div>
                         </Content>

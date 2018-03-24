@@ -1,7 +1,8 @@
 import { observable, computed, action, toJS, intercept } from 'mobx'
 import Basic from '../../../pattern/basic'
 
-//import { getListReq } from './request'
+import { getIdsReq } from './request'
+import mainStore from '../../../pattern/main/main_store'
 import pdfObject from '../../../generate/pdf/make'
 
 class SelectListStore extends Basic {
@@ -10,6 +11,16 @@ class SelectListStore extends Basic {
     constructor() {
         super()
         this.list = []
+    }
+
+    @action setSelect(keys) {
+        if(keys != 'null') {
+            getIdsReq({keys: keys}).then(data => {
+                this.list = data
+            }, error => {
+                this.messageError('Ошибка получения товаров по ключам!')
+            })
+        }
     }
 
     // Второй параметр отвечает за удаление елемента если он есть
@@ -46,6 +57,7 @@ class SelectListStore extends Basic {
         this.list.forEach(elem => {
             keys.push(elem.id)
         })
+        mainStore.history.push(`/cabinet/goods/${keys.length ? keys.join() : null}`)
         return keys
     }
 

@@ -23,7 +23,6 @@ class Generate {
         return new Promise(function(resolve, reject) {
             db.query(requestString, (err, res) => {
                 if (err) {
-                    console.log(err, 'err')
                     reject(errorRequest)
                 } else {
                     resolve(res.rows)
@@ -48,7 +47,6 @@ class Generate {
         return new Promise(function(resolve, reject) {
             db.query(requestString, (err, res) => {
                 if (err) {
-                    console.log(err, 'err')
                     reject(errorRequest)
                 } else {
                     resolve(res.rows)

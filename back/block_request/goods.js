@@ -131,6 +131,25 @@ class Goods extends BasicRequest {
             res.status(errorRequest.status).send(errorRequest.message);
         }
     }
+    getIds(req, res) {
+        this.getIdsReq(req.body).then((result) => { 
+            res.send(result);
+        }, (error) => {
+            res.status(error.status).send(error.message);
+        })
+    }
+    getIdsReq(object) {
+        var requestString = `SELECT * FROM ${this.name} WHERE id in (${object.keys})`; 
+        return new Promise(function(resolve, reject) {
+            db.query(requestString, (err, res) => {
+                if (err) {
+                    reject(errorRequest)
+                } else {
+                    resolve(res.rows)
+                }
+            })
+        })
+    }
 }
 
 const goods = new Goods()
