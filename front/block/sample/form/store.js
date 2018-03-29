@@ -165,6 +165,14 @@ class FormStore extends Basic {
 			this.messageError('Ошибка удаления поставщика!')
 		})
     }
+
+    @action changeDefault(event, data) {
+        event.stopPropagation()
+        data.doc.id = data.id
+        data.doc.default = !data.doc.default
+        this.setModel(data.doc)
+        this.editForm()
+    }
 }
 
 const formStore = new FormStore()

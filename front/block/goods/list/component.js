@@ -8,7 +8,8 @@ import { Table,
             Dropdown, 
             Menu, 
             Icon,
-            Input } from 'antd';
+            Input,
+            Checkbox } from 'antd';
 
 const Search = Input.Search
 

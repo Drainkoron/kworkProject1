@@ -45,16 +45,15 @@ class SelectList extends React.Component {
             <div>
                 <div style={{margin: '10px 0 10px 0'}}>
                     <Row gutter={16}>
-                        <Col span={20}>
+                        <Col span={11}>
                             
                         </Col>
-                        <Col span={2}>
-                            <Button shape="circle" 
-                                    icon="file-pdf"
-                                    onClick={() => this.self('selectList', 'makePdf')}/>
+                        <Col span={6}>
+                            <Button icon="file-pdf"
+                                    onClick={() => this.self('selectList', 'makePdf')}>Экспорт PDF</Button>
                         </Col>
-                        <Col span={2}>
-                            <Button shape="circle" icon="file-excel"/>
+                        <Col span={6}>
+                            <Button icon="file-excel">Экспорт EXEL</Button>
                         </Col>
                     </Row>
                 </div>

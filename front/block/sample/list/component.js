@@ -1,7 +1,7 @@
 import React from 'react';
 import { observer, inject } from 'mobx-react';
 
-import { Table } from 'antd';
+import { Table, Checkbox } from 'antd';
 
 @inject("sampleStore") @observer
 class List extends React.Component {
@@ -40,6 +40,11 @@ class List extends React.Component {
                 dataIndex: 'doc.note',
                 key: 'doc.note',
                 width: 150,
+            }, {
+                title: 'По умолчанию',
+                dataIndex: 'doc.default',
+                key: 'doc.default',
+                render: (checked, row) => <Checkbox checked={checked} onClick={(event) => this.props.sampleStore.form.changeDefault(event, row)}/>
             }
         ]}
     }

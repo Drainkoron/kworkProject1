@@ -1,7 +1,10 @@
 import React from 'react';
 import { observer, inject } from 'mobx-react';
 
-import { Table, Button, Tabs } from 'antd';
+import { Table, 
+            Button, 
+            Tabs, 
+            Checkbox } from 'antd';
 
 const TabPane = Tabs.TabPane;
 
@@ -36,7 +39,7 @@ class List extends React.Component {
                 title: 'По умолчанию',
                 dataIndex: 'doc.default',
                 key: 'doc.default',
-                render: values => values ? 'Да' : 'Нет'
+                render: (checked, row) => <Checkbox checked={checked} onClick={(event) => this.props.goodsSupplierStore.form.changeDefault(event, row)}/>
             }
         ]}
     }
