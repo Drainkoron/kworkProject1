@@ -26,15 +26,22 @@ class List extends React.Component {
                 key: 'doc.cost',
                 sorter: true
             }, {
-                title: 'Закуп цена с РБ',
+                title: 'Закуп цена с БР',
                 dataIndex: 'doc.fast_cost_in_brand',
                 key: 'doc.fast_cost_in_brand',
                 sorter: true,
                 render: (text, row) => text || row.doc.rus_cost_in_brand
             }, {
-                title: 'Срок производства',
+                title: 'Цена продажи с БР',
+                dataIndex: 'doc.fast_cost_out_brand',
+                key: 'doc.fast_cost_out_brand',
+                sorter: true,
+                render: (text, row) => text || row.doc.rus_cost_out_brand
+            }, {
+                title: 'Срок',
                 dataIndex: 'doc.time_production',
                 key: 'doc.time_production',
+                render: (time_production, row) => row.doc.time_production * 1 + row.doc.slow_time || row.doc.rus_time * 1 + row.doc.time_branding * 1
             }, {
                 title: 'Примечание',
                 dataIndex: 'doc.note',
