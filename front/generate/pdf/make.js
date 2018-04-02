@@ -70,19 +70,19 @@ var pdfObject = {
                     elem.calcRows.push([
                         { text: `${row.doc.name}`, style: 'tableRow', alignment: 'center' },
                         { text: `${row.doc.count} шт.`, style: 'tableRow', alignment: 'center' },
-                        { text: `${row.doc.rus_rate * 1 + row.doc.time_production * 1} д.`, style: 'tableRow', alignment: 'center' },
+                        { text: `${row.doc.rus_time * 1 + row.doc.time_production * 1 + row.doc.time_branding * 1} д.`, style: 'tableRow', alignment: 'center' },
                         { text: '-', style: 'tableRow', alignment: 'center' },
-                        { text: `${(row.doc.rus_cost_out_brand / row.doc.count).toFixed(2)} р/шт.`, style: 'tableRow', alignment: 'center' }, 
+                        { text: `${row.doc.rus_cost_out_brand} р/шт.`, style: 'tableRow', alignment: 'center' }, 
                         { text: '-', style: 'tableRow', alignment: 'center' }
                     ])
                 } else {
                     elem.calcRows.push([
                         { text: `${row.doc.name}`, style: 'tableRow', alignment: 'center' },
                         { text: `${row.doc.count} шт.`, style: 'tableRow', alignment: 'center' },
-                        { text: `${row.doc.slow_rate* 1 + row.doc.time_production * 1} д.`, style: 'tableRow', alignment: 'center' },
-                        { text: `${row.doc.fast_rate* 1 + row.doc.time_production * 1} д.`, style: 'tableRow', alignment: 'center' },
-                        { text: `${(row.doc.fast_cost_out_brand / row.doc.count).toFixed(2)} р/шт.`, style: 'tableRow', alignment: 'center' }, 
-                        { text: `${(row.doc.slow_cost_out_brand / row.doc.count).toFixed(2)} р/шт.`, style: 'tableRow', alignment: 'center' }
+                        { text: `${row.doc.slow_time * 1 + row.doc.time_production * 1 + row.doc.time_branding * 1} д.`, style: 'tableRow', alignment: 'center' },
+                        { text: `${row.doc.fast_time * 1 + row.doc.time_production * 1 + row.doc.time_branding * 1} д.`, style: 'tableRow', alignment: 'center' },
+                        { text: `${row.doc.fast_cost_out_brand} р/шт.`, style: 'tableRow', alignment: 'center' }, 
+                        { text: `${row.doc.slow_cost_out_brand} р/шт.`, style: 'tableRow', alignment: 'center' }
                     ])
                 }
             })
@@ -103,19 +103,19 @@ var pdfObject = {
                         elem.sampleRows.push([
                             { text: `${row.doc.name}`, style: 'tableRow', alignment: 'center' },
                             { text: `${row.doc.count} шт.`, style: 'tableRow', alignment: 'center' },
-                            { text: `${row.doc.rus_rate* 1 + row.doc.time_production * 1} д.`, style: 'tableRow', alignment: 'center' },
+                            { text: `${row.doc.rus_time * 1 + row.doc.time_production * 1 + row.doc.time_branding * 1} д.`, style: 'tableRow', alignment: 'center' },
                             { text: '-', style: 'tableRow', alignment: 'center' },
-                            { text: `${(row.doc.rus_cost_out_brand / row.doc.count).toFixed(2)} р/шт.`, style: 'tableRow', alignment: 'center' }, 
+                            { text: `${row.doc.rus_cost_out_brand} р/шт.`, style: 'tableRow', alignment: 'center' }, 
                             { text: '-', style: 'tableRow', alignment: 'center' }
                         ])
                     } else {
                         elem.sampleRows.push([
                             { text: `${row.doc.name}`, style: 'tableRow', alignment: 'center' },
                             { text: `${row.doc.count} шт.`, style: 'tableRow', alignment: 'center' },
-                            { text: `${row.doc.slow_rate* 1 + row.doc.time_production * 1} д.`, style: 'tableRow', alignment: 'center' },
-                            { text: `${row.doc.fast_rate* 1 + row.doc.time_production * 1} д.`, style: 'tableRow', alignment: 'center' },
-                            { text: `${(row.doc.fast_cost_out_brand / row.doc.count).toFixed(2)} р/шт.`, style: 'tableRow', alignment: 'center' }, 
-                            { text: `${(row.doc.slow_cost_out_brand / row.doc.count).toFixed(2)} р/шт.`, style: 'tableRow', alignment: 'center' }
+                            { text: `${row.doc.slow_time * 1 + row.doc.time_production * 1 + row.doc.time_branding * 1} д.`, style: 'tableRow', alignment: 'center' },
+                            { text: `${row.doc.fast_time * 1 + row.doc.time_production * 1 + row.doc.time_branding * 1} д.`, style: 'tableRow', alignment: 'center' },
+                            { text: `${row.doc.fast_cost_out_brand} р/шт.`, style: 'tableRow', alignment: 'center' }, 
+                            { text: `${row.doc.slow_cost_out_brand} р/шт.`, style: 'tableRow', alignment: 'center' }
                         ])
                     }
                 })

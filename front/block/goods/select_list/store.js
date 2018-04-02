@@ -4,6 +4,9 @@ import Basic from '../../../pattern/basic'
 import { getIdsReq } from './request'
 import mainStore from '../../../pattern/main/main_store'
 import pdfObject from '../../../generate/pdf/make'
+import xlsxObject from '../../../generate/xlsx/make'
+
+console.log(xlsxObject, 'xlsxObject')
 
 class SelectListStore extends Basic {
     @observable list
@@ -76,6 +79,10 @@ class SelectListStore extends Basic {
 
     @action makePdf() {
         pdfObject.start(this.list.toJS())
+    }
+
+    @action makeExel() {
+        xlsxObject.start(this.list.toJS())
     }
 }
 
