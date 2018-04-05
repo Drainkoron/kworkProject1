@@ -50,7 +50,16 @@ app.all(['/', '/cabinet', '/cabinet/*'], function(req, res) {
 
 
 /* User */
-import { addAdmin, addUser, addDemoUser, viewUser, authUser, logout, userList, editUser, deleteUser } from './back/user/request'
+import { addAdmin, 
+			addUser, 
+			addDemoUser, 
+			viewUser, 
+			authUser, 
+			logout, 
+			userList, 
+			editUser, 
+			deleteUser } from './back/user/request'
+			
 import checkToken from './back/cookie_middleware'
 
 app.get("/init_admin", addAdmin)
@@ -145,6 +154,8 @@ import generate from './back/block_request/generate'
 app.post("/generate_calc", (req, res) => generate.getCalc(req, res))
 app.post("/generate_sample", (req, res) => generate.getSample(req, res))
 
+import { generateExcel } from './back/generate/request'
+app.post("/generate_excel", generateExcel)
 
 
 

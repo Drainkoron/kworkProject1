@@ -41,7 +41,7 @@ class List extends React.Component {
                 title: 'Срок',
                 dataIndex: 'doc.time_production',
                 key: 'doc.time_production',
-                render: (time_production, row) => row.doc.time_production * 1 + row.doc.slow_time || row.doc.rus_time   * 1 + row.doc.time_branding * 1
+                render: (time_production, row) => (row.doc.time_production * 1) + (row.doc.slow_time || row.doc.rus_time  * 1) + (row.doc.time_branding * 1)
             }, {
                 title: 'Примечание',
                 dataIndex: 'doc.note',
