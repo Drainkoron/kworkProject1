@@ -4,5 +4,5 @@ export const URL = SERVER
 // export const WS = `wss://${zone}.dev-base.ru/ws`
 export const MessageConfig = {
     top: 150,
-    duration: 3,
+    duration: 3
 }

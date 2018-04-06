@@ -1,7 +1,7 @@
 
-//https://sheetjs.gitbooks.io/docs/#sheetjs-js-xlsx
-
 // https://github.com/guyonroche/exceljs
+
+import { URL } from '../../app_constants'
 
 import { generateExcel } from './request'
 
@@ -9,7 +9,8 @@ var xlsxObject = {
     start() {
   
         generateExcel({}).then(data => {
-            console.log(data)
+            var url = `${URL}/export/${data.name}`
+            window.open(url)
 		}, error => {
 			console.log(error)
         })
