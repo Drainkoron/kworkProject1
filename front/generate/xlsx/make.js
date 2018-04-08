@@ -6,9 +6,14 @@ import { URL } from '../../app_constants'
 import { generateExcel } from './request'
 
 var xlsxObject = {
-    start() {
-  
-        generateExcel({}).then(data => {
+    start(goods) {
+
+        var currentId = []
+        goods.forEach(elem => {
+            currentId.push(elem.id)
+        });
+
+        generateExcel({ids: currentId.toString()}).then(data => {
             var url = `${URL}/export/${data.name}`
             window.open(url)
 		}, error => {

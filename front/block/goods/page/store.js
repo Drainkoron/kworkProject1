@@ -88,7 +88,7 @@ class PageStore extends Basic {
     }
 
     @action goList(elem) {
-        mainStore.history.push(`/cabinet/goods`)
+        mainStore.history.push(`/cabinet/goods/null`)
     }
 }
 
