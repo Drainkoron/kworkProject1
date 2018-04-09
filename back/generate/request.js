@@ -116,8 +116,11 @@ export function generateExcel(req, res) {
                     addRow({})
                 }
 
-                count++
-                constructRow()
+                setTimeout(() => {
+                    count++
+                    constructRow()
+                }, 100)
+
             } else {
                 render()
             }
