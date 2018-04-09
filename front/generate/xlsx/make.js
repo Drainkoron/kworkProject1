@@ -8,6 +8,8 @@ import { generateExcel } from './request'
 var xlsxObject = {
     start(goods) {
 
+        cnsole.log('test')
+
         var currentId = []
         goods.forEach(elem => {
             currentId.push(elem.id)
