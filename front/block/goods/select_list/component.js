@@ -54,7 +54,7 @@ class SelectList extends React.Component {
                         </Col>
                         <Col span={6}>
                             <Button icon="file-excel"
-                                    onClick={() => this.self('selectList', 'makeExel')}>Экспорт EXEL</Button>
+                                    onClick={() => this.self('selectList', 'makeExel')}>Экспорт EXCEL</Button>
                         </Col>
                     </Row>
                 </div>
