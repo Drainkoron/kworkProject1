@@ -8,7 +8,7 @@ import { generateExcel } from './request'
 var xlsxObject = {
     start(goods) {
 
-        //cnsole.log('test')
+        //console.log('test')
 
         var currentId = []
         goods.forEach(elem => {
