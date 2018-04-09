@@ -110,11 +110,12 @@ export function generateExcel(req, res) {
                         br: { col: 1, row: startRow + 8 },
                         editAs: 'oneCell'
                     })
-
-                    while(addRowCount < hightBlockRow) {
-                        addRow({})
-                    }
                 }
+                
+                while(addRowCount < hightBlockRow) {
+                    addRow({})
+                }
+
                 count++
                 constructRow()
             } else {

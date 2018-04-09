@@ -20,3 +20,7 @@ ssh-keygen
 
 git branch
 
+
+// скинуть заголовок на шаг-X назад git 
+reset --hard HEAD~1
+
