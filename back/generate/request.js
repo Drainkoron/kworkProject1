@@ -30,22 +30,32 @@ export function generateExcel(req, res) {
                 var hightBlockRow = 10
                 var addRowCount = 0
 
-                function addRow(row) {
+                function addRow(row, align) {
                     addRowCount++
                     worksheet.addRow(row)
+
+                    if(align) {
+                        var row = worksheet.lastRow
+                        row.eachCell({ includeEmpty: true }, function(cell, colNumber) {
+                            if(colNumber == 2) {
+                                cell.alignment = { wrapText: true };
+                            }
+                        });
+                    }
                 }
 
-                addRow({note: `${elem.doc.name} (арт. 10${elem.id})`});
-                addRow({note: 'Примечание',
+                addRow({note: `${elem.doc.name} (арт. 10${elem.id})`}, false);
+                addRow({note: 'Название',
                         count: 'Кол-во',
                         time: 'Срок, дней',
                         time_fast: 'Срок экспресс, дней',
                         cost: 'Цена, р.',
                         cost_fast: 'Цена экспресс, р.'
-                    });
+                    }, false);
 
                 // Данные
                 await getCalcReq(elem.id).then(result => { 
+                    addRow({note: "Просчёты"}, false);
                     result.forEach(elem => {
                         if(elem.doc.country == 'Россия') {
                             addRow({note: elem.doc.name,
@@ -54,7 +64,7 @@ export function generateExcel(req, res) {
                                 time_fast: '',
                                 cost: elem.doc.rus_cost_out_brand,
                                 cost_fast: ''
-                            });
+                            }, true);
                         } else {
                             addRow({note: elem.doc.name,
                                 count: elem.doc.count,
@@ -62,7 +72,7 @@ export function generateExcel(req, res) {
                                 time_fast: elem.doc.fast_time * 1 + elem.doc.time_production * 1 + elem.doc.time_branding * 1,
                                 cost: elem.doc.fast_cost_out_brand,
                                 cost_fast: elem.doc.slow_cost_out_brand
-                            });
+                            }, true);
                         }    
                     })
                 }, (error) => {
@@ -71,6 +81,7 @@ export function generateExcel(req, res) {
 
 
                 await getSampleReq(elem.id).then(result => { 
+                    addRow({note: "Сэмплы"}, false);
                     result.forEach(elem => {
                         if(elem.doc.country == 'Россия') {
                             addRow({note: elem.doc.name,
@@ -79,7 +90,7 @@ export function generateExcel(req, res) {
                                 time_fast: '',
                                 cost: elem.doc.rus_cost_out_brand,
                                 cost_fast: ''
-                            });
+                            }, true);
                         } else {
                             addRow({note: elem.doc.name,
                                 count: elem.doc.count,
@@ -87,7 +98,7 @@ export function generateExcel(req, res) {
                                 time_fast: elem.doc.fast_time * 1 + elem.doc.time_production * 1 + elem.doc.time_branding * 1,
                                 cost: elem.doc.fast_cost_out_brand,
                                 cost_fast: elem.doc.slow_cost_out_brand
-                            });
+                            }, true);
                         } 
                     })
                 }, (error) => {
