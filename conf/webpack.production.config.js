@@ -2,13 +2,13 @@ import webpack from 'webpack';
 import Config from 'webpack-config';
 import CleanWebpackPlugin from 'clean-webpack-plugin';
 
-const SERVER = 'http://ipapai.dev-base.ru'
+const SERVER = 'http://base.ipapai.ru'
 
 export default new Config().extend('conf/webpack.base.config.js').merge({
     entry: ['babel-polyfill', 
                 __dirname + '/../front/index.js'],
     output: {
-        publicPath: 'http://ipapai.dev-base.ru/',
+        publicPath: 'http://base.ipapai.ru/',
         filename: '[hash].min.js'
     },
     plugins: [

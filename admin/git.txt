@@ -1,7 +1,14 @@
 git init
 git clone с точкой
 
+// Выписать ветку
+git checkout --track origin/production
+git checkout -b dev origin/dev
 
+// выбор ветки
+
+git branch -a
+git checkout origin/iPapai
 
 // Настройка внешних репозиториев
 
