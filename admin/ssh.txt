@@ -1,6 +1,6 @@
 // 
 
-pass wd
+passwd
 
 cs .ssh
 ls

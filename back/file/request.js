@@ -20,7 +20,7 @@ function uploadPromise(req, res) {
                 reject()
             } else {
                 req.body.name = req.file.originalname
-                req.body.path = `files/${req.file.originalname}`
+                req.body.path = `files/${encodeURIComponent(req.file.originalname)}`
                 resolve(req.body)
             }
         })

@@ -32,9 +32,6 @@ if (isDevelopment) {
 	app.use(express.static(PUBLIC_PATH));
 }
 
-
-
-
 const PORT = 8000;
 
 app.listen(PORT, function() {
@@ -94,6 +91,10 @@ app.post('/upload_file', uploadFile)
 app.post('/upload_avatar', uploadAvatar)
 app.post('/list_file', listFile)
 app.post('/delete_file', deleteFile)
+
+/* Log */
+import log from './back/block_request/log'
+app.post("/log_list", (req, res) => log.list(req, res))
 
 /* Custom */
 

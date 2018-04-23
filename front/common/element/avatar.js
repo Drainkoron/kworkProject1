@@ -37,8 +37,7 @@ class Avatar extends React.Component {
             return;
         }
         if(event.file.status === 'done') {
-            var pathAvatar = encodeURIComponent(event.file.response.path)
-            this.props.data.change(`${URL}/${pathAvatar}`)
+            this.props.data.change(`${URL}/${event.file.response.path}`)
         }
 	}
 	handleRemove(file) {

@@ -106,11 +106,12 @@ export function generateExcel(req, res) {
                 })
                 
                 if(elem.doc.avatar) {
-                    var name = elem.doc.avatar.split('%2F')[1]
+                    console.log(elem.doc.avatar, 'elem.doc.avatar')
+                    var name = elem.doc.avatar.split('files/')[1]
                     var ext = elem.doc.avatar.split('.')[1]
 
                     var image = workbook.addImage({
-                        filename: `./static/files/${name}`,
+                        filename: `./static/files/${decodeURIComponent(name)}`,
                         extension: ext,
                     });
 

@@ -1,17 +1,22 @@
 import db from './db'
 import { errorRequest, errorNoneData } from './error_request'
-
+import userObject from './user_object'
 
 class BasicRequest {
     addPg(object) {
         var doc = JSON.stringify(object)
         var requestString = `INSERT INTO ${this.name} (doc) VALUES ('${doc}') RETURNING id, doc`
 
-        return new Promise(function(resolve, reject) {
+        return new Promise((resolve, reject) => {
             db.query(requestString, (err, res) => {
                 if (err) {
                     reject(errorRequest);
                 } else {
+                    this.addLogPg({
+                        name: this.name,
+                        event: 'add',
+                        log: res.rows[0]
+                    })
                     resolve(res.rows[0])
                 }
             })
@@ -37,12 +42,17 @@ class BasicRequest {
     getIdPg(id) {
         var requestString = `SELECT * FROM ${this.name} WHERE id = '${id}'`
 
-        return new Promise(function(resolve, reject) {
+        return new Promise((resolve, reject) => {
             db.query(requestString, (err, res) => {
                 if (err) {
                     reject(errorRequest)
                 } else {
                     if(res.rows[0]) {
+                        this.addLogPg({
+                            name: this.name,
+                            event: 'edit',
+                            log: res.rows[0]
+                        })
                         resolve(res.rows[0])
                     } else {
                         reject(errorNoneData)
@@ -55,12 +65,17 @@ class BasicRequest {
         var doc = JSON.stringify(object)
         var requestString = `UPDATE ${this.name} SET doc = '${doc}' WHERE id = ${object.id} RETURNING id, doc`
 
-        return new Promise(function(resolve, reject) {
+        return new Promise((resolve, reject) => {
             db.query(requestString, (err, res) => {
                 if (err) {
                     reject(errorRequest);
                 } else {
                     if(res.rows[0]) {
+                        this.addLogPg({
+                            name: this.name,
+                            event: 'edit',
+                            log: res.rows[0]
+                        })
                         resolve(res.rows[0])
                     } else {
                         reject(errorNoneData)
@@ -71,12 +86,17 @@ class BasicRequest {
     }
     deletePg(object) {
         var requestString = `DELETE FROM ${this.name} WHERE id = ${object.id} RETURNING id, doc`;
-        return new Promise(function(resolve, reject) {
+        return new Promise((resolve, reject) => {
             db.query(requestString, (err, res) => {
                 if (err) {
                     reject(errorRequest);
                 } else {
                     if(res.rows[0]) {
+                        this.addLogPg({
+                            name: this.name,
+                            event: 'delete',
+                            log: res.rows[0]
+                        })
                         resolve(res.rows[0])
                     } else {
                         reject(errorNoneData)
@@ -161,6 +181,19 @@ class BasicRequest {
                     resolve(res.rows)
                 }
             })
+        })
+    }
+    addLogPg(object) {
+        object.user = userObject.getUser()
+        var doc = JSON.stringify(object)
+        var requestString = `INSERT INTO log (doc) VALUES ('${doc}') RETURNING id, doc`
+
+        db.query(requestString, (err, res) => {
+            if (err) {
+                
+            } else {
+                
+            }
         })
     }
 }

@@ -28,8 +28,13 @@ export PATH=/Library/PostgreSQL/9.5/bin:$PATH
 	712283
 
 	ipapai
-	psql -h localhost ipapai postgres
+	psql -h localhost base base
 	712283
+
+	ipapai prod
+
+
+
 
 
 	orange

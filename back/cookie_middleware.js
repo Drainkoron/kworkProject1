@@ -1,5 +1,6 @@
 import db from './db'
 import jwt from 'jsonwebtoken'
+import userObject from './user_object'
 
 export default function checkToken(req, res, next) {
     if('token' in req.cookies) {
@@ -12,6 +13,7 @@ export default function checkToken(req, res, next) {
                     responseError(res)
                 } else {
                     if(resPg.rows.length) {
+                        userObject.setUser(user)
                         next()
                     } else {
                         responseError(res)

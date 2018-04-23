@@ -20,6 +20,7 @@ import optionsStore from '../block/options/store'
 import goodsSupplierStore from '../block/goods_supplier/store'
 import calculationStore from '../block/calculation/store'
 import sampleStore from '../block/sample/store'
+import logStore from '../block/log/store'
 
 // import staffStore from '../block/staff/store'
 // import customerStore from '../block/customer/store'
@@ -33,7 +34,8 @@ const store = { mainStore,
                 optionsStore,
                 goodsSupplierStore,
                 calculationStore,
-                sampleStore }
+                sampleStore,
+                logStore }
 
 import Auth from './main/component/auth'
 import NoMatch from './component/no_match'

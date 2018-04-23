@@ -32,6 +32,7 @@ import GoodsBlock from '../block/goods/block'
 import GoodsPage from '../block/goods/page/component'
 import SupplierBlock from '../block/supplier/block'
 import OptionsBlock from '../block/options/block'
+import ListLog from '../block/log/block'
 
 
 @inject("mainStore") @observer
@@ -80,7 +81,11 @@ class Cabinet extends Component {
                             <Menu.Item key="/cabinet/users">
                                 <Icon type="team" />Пользователи
                             </Menu.Item>
+                            <Menu.Item key="/cabinet/log">
+                                <Icon type="hdd" />логи
+                            </Menu.Item>
 
+                            
 
                             
                         </Menu>
@@ -109,6 +114,7 @@ class Cabinet extends Component {
                                     <Route path='/cabinet/goods-page/:id' component={GoodsPage}/>
                                     <Route path='/cabinet/supplier' component={SupplierBlock}/>
                                     <Route path='/cabinet/options' component={OptionsBlock}/>
+                                    <Route path='/cabinet/log' component={ListLog}/>
                                 </Switch>
                             </div>
                         </Content>
