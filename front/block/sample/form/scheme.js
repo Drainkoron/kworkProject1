@@ -150,7 +150,7 @@ export function blockScheme(store) {
 		default: {
 			options: {
 				type: "Checked",
-				name: "По умолчанию",
+				name: "Выгружать в КП",
 				col: 0
 			},
 			elem: {

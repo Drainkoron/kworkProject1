@@ -32,6 +32,7 @@ class FormStore extends Basic {
             goods_id: GoodsFormStore.model.id,
             supplier: '',
             country: '',
+            url: '',
             default: false,
             minOrder: 0
         }

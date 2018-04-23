@@ -40,10 +40,24 @@ export function blockScheme(store) {
 				name: "minOrder"
 			}
 		},
+		url: {
+			options: {
+				name: "Ссылка на товар",
+                type: "Input",
+				col: 0
+			},
+			elem: {
+				disabled: false,
+				placeholder: "",
+				value: '',
+				onChange: event => inputChange(event, store),
+				name: "url"
+			}
+		},
 		default: {
 			options: {
 				type: "Checked",
-				name: "По умолчанию"
+				name: "Выгружать в КП"
 			},
 			elem: {
 				checked: false,
