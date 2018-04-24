@@ -48,7 +48,7 @@ class List extends React.Component {
                 key: 'doc.note',
                 width: 150,
             }, {
-                title: 'По умолчанию',
+                title: 'Выгружать в КП',
                 dataIndex: 'doc.default',
                 key: 'doc.default',
                 render: (checked, row) => <Checkbox checked={checked} onClick={(event) => this.props.calculationStore.form.changeDefault(event, row)}/>

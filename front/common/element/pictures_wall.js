@@ -16,7 +16,7 @@ class PicturesWall extends React.Component {
 		this.handleCancel = this.handleCancel.bind(this)
 		this.handlePreview = this.handlePreview.bind(this)
 		this.handleChange = this.handleChange.bind(this)
-		this.handleRemove = this.handleRemove.bind(this)
+		this.confirmRemove = this.confirmRemove.bind(this)
 		this.mutation = this.mutation.bind(this)
 		
 		this.state = {
@@ -64,11 +64,25 @@ class PicturesWall extends React.Component {
 		})
 		this.setState({ fileList: result })
 	} 
-	handleRemove(file) {
-		deleteFile({id: file.deleteKey}).then(data => {
-			
-		}, error => {
-			message.error('Ошибка удаления файла!')
+	confirmRemove(file) {
+		return new Promise((resolve, reject) => {
+			function onOk() {
+				deleteFile({id: file.deleteKey}).then(data => {
+					resolve(true);
+				}, error => {
+					message.error('Ошибка удаления файла!')
+				})
+			}
+			function omCancel() {
+				resolve(false);
+			}
+			Modal.confirm({
+				title: 'Удалить файл',
+				okText: 'Да',
+				cancelText: 'Нет',
+				onCancel: omCancel,
+				onOk: onOk
+			});
 		})
 	}
 	componentWillReceiveProps(nextProps) {
@@ -85,6 +99,7 @@ class PicturesWall extends React.Component {
 
 		return (
 			<div className="clearfix" style={{marginTop: '20px'}}>
+
 				<Upload
 					action={`${URL}/upload_file`}
 					withCredentials={true}
@@ -94,7 +109,7 @@ class PicturesWall extends React.Component {
 					fileList={fileList}
 					onPreview={this.handlePreview}
 					onChange={this.handleChange}
-					onRemove={this.handleRemove}>
+					onRemove={this.confirmRemove}>
 					<div>
 						<Icon type="plus" />
 						<div className="ant-upload-text">Загрузить</div>

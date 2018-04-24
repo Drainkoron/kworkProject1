@@ -65,7 +65,7 @@ export function deleteFile(requestObject) {
     return new Promise(function(resolve, reject) {
         fetchPost(`${URL}/delete_file/`, requestObject).then((response) => {
             if(response.status == 200) {
-                response.json().then((data) => {
+                response.text().then((data) => {
                     resolve(data)
                 })
             } else {

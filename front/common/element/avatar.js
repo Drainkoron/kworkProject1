@@ -75,7 +75,7 @@ class Avatar extends React.Component {
                     className="avatar-uploader"
                     showUploadList={false}
                     action={`${URL}/upload_avatar`}
-                    onChange={this.handleChange} >
+                    onChange={this.handleChange}>
                     {value ? view : uploadButton}
                 </Upload>
 		    </div>

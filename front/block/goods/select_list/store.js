@@ -6,8 +6,6 @@ import mainStore from '../../../pattern/main/main_store'
 import pdfObject from '../../../generate/pdf/make'
 import xlsxObject from '../../../generate/xlsx/make'
 
-console.log(xlsxObject, 'xlsxObject')
-
 class SelectListStore extends Basic {
     @observable list
 

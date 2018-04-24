@@ -36,7 +36,7 @@ class List extends React.Component {
                 dataIndex: 'doc.minOrder',
                 key: 'doc.minOrder',
             }, {
-                title: 'По умолчанию',
+                title: 'Выгружать в КП',
                 dataIndex: 'doc.default',
                 key: 'doc.default',
                 render: (checked, row) => <Checkbox checked={checked} onClick={(event) => this.props.goodsSupplierStore.form.changeDefault(event, row)}/>
