@@ -86,14 +86,14 @@ class ListLog extends React.Component {
                         <Table columns={this.state.columns} 
                                 dataSource={listResult.data.toJS()}
                                 rowKey='id'
-                                onChange={(pagination, filters, sorter)  => this.self('list', 'changeSorterPage', sorter)}
+                                onChange={(pagination, filters, sorter)  => this.props.logStore.changeSorterPage(sorter)}
                                 pagination={{
                                     total: listResult.searchCount,
                                     current: requestObject.page,
-                                    onChange: page => this.self('list', 'changePaginationPage', page),
+                                    onChange: page => this.props.logStore.changePaginationPage(page),
                                     pageSize: requestObject.limit,
                                     showSizeChanger: true,
-                                    onShowSizeChange: (current, pageSize) => this.self('list', 'changePaginationSizePage', pageSize)
+                                    onShowSizeChange: (current, pageSize) => this.props.logStore.changePaginationSizePage(pageSize)
                                 }}/>
                         </div> : ''}
                 </div>
