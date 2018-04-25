@@ -4,7 +4,7 @@ import { blockScheme } from './scheme.js'
 import formValidate from '../../../common/form_validate'
 import observeModel from '../../../common/observe_model'
 import Basic from '../../../pattern/basic'
-
+import mainStore from '../../../pattern/main/main_store'
 import ListStore from '../list/store'
 import { addReq, editReq, deleteReq, getOptionsReq } from './request'
 
@@ -66,6 +66,7 @@ class FormStore extends Basic {
             rus_cost_brand: 0,
             rus_cost_in_brand: 0,
             rus_cost_out_brand: 0,
+            user: '',
         }
     }   
 
@@ -131,6 +132,7 @@ class FormStore extends Basic {
     }
 
     @action saveForm() {
+        this.model.user = mainStore.user
         addReq(this.model).then(data => {
             this.addSuccess(data)
 		}, error => {

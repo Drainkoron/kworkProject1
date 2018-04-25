@@ -64,7 +64,21 @@ export function blockScheme(store) {
 				onChange: (event) => checkChange(event, store),
 				name: "default"
 			}
-		}
+		},
+		user: {
+			options: {
+				name: "Создатель",
+                type: "Input",
+				col: 0
+			},
+			elem: {
+				disabled: true,
+				placeholder: "user",
+				value: '',
+				onChange: event => inputChange(event, store),
+				name: "user"
+			}
+		},
 	}	
 	return scheme
 }	

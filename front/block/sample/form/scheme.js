@@ -159,6 +159,20 @@ export function blockScheme(store) {
 				name: "default"
 			}
 		},
+		user: {
+			options: {
+				name: "Создатель",
+                type: "Input",
+				col: 0
+			},
+			elem: {
+				disabled: true,
+				placeholder: "user",
+				value: '',
+				onChange: event => inputChange(event, store),
+				name: "user"
+			}
+		},
 		fast_time: {
 			options: {
 				name: "Срок доставки",

@@ -34,7 +34,8 @@ class PageStore extends Basic {
             category: [],
             name: '',
             note: '',
-            avatar: ''
+            avatar: '',
+            user: ''
         }
     }
 

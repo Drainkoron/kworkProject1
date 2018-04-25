@@ -32,6 +32,10 @@ class MainStore extends Basic {
 			remember: false
         }
 	}
+
+	@computed get user() {
+		return this.model.login
+	}
 	
 	@action validate() {
         this.form.error = formValidate(this.scheme)
