@@ -27,14 +27,14 @@ class List extends React.Component {
                 sorter: true
             }, {
                 title: 'Закуп цена с БР',
-                dataIndex: 'doc.fast_cost_in_brand',
-                key: 'doc.fast_cost_in_brand',
+                dataIndex: 'doc.slow_cost_in_brand',
+                key: 'doc.slow_cost_in_brand',
                 sorter: true,
                 render: (text, row) => text || row.doc.rus_cost_in_brand
             }, {
                 title: 'Цена продажи с БР',
-                dataIndex: 'doc.fast_cost_out_brand',
-                key: 'doc.fast_cost_out_brand',
+                dataIndex: 'doc.slow_cost_out_brand',
+                key: 'doc.slow_cost_out_brand',
                 sorter: true,
                 render: (text, row) => text || row.doc.rus_cost_out_brand
             }, {
