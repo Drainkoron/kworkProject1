@@ -60,6 +60,24 @@ export function getGoodsCategoryReq(requestObject) {
     })
 }
 
+export function transferCategoryReq(requestObject) {
+    return new Promise(function(resolve, reject) {
+        fetchPost(`${URL}/goods_transfer_category`, requestObject).then((response) => {
+            if(response.status == 200) {
+                response.json().then((data) => {
+                    resolve(data)
+                })
+            } else {
+                response.text().then((data) => {
+                    reject(data)
+                })
+            }
+        }).catch((error) => {
+            reject(error);
+        });
+    })
+}
+
 // export function addReq(requestObject) {
 //     return new Promise(function(resolve, reject) {
 //         fetchPost(`${URL}/${block}_add`, requestObject).then((response) => {

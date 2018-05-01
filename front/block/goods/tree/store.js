@@ -2,7 +2,7 @@ import { observable, computed, action, toJS, intercept } from 'mobx'
 
 import Basic from '../../../pattern/basic'
 
-import { getTreeReq, updateTreeReq, getGoodsCategoryReq } from './request'
+import { getTreeReq, updateTreeReq, getGoodsCategoryReq, transferCategoryReq } from './request'
 
 import listStore from '../list/store'
 import selectListStore from '../select_list/store'
@@ -16,8 +16,9 @@ class TreeStore extends Basic {
         super()
         this.tree = {},
         this.point = [],
-        this.nodeName = ''
-        this.maxLevel = 2
+        this.nodeName = '',
+        this.maxLevel = 2,
+        this.transferNode = {}
     }
 
     @action changeNodeName(value) {
@@ -27,8 +28,8 @@ class TreeStore extends Basic {
     @action addNode() {
         var currentNode = this.tree
         if(this.point.length == 1) {
-            if(this.point[0].includes('-')) {
-                this.point[0].split('-').forEach((key, index) => {
+            if(this.point[0].includes('*')) {
+                this.point[0].split('*').forEach((key, index) => {
                     if(index < this.maxLevel) {
                         currentNode = currentNode[key]
                     }
@@ -44,8 +45,8 @@ class TreeStore extends Basic {
 
     @action deleteNode() {
         var currentNode = this.tree
-        if(this.point[0].includes('-')) {
-            var arrayPoint = this.point[0].split('-')
+        if(this.point[0].includes('*')) {
+            var arrayPoint = this.point[0].split('*')
             arrayPoint.forEach((key, index) => {
                 if(arrayPoint.length - 1 == index) {
                     delete currentNode[key]
@@ -61,13 +62,12 @@ class TreeStore extends Basic {
     }
 
     @action selectNode(point) {
-        console.log(point, 'point')
         this.point = point
         listStore.setPoint(this.point[0])
     }
 
     @action checkNode() {
-        var tags = this.point[0] ? this.point[0].split('-') : []
+        var tags = this.point[0] ? this.point[0].split('*') : []
         getGoodsCategoryReq({tags: tags}).then(data => {
             selectListStore.onSelectTag(data)
         }, error => {
@@ -76,7 +76,7 @@ class TreeStore extends Basic {
     }
 
     @action getPoint() {
-        return this.point[0].split('-')
+        return this.point[0].split('*')
     }
 
     @action setData(data) {
@@ -113,6 +113,54 @@ class TreeStore extends Basic {
         destructNode(this.tree)
         return [...tags]
     } 
+
+    @action onDragStart(node) {
+        var pathKeys = node.props.eventKey.split('*')
+        var currentNode = this.tree
+        pathKeys.forEach((key, index) => {
+            if(pathKeys.length - 1 == index) {
+                this.transferNode = {node: currentNode[key], 
+                                        key: key,
+                                        pathKeys: pathKeys}
+            } else {
+                currentNode = currentNode[key]
+            }
+        })
+    }
+
+    @action onDragDrop(data) {
+        var pathKeys = data.node.props.eventKey.split('*')
+        var currentNode = this.tree
+        pathKeys.forEach((key, index) => {
+            currentNode = currentNode[key]
+        })
+        currentNode[this.transferNode.key] = this.transferNode.node
+        
+        // Удалять нужно из дерева
+        var deleteCurrentNode = this.tree
+        this.transferNode.pathKeys.forEach((key, index) => {
+            if(this.transferNode.pathKeys.length - 1 == index) {
+                delete deleteCurrentNode[key]
+            } else {
+                deleteCurrentNode = deleteCurrentNode[key]
+            }
+        })
+
+        // Обновление товаров
+        var requestObject = {
+            oldPath: this.transferNode.pathKeys,
+            newPath: pathKeys
+        }
+        transferCategoryReq(requestObject).then(data => {
+            console.log(data, 'result')
+            this.updateTree() 
+        }, error => {
+            this.messageError('Ошибка переноса категории!')
+        })
+
+
+        
+    }
 }
 
 const treeStore = new TreeStore()

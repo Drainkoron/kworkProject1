@@ -36,7 +36,7 @@ class ListStore extends Basic {
     }
 
     @action setPoint(tags) {
-        this.requestObject.tags = tags ? tags.split('-') : []
+        this.requestObject.tags = tags ? tags.split('*') : []
         this.requestObject.page = 1
         this.getList()
     }

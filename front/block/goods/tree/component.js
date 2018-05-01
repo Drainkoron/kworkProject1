@@ -25,9 +25,8 @@ class TreeElem extends React.Component {
         // this.props.orderStore.getList()
     }
     getNode(node, pointer) {
-
-        if(pointer.includes('-')) {
-            var arrayPoint = pointer.split('-')
+        if(pointer.includes('*')) {
+            var arrayPoint = pointer.split('*')
             var key = arrayPoint[arrayPoint.length - 1]
         } else {
             var key = pointer
@@ -36,7 +35,7 @@ class TreeElem extends React.Component {
         if(Object.keys(node[key]).length) {
             return <TreeNode title={key} key={pointer}>
                     {Object.keys(node[key]).map((nextKey) => {
-                        return this.getNode(node[key], `${pointer}-${nextKey}`)
+                        return this.getNode(node[key], `${pointer}*${nextKey}`)
                     })}
                 </TreeNode>
         } else {
@@ -79,6 +78,9 @@ class TreeElem extends React.Component {
                         defaultSelectedKeys={point.toJS()}
                         defaultExpandedKeys={point.toJS()}
                         showLine
+                        draggable
+                        onDragStart={data => this.self('onDragStart', data.node)}
+                        onDrop={data => this.self('onDragDrop', data)}
                         onSelect={keys => this.self('selectNode', keys)}>
                         {Object.keys(tree).map((key) => {
                             return this.getNode(tree, key)

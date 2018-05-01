@@ -150,6 +150,48 @@ class Goods extends BasicRequest {
             })
         })
     }
+    async transferCategory(req, res) {
+
+        var resultGoods = []
+        await this.getCategoryIdReq(req.body).then((result) => { 
+            resultGoods = result
+        }, (error) => {
+            res.status(error.status).send(error.message);
+        })
+
+        var spliceTag = req.body.oldPath[req.body.oldPath.length - 1]
+        resultGoods.forEach(elem => {
+            var newCategory = elem.doc.category.splice(elem.doc.category.indexOf(spliceTag))
+            elem.doc.category = req.body.newPath.concat(newCategory)
+            elem.doc.id = elem.id
+            this.editPg(elem.doc).then((result) => { 
+                console.log('ok')
+            }, (error) => {
+                
+            })
+            
+        })
+        res.send('true');
+    }
+    getCategoryIdReq(object) {
+        // oldPath: this.transferNode.pathKeys,
+        // newPath: pathKeys
+        var oldPath = JSON.stringify(object.oldPath).replace(/"/g, "'")
+
+        var requestString = `SELECT * FROM ${this.name} WHERE (doc->'category') ?& array${oldPath}`
+        return new Promise(function(resolve, reject) {
+            db.query(requestString, (err, res) => {
+                if (err) {
+                    reject(errorRequest)
+                } else {
+                    resolve(res.rows)
+                }
+            })
+        })
+    }
+    changeGategoryReq() {
+
+    }
 }
 
 const goods = new Goods()

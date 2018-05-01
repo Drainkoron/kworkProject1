@@ -121,6 +121,7 @@ app.post("/goods_list", (req, res) => goods.list(req, res))
 app.post("/goods_delete", (req, res) => goods.delete(req, res))
 app.post("/get_goods_category", (req, res) => goods.categoryGoods(req, res))
 app.post("/goods_get_ids", (req, res) => goods.getIds(req, res))
+app.post("/goods_transfer_category", (req, res) => goods.transferCategory(req, res))
 
 
 import options from './back/block_request/options'
