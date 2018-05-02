@@ -130,36 +130,36 @@ class TreeStore extends Basic {
 
     @action onDragDrop(data) {
         var pathKeys = data.node.props.eventKey.split('*')
-        var currentNode = this.tree
-        pathKeys.forEach((key, index) => {
-            currentNode = currentNode[key]
-        })
-        currentNode[this.transferNode.key] = this.transferNode.node
-        
-        // Удалять нужно из дерева
-        var deleteCurrentNode = this.tree
-        this.transferNode.pathKeys.forEach((key, index) => {
-            if(this.transferNode.pathKeys.length - 1 == index) {
-                delete deleteCurrentNode[key]
-            } else {
-                deleteCurrentNode = deleteCurrentNode[key]
+
+        // Если это текущая папка
+        if(this.transferNode.pathKeys.slice(0, -1).toString() != pathKeys.toString()) {
+            var currentNode = this.tree
+            pathKeys.forEach((key, index) => {
+                currentNode = currentNode[key]
+            })
+            currentNode[this.transferNode.key] = this.transferNode.node
+            
+            // Удалять нужно из дерева
+            var deleteCurrentNode = this.tree
+            this.transferNode.pathKeys.forEach((key, index) => {
+                if(this.transferNode.pathKeys.length - 1 == index) {
+                    delete deleteCurrentNode[key]
+                } else {
+                    deleteCurrentNode = deleteCurrentNode[key]
+                }
+            })
+
+            // Обновление товаров
+            var requestObject = {
+                oldPath: this.transferNode.pathKeys,
+                newPath: pathKeys
             }
-        })
-
-        // Обновление товаров
-        var requestObject = {
-            oldPath: this.transferNode.pathKeys,
-            newPath: pathKeys
+            transferCategoryReq(requestObject).then(data => {
+                this.updateTree() 
+            }, error => {
+                this.messageError('Ошибка переноса категории!')
+            })
         }
-        transferCategoryReq(requestObject).then(data => {
-            console.log(data, 'result')
-            this.updateTree() 
-        }, error => {
-            this.messageError('Ошибка переноса категории!')
-        })
-
-
-        
     }
 }
 
