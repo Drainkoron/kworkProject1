@@ -166,12 +166,10 @@ class TreeStore extends Basic {
 
         var currentNode = this.tree
         var arrayPoint = this.point[0].split('*')
-        var newKey = []
 
         arrayPoint.forEach((key, index) => {
             if(arrayPoint.length - 1 == index) {
                 this.tree[key] = currentNode[key]
-                newKey.push(key)
                 delete currentNode[key]
             } else {
                 currentNode = currentNode[key]
@@ -181,7 +179,7 @@ class TreeStore extends Basic {
         // Обновление товаров
         var requestObject = {
             oldPath: arrayPoint,
-            newPath: newKey
+            newPath: []
         }
         transferCategoryReq(requestObject).then(data => {
             this.updateTree() 
