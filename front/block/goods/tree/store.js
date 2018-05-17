@@ -161,6 +161,37 @@ class TreeStore extends Basic {
             })
         }
     }
+
+    @action folderGoRoot() {
+
+        var currentNode = this.tree
+        var arrayPoint = this.point[0].split('*')
+        var newKey = []
+
+        arrayPoint.forEach((key, index) => {
+            if(arrayPoint.length - 1 == index) {
+                this.tree[key] = currentNode[key]
+                newKey.push(key)
+                delete currentNode[key]
+            } else {
+                currentNode = currentNode[key]
+            }
+        })
+
+        // Обновление товаров
+        var requestObject = {
+            oldPath: arrayPoint,
+            newPath: newKey
+        }
+        transferCategoryReq(requestObject).then(data => {
+            this.updateTree() 
+        }, error => {
+            this.messageError('Ошибка переноса категории в корень!')
+        })
+   
+        this.point = []
+        this.updateTree() 
+    }
 }
 
 const treeStore = new TreeStore()

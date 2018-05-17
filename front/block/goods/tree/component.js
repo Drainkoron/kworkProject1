@@ -51,7 +51,7 @@ class TreeElem extends React.Component {
                 <h3>Категории</h3>
                 <div style={{margin: '20px 0 10px 0'}}>
                     <Row gutter={16}>
-                        <Col span={14}>
+                        <Col span={12}>
                             <Input placeholder="Новая категория" 
                                     value={nodeName}
                                     onChange={(event) => this.self('changeNodeName', event.target.value)}/>
@@ -61,9 +61,14 @@ class TreeElem extends React.Component {
                                                     onClick={() => this.self('addNode')}>Добавить</Button> : null }
                         </Col>
                         <Col span={2}>
+                            { point[0] ? point[0].split('*').length > 1 && !nodeName ? <Button shape="circle"
+                                                                icon="rollback"  
+                                                                onClick={() => this.self('folderGoRoot')}/> : null : null} 
+                        </Col>
+                        <Col span={2}>
                             { point.length && !nodeName ? <Button shape="circle"
-                                                            icon="check" 
-                                                            onClick={() => this.self('checkNode')}/> : null }
+                                                                icon="check" 
+                                                                onClick={() => this.self('checkNode')}/> : null }
                         </Col>
                         <Col span={2}>
                             { point.length && !nodeName ? <Button shape="circle" 
