@@ -24,6 +24,15 @@ class TreeElem extends React.Component {
         this.props.goodsStore.tree.getTree()
         // this.props.orderStore.getList()
     }
+    sortFunction(a, b) {
+        if (a.toLowerCase() > b.toLowerCase()) {
+            return 1;
+        }
+        if (a.toLowerCase() < b.toLowerCase()) {
+            return -1;
+        }
+        return 0;
+    }
     getNode(node, pointer) {
         if(pointer.includes('*')) {
             var arrayPoint = pointer.split('*')
@@ -34,7 +43,7 @@ class TreeElem extends React.Component {
 
         if(Object.keys(node[key]).length) {
             return <TreeNode title={key} key={pointer}>
-                    {Object.keys(node[key]).sort().map((nextKey) => {
+                    {Object.keys(node[key]).sort(this.sortFunction).map((nextKey) => {
                         return this.getNode(node[key], `${pointer}*${nextKey}`)
                     })}
                 </TreeNode>
@@ -87,7 +96,7 @@ class TreeElem extends React.Component {
                         onDragStart={data => this.self('onDragStart', data.node)}
                         onDrop={data => this.self('onDragDrop', data)}
                         onSelect={keys => this.self('selectNode', keys)}>
-                        {Object.keys(tree).sort().map((key) => {
+                        {Object.keys(tree).sort(this.sortFunction).map((key) => {
                             return this.getNode(tree, key)
                         })}
                     </Tree>
