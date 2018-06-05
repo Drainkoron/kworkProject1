@@ -42,6 +42,7 @@ class PageStore extends Basic {
     /* Form */
     @action getForm(id) {
         getReq({id: id}).then(data => {
+            console.log(data, 'data')
             this.viewForm(data)
 		}, error => {
 			this.messageError('Ошибка получения товара!')

@@ -29,8 +29,8 @@ class Basic {
     /* form */
 
     @action setModel(data) {
-        for(var i in data) {
-            this.model[i] = data[i]
+        for(var i in this.model) {
+            this.model[i] = data[i] ? data[i] : ''
         }
     }
 

@@ -1,4 +1,5 @@
 import React from 'react';
+import { observer, inject } from 'mobx-react';
 
 import { URL, API } from '../../app_constants'
 import { Upload, Icon, Modal, message } from 'antd';
@@ -10,6 +11,7 @@ message.config({
 
 import { getFileList, deleteFile } from './request_element'
 
+@inject("goodsStore") @observer
 class Avatar extends React.Component {
 	constructor(props) {
         super(props);
@@ -48,13 +50,15 @@ class Avatar extends React.Component {
 		// })
 	}
 	componentWillReceiveProps(nextProps) {
-
+        
 	}
 	componentWillMount() {
 		
 	}
 	render() {
         const { value } = this.props.data
+
+        console.log(value, 'value')
         
         const uploadButton = (
             <div>

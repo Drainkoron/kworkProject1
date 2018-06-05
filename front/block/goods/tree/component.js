@@ -34,7 +34,7 @@ class TreeElem extends React.Component {
 
         if(Object.keys(node[key]).length) {
             return <TreeNode title={key} key={pointer}>
-                    {Object.keys(node[key]).map((nextKey) => {
+                    {Object.keys(node[key]).sort().map((nextKey) => {
                         return this.getNode(node[key], `${pointer}*${nextKey}`)
                     })}
                 </TreeNode>
@@ -87,7 +87,7 @@ class TreeElem extends React.Component {
                         onDragStart={data => this.self('onDragStart', data.node)}
                         onDrop={data => this.self('onDragDrop', data)}
                         onSelect={keys => this.self('selectNode', keys)}>
-                        {Object.keys(tree).map((key) => {
+                        {Object.keys(tree).sort().map((key) => {
                             return this.getNode(tree, key)
                         })}
                     </Tree>
