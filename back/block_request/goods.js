@@ -72,7 +72,7 @@ class Goods extends BasicRequest {
         })
     }
     pageGoods(object) {
-        var requestString = `SELECT * FROM ${this.name} WHERE LOWER((doc->>'name')) ILIKE '%${object.fullSearch.toLowerCase()}%'`; 
+        var requestString = `SELECT * FROM ${this.name} WHERE convert('(doc->>'name')' using ascii_to_utf8) ILIKE '%${object.fullSearch.toLowerCase()}%'`; 
         for(var name in object.filterField) {
             if(object.filterField[name] != '' && object.filterField[name] != 'all') {
                 requestString += `AND (doc->>'${name}') ILIKE '${object.filterField[name]}'`
