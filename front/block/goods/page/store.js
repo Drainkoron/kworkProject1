@@ -63,7 +63,8 @@ class PageStore extends Basic {
 
     @action editForm() {
         editReq(this.model).then(data => {
-            this.setModel(data)
+            data.doc.id = data.id
+            this.setModel(data.doc)
             this.messageSuccess('Товар сохранён')
 		}, error => {
 			this.messageError('Ошибка редактирования товара!')

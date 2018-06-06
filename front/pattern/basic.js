@@ -29,9 +29,10 @@ class Basic {
     /* form */
 
     @action setModel(data) {
-        for(var i in this.model) {
-            this.model[i] = data[i] ? data[i] : ''
+        for(var i in data) {
+            this.model[i] = data[i]
         }
+
     }
 
     @action setModelValue(params, value) {
@@ -80,6 +81,7 @@ class Basic {
 
     @action changeFullSearch(text) {
         this.requestObject.fullSearch = text
+        this.requestObject.page = 1
         this.getList()
     }
 
