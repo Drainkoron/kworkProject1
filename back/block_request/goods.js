@@ -31,7 +31,7 @@ class Goods extends BasicRequest {
         })
     }
     searchCountGoods(object) {
-        var requestString = `SELECT count(*) FROM ${this.name} WHERE LOWER((doc->>'name')) ILIKE to_ascii(%${object.fullSearch.toLowerCase()}%)`; 
+        var requestString = `SELECT count(*) FROM ${this.name} WHERE LOWER((doc->>'name')) LIKE %${object.fullSearch.toLowerCase()}%`; 
         for(var name in object.filterField) {
             if(object.filterField[name] != '' && object.filterField[name] != 'all') {
                 requestString += `AND (doc->>'${name}') ILIKE '${object.filterField[name]}'`
@@ -72,7 +72,7 @@ class Goods extends BasicRequest {
         })
     }
     pageGoods(object) {
-        var requestString = `SELECT * FROM ${this.name} WHERE LOWER((doc->>'name')) ILIKE '%${object.fullSearch.toLowerCase()}%'`; 
+        var requestString = `SELECT * FROM ${this.name} WHERE LOWER((doc->>'name')) LIKE '%${object.fullSearch.toLowerCase()}%'`; 
         for(var name in object.filterField) {
             if(object.filterField[name] != '' && object.filterField[name] != 'all') {
                 requestString += `AND (doc->>'${name}') ILIKE '${object.filterField[name]}'`
