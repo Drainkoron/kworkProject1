@@ -31,7 +31,7 @@ var pdfObject = {
             await fetchImg(elem.doc.avatar).then(base64 => {
                 elem.doc.avatar64 = base64
             }, error => {
-                
+                console.log('err1')
             })
         }
 
@@ -39,14 +39,14 @@ var pdfObject = {
         await getFileList({object: 'goods', id: elem.id}).then(data => {
             img = data
 		}, error => {
-			
+			console.log('err2')
         })
         
         if(img[0]) {
             await fetchImg(`${URL}/${img[0].doc.path}`).then(base64 => {
                 elem.doc.img1 = base64
             }, error => {
-                
+                console.log('err3')
             })
         }
 
@@ -54,9 +54,11 @@ var pdfObject = {
             await fetchImg(`${URL}/${img[1].doc.path}`).then(base64 => {
                 elem.doc.img2 = base64
             }, error => {
-                
+                console.log('err4')
             })
         }
+
+        
 
         await getCalcList({id: elem.id}).then(data => {
             elem.calcRows = [[{text: 'ПРИМЕЧАНИЕ', style: 'tableHeader', alignment: 'center'}, 
@@ -87,7 +89,7 @@ var pdfObject = {
                 }
             })
 		}, error => {
-			
+			console.log('err5')
         })
         
         await getSampleList({id: elem.id}).then(data => {
@@ -124,7 +126,7 @@ var pdfObject = {
             }
             
 		}, error => {
-			
+			console.log('err6')
 		})
 
         this.docDefinition.content.push(this.constructRow(elem))
