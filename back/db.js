@@ -4,7 +4,7 @@ import { Pool } from 'pg';
 if(process.env.NODE_ENV == 'development') {
     var conString = "postgres://postgres:root@localhost/ipapai";
 } else {
-    var conString = "postgres://base:U82SDFsdfkl3Smcnd@localhost/base";
+    var conString = "postgres://base:U82SDFsdfkl3Smcnd@base.ipapai./baseUTF8";
 }
 
 const pool = new Pool({
