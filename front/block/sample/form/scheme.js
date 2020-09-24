@@ -89,7 +89,7 @@ export function blockScheme(store) {
 				position: 'addonAfter',
 				width: 80,
 				type: 'Select',
-				list: ['USD', 'Руб'],
+				list: ['USD', 'CNY', 'Руб'],
 				value: 'USD',
 				onChange: value => addonChange('currency', value, store)
 			}

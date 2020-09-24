@@ -7,6 +7,8 @@ import { Tabs,
             Row,
             Col,
             Button,
+            Form,
+            Input,
             Alert } from 'antd';
 
 
@@ -58,9 +60,15 @@ class Page extends React.Component {
                         <TabPane tab="О товаре" key="1">
                             <Row gutter={40} style={{marginTop: '30px'}}>
                                 <Col span={12}>
-                                    {Object.keys(scheme).map(key => {
+                                    {
+                                    Object.keys(scheme).map(key => {
                                         if(key != 'store') {
                                             return <FormElem key={key} data={scheme[key]} />
+                                            //console.log(scheme[key].elem, scheme[key].options)
+                                            /*
+                                            return <Form.Item {...scheme[key].options} rules={[{ required: true }]}>
+                                            <Input {...scheme[key].elem}/>
+                                          </Form.Item>*/
                                         }
                                     })}
                                 </Col>

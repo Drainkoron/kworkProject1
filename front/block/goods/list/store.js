@@ -54,6 +54,11 @@ class ListStore extends Basic {
         this.requestObject.page = 1
         this.getList()
     }
+    
+    @action changeFullSearch(value){
+        this.requestObject.fullSearch = value
+        this.getList()
+    }
 
     @action goForm(elem) {
         //mainStore.history.push(`/cabinet/goods-page/${elem.id}`)

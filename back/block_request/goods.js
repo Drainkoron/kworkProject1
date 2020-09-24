@@ -16,7 +16,6 @@ class Goods extends BasicRequest {
         })
     }
     getId(req, res) {
-        console.log(req.body, 'req.body')
         this.getIdPg(req.body.id).then((result) => { 
             res.send(result);
         }, (error) => {
@@ -72,7 +71,8 @@ class Goods extends BasicRequest {
         })
     }
     pageGoods(object) {
-        var requestString = `SELECT * FROM ${this.name} WHERE LOWER((doc->>'name')) LIKE '%${object.fullSearch.toLowerCase()}%'`; 
+        var requestString = `SELECT * FROM ${this.name} WHERE name LIKE '%${object.fullSearch.toLowerCase()}%'`; 
+
         for(var name in object.filterField) {
             if(object.filterField[name] != '' && object.filterField[name] != 'all') {
                 requestString += `AND (doc->>'${name}') ILIKE '${object.filterField[name]}'`
@@ -122,7 +122,6 @@ class Goods extends BasicRequest {
             const resultG = await db.query(`DELETE FROM goods WHERE id = ${req.body.id} RETURNING id`)
             const resultGS = await db.query(`DELETE FROM goods_supplier WHERE (doc->'goods_id') = '${resultG.rows[0].id}' RETURNING id`)
             resultGS.rows.forEach(elem => {
-                console.log(elem.id)
                 db.query(`DELETE FROM calculation WHERE (doc->'goods_supplier_id') = '${elem.id}' RETURNING id`)
                 db.query(`DELETE FROM sample WHERE (doc->'goods_supplier_id') = '${elem.id}' RETURNING id`)
             })

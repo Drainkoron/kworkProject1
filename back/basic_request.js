@@ -41,7 +41,6 @@ class BasicRequest {
     }
     getIdPg(id) {
         var requestString = `SELECT * FROM ${this.name} WHERE id = '${id}'`
-
         return new Promise((resolve, reject) => {
             db.query(requestString, (err, res) => {
                 if (err) {
@@ -63,6 +62,8 @@ class BasicRequest {
     }
     editPg(object) {
         var doc = JSON.stringify(object)
+        console.log("object", object)
+        console.log("doc", doc)
         var requestString = `UPDATE ${this.name} SET doc = '${doc}' WHERE id = ${object.id} RETURNING id, doc`
 
         return new Promise((resolve, reject) => {

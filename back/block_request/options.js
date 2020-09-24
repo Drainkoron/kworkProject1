@@ -15,6 +15,7 @@ class Options extends BasicRequest {
     }
     getId(req, res) {
         this.getIdPg(req.body.id).then((result) => { 
+            console.log(req, res)
             res.send(result);
         }, (error) => {
             res.status(error.status).send(error.message);
@@ -22,6 +23,7 @@ class Options extends BasicRequest {
     }
     edit(req, res) {
         this.editPg(req.body).then((result) => { 
+            console.log(req, res)
             res.send(result);
         }, (error) => {
             res.status(error.status).send(error.message);

@@ -3,6 +3,8 @@ import { observer, inject } from 'mobx-react';
 
 import { Form, 
             Icon, 
+            Search,
+            Button,
             Input,
             Modal,
             Radio,
@@ -75,7 +77,9 @@ class FormElem extends React.Component {
                     'Textarea': <TextArea {...data.elem}/>,
                     'Select': <ConstantSelect data={data.elem}/>,
                     'SelectTag': <SelectTags data={data.elem}/>,
-                    'BlockSelect': <BlockSelect data={data.elem}/>
+                    'Button': <Button data={data.elem}/>,
+                    'Input': <Input.Search data={data.elem}/>,
+                    'BlockSelect': <BlockSelect data={data.elem}/>,
                 }[data.options.type]}
             </Form.Item>
         );

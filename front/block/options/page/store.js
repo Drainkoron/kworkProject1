@@ -11,7 +11,6 @@ import { editOptionsReq, getOptionsReq } from './request'
 // import ListStore from '../list/store'
 // import treeStore from '../tree/store'
 
-
 class PageStore extends Basic {
     @observable scheme
     @observable model
@@ -19,6 +18,7 @@ class PageStore extends Basic {
 
     constructor() {
         super()
+        
         this.model = this.formModel()
         this.scheme = blockScheme(this)
         this.changeSheme = observeModel(this)
@@ -31,7 +31,8 @@ class PageStore extends Basic {
     formModel() {
         return {
             id: 1,
-            course: 0,
+            courseUSD: 0,
+            courseCNY: 0,
             fast_time: 0,
             fast_rate: 0,
             fast_сommission: 0,
@@ -49,8 +50,7 @@ class PageStore extends Basic {
 		})
     }
 
-    /* Form */
-    @action validateForm() {
+    @action validateForm () {
         this.form.error = formValidate(this.scheme)
         if(this.form.error == false) {
             this.editForm()
@@ -68,7 +68,6 @@ class PageStore extends Basic {
 			this.messageError('Ошибка редактирования настроек!')
 		})
     }
-
 }
 
 const pageStore = new PageStore()

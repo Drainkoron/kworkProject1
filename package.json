@@ -5,12 +5,12 @@
   "main": "server.js",
   "scripts": {
     "set_dev": "NODE_ENV=development webpack",
-    "dev": "set NODE_ENV=development babel-node server.js",
+    "dev": "set NODE_ENV=development node server.js",
     "modules": "NODE_ENV=development webpack --display-modules",
-    "prod": "NODE_ENV=production & webpack -p",
+    "prod": "webpack -p",
     "clean": "rimraf ./dist/*",
     "start": "node index.js",
-    "wpack": "webpack"
+    "wpack": "webpack --progress"
   },
   "repository": {
     "type": "git",

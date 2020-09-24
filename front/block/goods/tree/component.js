@@ -16,7 +16,6 @@ class TreeElem extends React.Component {
     constructor(props) {
         super(props);
         this.self = this.self.bind(this)
-        this.editMode = false
     }
     self(name, params) {
 		this.props.goodsStore.tree[name](params)
@@ -54,55 +53,60 @@ class TreeElem extends React.Component {
         
     }
 	render() {
-        const { nodeName, tree, point } = this.props.goodsStore.tree
+        const { nodeName, tree, point, editMode } = this.props.goodsStore.tree
+
+        const treeEditMode = editMode ? {
+            onDragStart:data => this.self('onDragStart', data.node),
+            onDrop:data => this.self('onDragDrop', data),
+        } : null
 
 		return (
             <div>
                 <h3>Категории</h3>
+                <Button
+                    onClick={() => this.self('toggleEditMode')}
+                >
+                    Редактировать
+                </Button>
                 <div style={{margin: '20px 0 10px 0'}}>
-                    <Row gutter={16}>
+                    { editMode ? <Row gutter={16}>
                         <Col span={12}>
-                            {this.editMode ? <Input placeholder="Новая категория" 
+                            <Input placeholder="Новая категория" 
                                 value={nodeName}
-                                onChange={(event) => this.self('changeNodeName', event.target.value)}/> : null
-                            }
-                            <Button
-                                onClick={this.editMode = !this.editMode}
-                            >
-                                Редактировать
-                            </Button>
+                                onChange={(event) => this.self('changeNodeName', event.target.value)}
+                            />
                         </Col>
-                        { this.editMode ? <Col span={5}>
-                            { nodeName && this.editMode ? <Button type="primary" 
+                        <Col span={5}>
+                            { nodeName ? <Button type="primary" 
                                                     onClick={() => this.self('addNode')}>Добавить</Button> : null }
-                        </Col> : null}
-                        { this.editMode ? <Col span={2}>
+                        </Col>
+                        <Col span={2}>
                             { point[0] ? point[0].split('*').length > 1 && !nodeName ? <Button shape="circle"
                                                                 icon="rollback"  
                                                                 onClick={() => this.self('folderGoRoot')}/> : null : null} 
-                        </Col> : null}
-                        { this.editMode ? <Col span={2}>
+                        </Col>
+                        <Col span={2}>
                             { point.length && !nodeName ? <Button shape="circle"
                                                                 icon="check" 
                                                                 onClick={() => this.self('checkNode')}/> : null }
-                        </Col> : null}
-                        { this.editMode ? <Col span={2}>
+                        </Col>
+                        <Col span={2}>
                             { point.length && !nodeName ? <Button shape="circle" 
                                                             type="danger" 
                                                             icon="delete" 
                                                             onDoubleClick={() => this.self('deleteNode')}/> : null }
-                        </Col> : null}
-                    </Row>
+                        </Col> 
+                    </Row>: null}
                 </div>
                 <div style={{margin: '10px 0 10px 0'}}>
                     <Tree 
                         defaultSelectedKeys={point.toJS()}
                         defaultExpandedKeys={point.toJS()}
                         showLine
-                        draggable
-                        onDragStart={data => this.self('onDragStart', data.node)}
-                        onDrop={data => this.self('onDragDrop', data)}
-                        onSelect={keys => this.self('selectNode', keys)}>
+                        draggable = {editMode}
+                        onSelect = {keys => this.self('selectNode', keys)}
+                        { ...treeEditMode }
+                    >
                         {Object.keys(tree).sort(this.sortFunction).map((key) => {
                             return this.getNode(tree, key)
                         })}

@@ -32,6 +32,10 @@ class PageStore extends Basic {
         return {
             id: false,
             category: [],
+            weight: 0,
+            size: 0,
+            linkSubmit: '',
+            link: '',
             name: '',
             note: '',
             avatar: '',

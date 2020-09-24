@@ -11,12 +11,14 @@ class TreeStore extends Basic {
     @observable tree
     @observable point
     @observable nodeName
+    @observable editMode
 
     constructor() {
         super()
         this.tree = {},
         this.point = [],
         this.nodeName = '',
+        this.editMode = false
         this.maxLevel = 2,
         this.transferNode = {}
     }
@@ -25,6 +27,9 @@ class TreeStore extends Basic {
         this.nodeName = value
     }
 
+    @action toggleEditMode() {
+        this.editMode = !this.editMode
+    }
     @action addNode() {
         var currentNode = this.tree
         if(this.point.length == 1) {

@@ -49,8 +49,65 @@ export function blockScheme(store) {
                 rows: 3,
 				placeholder: "...",
 				value: '',
-				onChange: event => inputChange(event, store, 'note'),
+				onChange: event => inputChange(event, store),
 				name: "note"
+			}
+		},
+		weight: {
+			options: {
+				name: "Вес",
+                type: "Number",
+				textError: "Укажите вес товара",
+				min: 3,
+				col: 0
+			},
+			elem: {
+				placeholder: "Вес",
+				value: '',
+				onChange: value => numberChange('weight', value, store),
+				name: "weight"
+			}
+		},
+		size: {
+			options: {
+				name: "Размер",
+                type: "Number",
+				textError: "Укажите размер товара.",
+				min: 3,
+				col: 0
+			},
+			elem: {
+				placeholder: "Размер",
+				value: '',
+				onChange: value => numberChange('size', value, store),
+				name: "size"
+			}
+		},
+		linkInput: {
+			options: {
+				name: "Ссылка",
+				type: "Input",
+				textError: "Укажите ссылку",
+				min: 3,
+				col: 0
+			},
+			elem: {
+				value: '',
+				onChange: value => inputChange(value, store),
+				name: "linkInput"
+			}
+		},
+		linkButton: {
+			options: {
+				name: "Ссылка",
+				type: "Button",
+				min: 3,
+				col: 0
+			},
+			elem: {
+				value: '',
+				onClick: value => console.log(value),
+				name: "linkButton"
 			}
 		},
 		user: {
