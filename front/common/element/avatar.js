@@ -57,8 +57,6 @@ class Avatar extends React.Component {
 	}
 	render() {
         const { value } = this.props.data
-
-        console.log(value, 'value')
         
         const uploadButton = (
             <div>

@@ -42,7 +42,6 @@ class List extends React.Component {
 	}
 	render() {
         const { listResult, requestObject, viewCount } = this.props.supplierStore.list
-        console.log(listResult)
 		return (
             <div style={{marginTop: '20px'}}>
                 {listResult.data ? <div>

@@ -59,8 +59,6 @@ class SelectTags extends React.Component {
     render() {
         const { button, list } = this.state
 
-        console.log(this.props.data.value, 'this.props.data.value')
-
         return (
             <div className="ext-search">
                 <Select

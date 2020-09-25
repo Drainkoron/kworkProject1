@@ -64,7 +64,6 @@ class Page extends React.Component {
                                     Object.keys(scheme).map(key => {
                                         if(key != 'store') {
                                             return <FormElem key={key} data={scheme[key]} />
-                                            //console.log(scheme[key].elem, scheme[key].options)
                                             /*
                                             return <Form.Item {...scheme[key].options} rules={[{ required: true }]}>
                                             <Input {...scheme[key].elem}/>

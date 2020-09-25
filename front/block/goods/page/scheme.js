@@ -1,6 +1,6 @@
 import React from 'react'
 import moment from 'moment'
-import { Icon } from 'antd'
+import { Icon, Input, Button } from 'antd'
 import { observable, computed, action, intercept } from 'mobx'
 
 import inputChange from '../../../common/input_change'
@@ -8,6 +8,7 @@ import checkChange from '../../../common/check_change'
 import changeDate from '../../../common/date_change'
 import dictionaryChange from '../../../common/dictionary_change'
 import numberChange from '../../../common/number_change'
+import addonChange from '../../../common/addon_change'
 
 export function blockScheme(store) {
 	const scheme = {
@@ -70,44 +71,46 @@ export function blockScheme(store) {
 		},
 		size: {
 			options: {
-				name: "Размер",
+				name: "Размер товара",
                 type: "Number",
 				textError: "Укажите размер товара.",
 				min: 3,
-				col: 0
+				col: 0,
+				format: 'num'
 			},
 			elem: {
-				placeholder: "Размер",
 				value: '',
 				onChange: value => numberChange('size', value, store),
 				name: "size"
 			}
 		},
-		linkInput: {
+		country: {
 			options: {
-				name: "Ссылка",
-				type: "Input",
-				textError: "Укажите ссылку",
+				name: "Страна производства.",
+				type: "SelectA",
 				min: 3,
-				col: 0
+				col: 0,
 			},
 			elem: {
-				value: '',
-				onChange: value => inputChange(value, store),
-				name: "linkInput"
+				list: ['Россия', 'Китай'],
+				value: 'Россия',
+				onChange: value => addonChange('country', value, store),
+				name: "country",
 			}
 		},
-		linkButton: {
+		link: {
 			options: {
 				name: "Ссылка",
-				type: "Button",
+				type: "openLink",
 				min: 3,
-				col: 0
+				col: 0,
 			},
 			elem: {
-				value: '',
-				onClick: value => console.log(value),
-				name: "linkButton"
+				enterButton: 'Открыть',
+            	value: '',
+            	onSearch: value => window.location = value,
+				onChange: value => inputChange(value, store),
+				name: "link",
 			}
 		},
 		user: {
@@ -117,7 +120,6 @@ export function blockScheme(store) {
 				col: 0
 			},
 			elem: {
-				disabled: true,
 				placeholder: "user",
 				value: '',
 				onChange: event => inputChange(event, store),
