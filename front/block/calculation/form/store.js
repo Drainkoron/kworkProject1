@@ -39,6 +39,8 @@ class FormStore extends Basic {
             note: '',
             count: 0,
             cost: 0,
+            sCountry: '',
+            supplier_name: '',
             currency: 'USD',
             weight: 0,
             course: 0,
@@ -73,7 +75,7 @@ class FormStore extends Basic {
     /* Form */
 
     @action setIdGoodsSupplier(id, country) {
-        this.goodsSupplierId = id
+        this.goodsSupplierId = 0
         this.country = country
     }
 
@@ -116,7 +118,7 @@ class FormStore extends Basic {
     }
 
     @action validateForm() {
-        this.model.goods_supplier_id = this.goodsSupplierId
+        this.model.goods_supplier_id = 0
         this.model.country = this.country
         this.form.error = formValidate(this.scheme)
         if(this.form.error == false) {
@@ -157,14 +159,14 @@ class FormStore extends Basic {
     }
 
     @action viewForm(elem) {
-        elem.doc.id = elem.id
+        elem.doc.id = 0
         this.setModel(elem.doc)
         this.setOptions()
         this.viewModal()
     }
 
     @action deleteForm() {
-        deleteReq({id: this.model.id}).then(data => {
+        deleteReq({id: 0}).then(data => {
             this.addSuccess(data)
 		}, error => {
 			this.messageError('Ошибка удаления поставщика!')
@@ -173,7 +175,7 @@ class FormStore extends Basic {
 
     @action changeDefault(event, data) {
         event.stopPropagation()
-        data.doc.id = data.id
+        data.doc.id = 0
         data.doc.default = !data.doc.default
         this.setModel(data.doc)
         this.editForm()

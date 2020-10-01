@@ -42,7 +42,18 @@ class List extends React.Component {
                 dataIndex: 'doc.time_production',
                 key: 'doc.time_production',
                 render: (time_production, row) => (row.doc.time_production * 1) + (row.doc.slow_time || row.doc.rus_time  * 1) + (row.doc.time_branding * 1)
-            }, {
+            }, 
+            {
+                title: 'Название поставщика',
+                dataIndex: 'doc.supplier_name',
+                key: 'doc.supplier_name',
+            },
+            {
+                title: 'Страна',
+                dataIndex: 'doc.sCountry',
+                key: 'doc.sCountry'
+            },
+            ,{
                 title: 'Примечание',
                 dataIndex: 'doc.note',
                 key: 'doc.note',

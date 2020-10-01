@@ -8,7 +8,7 @@ import checkChange from '../../../common/check_change'
 import changeDate from '../../../common/date_change'
 import dictionaryChange from '../../../common/dictionary_change'
 import numberChange from '../../../common/number_change'
-import setCourses from '../../../common/setCourses'
+import setCourses from '../../../common/getCourses'
 
 export function blockScheme(store) {
 	const scheme = {
@@ -16,13 +16,14 @@ export function blockScheme(store) {
         courseUSD: {
 			options: {
 				name: "Курс USD",
-				type: "Text",
+				type: "Input",
 				format: 'num',
-				textError: "Укажите курс USD",
 				min: 1,
-				col: 0
+				col: 0,
+				
 			},
 			elem: {
+				disable: true,
 				value: '',
 				name: "courseUSD"
 			}
@@ -30,14 +31,13 @@ export function blockScheme(store) {
 		courseCNY: {
 			options: {
 				name: "Курс CNY",
-				type: "Text",
+				type: "Input",
 				format: 'num',
-				textError: "Укажите курс CNY",
 				min: 1,
 				col: 0
 			},
 			elem: {
-				readOnly: true,
+				disable: true,
 				value: '',
 				name: "courseCNY"
 			}

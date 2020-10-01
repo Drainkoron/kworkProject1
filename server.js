@@ -4,6 +4,8 @@ import express from 'express';
 import bodyParser from 'body-parser'
 import cookieParser from 'cookie-parser'
 
+var cors = require('cors');    
+
 const PUBLIC_PATH = __dirname + '/static';
 
 
@@ -15,6 +17,8 @@ app.use(bodyParser.urlencoded({
     extended: true
 }))
 app.use(cookieParser())
+app.use(cors({credentials: true, origin: '*'}));
+
 
 if (isDevelopment) {
 	const webpack = require('webpack');
@@ -129,6 +133,9 @@ app.get("/options_add", (req, res) => options.add(req, res))
 app.post("/options_get", (req, res) => options.getId(req, res))
 app.post("/options_edit", (req, res) => options.edit(req, res))
 
+import courses from './back/block_request/courses'
+app.get("/options_courses_get", (req, res) => courses.get(req, res))
+
 
 import goodsSupplier from './back/block_request/goods_supplier'
 app.post("/goods_supplier_add", (req, res) => goodsSupplier.add(req, res))
@@ -142,6 +149,7 @@ import calculation from './back/block_request/calculation'
 app.post("/calculation_add", (req, res) => calculation.add(req, res))
 app.post("/calculation_edit", (req, res) => calculation.edit(req, res))
 app.post("/calculation_list", (req, res) => calculation.list(req, res))
+app.post("/calculation_list2", (req, res) => calculation.list2(req, res))
 app.post("/calculation_delete", (req, res) => calculation.delete(req, res))
 
 

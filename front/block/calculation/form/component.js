@@ -50,8 +50,6 @@ class ModalForm extends React.Component {
 	render() {
         const { scheme, form, model, country } = this.props.calculationStore.form
 
-        console.log(scheme.headerCol)
-
 		return (
 			<Modal
                 title="Форма просчёта"
@@ -59,10 +57,10 @@ class ModalForm extends React.Component {
                 width={1050}
                 footer={
                     <div>
-                        { model.id ? <Button type="danger" style={{float: 'left'}} 
-                                        onClick={() => this.self('deleteForm')}>Удалить</Button> : null }
-                        { model.id ? <Button style={{float: 'left'}} 
-                                        onClick={() => this.self('copyForm')}>Сохранить копию</Button> : null }
+                        { <Button type="danger" style={{float: 'left'}} 
+                                        onClick={() => this.self('deleteForm')}>Удалить</Button>}
+                        { <Button style={{float: 'left'}} 
+                                        onClick={() => this.self('copyForm')}>Сохранить копию</Button>}
                         <Button onClick={() => this.self('cancelForm')}>Отмена</Button>
                         <Button type="primary" onClick={() => this.self('validateForm')}>Сохранить</Button>
                     </div>
@@ -79,7 +77,8 @@ class ModalForm extends React.Component {
                             </Col>
                         </Row>
                         <Row type="flex" justify="space-around">
-                            {country != 'Россия' ? [...Array(3)].map((num, column) => {
+                            {/*country != 'Россия' ? */ 
+                            [...Array(3)].map((num, column) => {
                                 return <Col span={8} key={column}>
                                     {scheme.headerCol[column].name != 'main' ? <div style={{textAlign: 'center', marginBottom: '20px'}}>
                                         <Button onClick={() => this.self('calcForm', scheme.headerCol[column].name)} 
@@ -93,7 +92,8 @@ class ModalForm extends React.Component {
                                                                 scheme={scheme}/>
                                         }
                                     })}
-                                </Col>}) : [...Array(4)].map((num, column) => {
+                                </Col>}) 
+                                /*[...Array(4)].map((num, column) => {
                                     if(column == 0 || column == 3 ) {
                                         return <Col span={12} key={column}>
                                             {scheme.headerCol[column].name != 'main' ? <div style={{textAlign: 'center', marginBottom: '20px'}}>
@@ -108,7 +108,7 @@ class ModalForm extends React.Component {
                                                                         scheme={scheme}/>
                                                 }
                                             })}
-                                    </Col>}})}
+                                    </Col>}})*/}
                         </Row>
                         <Alert message={form.error} 
                                 type="warning"

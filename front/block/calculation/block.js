@@ -18,19 +18,17 @@ class CalculationBlock extends React.Component {
         // Компоненты разные стор общий, стор обслуживает текущий компонент
         if(nextProps.current.includes(nextProps.id)) {
             this.props.calculationStore.list.setIdGoodsSupplier(nextProps.id)
-            this.props.calculationStore.form.setIdGoodsSupplier(nextProps.id, nextProps.country)
         }
     }
 	componentWillMount() {
         this.props.calculationStore.list.setIdGoodsSupplier(this.props.id)
-        this.props.calculationStore.form.setIdGoodsSupplier(this.props.id, this.props.country)
 	}
 	render() {
         // Компоненты разные стор общий, стор обслуживает текущий компонент, 
         // каждая таблица создаёт свой компонент вложения который смотрят на общий стор.
         // Для этого показываем только текущий
 		return (
-            this.props.id == this.props.current[0] ? <div> 
+            this.props.id ? <div> 
                 <ModalForm />
                 <div style={{height: '40px'}}>
                     <Button style={{ float: 'right' }} 

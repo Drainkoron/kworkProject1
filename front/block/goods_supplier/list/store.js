@@ -36,6 +36,10 @@ class ListStore extends Basic {
         }
     }
 
+    @action getSuppliersPageID() {
+        this.listResult = GoodsFormStore.model.id
+    }
+
     @action getList() {
         this.requestObject.filterField.goods_id = GoodsFormStore.model.id
         getListReq(this.requestObject).then(data => {

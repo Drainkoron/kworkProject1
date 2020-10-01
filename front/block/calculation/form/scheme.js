@@ -51,6 +51,36 @@ export function blockScheme(store) {
 				name: "name"
 			}
 		},
+		supplier_тame: {
+			options: {
+				name: "Название поставщика",
+                type: "Input",
+				textError: "Укажите название поставщика",
+				min: 3,
+				col: 0
+			},
+			elem: {
+				disabled: false,
+				placeholder: "Название поставщика",
+				value: '',
+				onChange: event => inputChange(event, store),
+				name: "supplierName"
+			}
+		}, 
+		sCountry: {
+			options: {
+				name: "Страна поставщика",
+				type: "SelectA",
+				min: 3,
+				col: 0,
+			},
+			elem: {
+				list: ['Россия', 'Китай'],
+				value: 'Россия',
+				onChange: value => addonChange('supplierCountry', value, store),
+				name: "supplierCountry",
+			}
+		},
 		count: {
 			options: {
 				name: "Тираж",
@@ -89,7 +119,7 @@ export function blockScheme(store) {
 				position: 'addonAfter',
 				width: 80,
 				type: 'Select',
-				list: ['USD', 'Руб'],
+				list: ['USD', 'CYN', 'Руб'],
 				value: 'USD',
 				onChange: value => addonChange('currency', value, store)
 			}

@@ -62,8 +62,6 @@ class BasicRequest {
     }
     editPg(object) {
         var doc = JSON.stringify(object)
-        console.log("object", object)
-        console.log("doc", doc)
         var requestString = `UPDATE ${this.name} SET doc = '${doc}' WHERE id = ${object.id} RETURNING id, doc`
 
         return new Promise((resolve, reject) => {
@@ -119,6 +117,7 @@ class BasicRequest {
         })
     }
     searchAll(object) {
+        console.log(this.name)
         var requestString = `SELECT * FROM ${this.name} WHERE`
         for(var name in object.filterField) {
             if(object.filterField[name] != '' && object.filterField[name] != 'all') {
@@ -130,11 +129,27 @@ class BasicRequest {
                 if (err) {
                     reject(errorRequest)
                 } else {
+                    console.log('SA:', res.rows)
                     resolve(res.rows)
                 }
             })
         })
     }
+
+    searchAll2(object) {
+        var requestString = `SELECT * FROM ${this.name}`
+        return new Promise(function(resolve, reject) {
+            db.query(requestString, (err, res) => {
+                if (err) {
+                    reject(errorRequest)
+                } else {
+                    console.log(res.rows)
+                    resolve(res.rows)
+                }
+            })
+        })
+    }
+
     searchCount(object) {
         var requestString = `SELECT count(*) FROM ${this.name} WHERE (doc::text) ILIKE '%${object.fullSearch}%'`;
         for(var name in object.filterField) {

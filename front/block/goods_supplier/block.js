@@ -34,13 +34,6 @@ class GoodsSupplierBlock extends React.Component {
             <div>
                 <ModalView />
                 <ModalForm />
-                <div style={{height: '50px'}}>
-                    <Button style={{float: 'right', marginLeft: '20px'}} 
-                            onClick={() => this.self('newForm')}
-                            type="primary">
-                            Новый поставщик
-                    </Button>
-                </div>
                 <List />
             </div>
 		)

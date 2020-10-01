@@ -7,7 +7,7 @@ import fetchDelete from '../../../common/fetch_delete'
 const block = 'calculation'
 
 export function addReq(requestObject) {
-    return new Promise(function(resolve, reject) {
+    return new Promise(function(resolve, reject){
         fetchPost(`${URL}/${block}_add`, requestObject).then((response) => {
             if(response.status == 200) {
                 response.json().then((data) => {

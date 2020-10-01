@@ -65,7 +65,6 @@ class FormElem extends React.Component {
     }
 
     addOpenLink(data){
-        //console.log(data)
         var {value, onChange} = data.elem
         const {enterButton, textError} = data.options
 
@@ -75,12 +74,9 @@ class FormElem extends React.Component {
     }
 
     addSelect(data){
-        //var sel = {defaultValue:data.elem.defaultValue, onChange:data.elem.onChange, name:data.elem.name}    
-        //var sel = {...data.elem}
         var {list, items, value, onChange} = data.elem
         
         if(list){
-            console.log(value)
             return <Select onChange={value => onChange(value)} value={value}>
                 {            
                     

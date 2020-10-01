@@ -3,10 +3,11 @@ import moment from 'moment'
 import { blockScheme } from './scheme.js'
 import formValidate from '../../../common/form_validate'
 import observeModel from '../../../common/observe_model'
+import getCourse from '../../../common/getCourses'
 import Basic from '../../../pattern/basic'
 
 
-import { editOptionsReq, getOptionsReq } from './request'
+import { editOptionsReq, getOptionsReq, editOptionsCoursesReq } from './request'
 
 // import ListStore from '../list/store'
 // import treeStore from '../tree/store'
@@ -31,8 +32,8 @@ class PageStore extends Basic {
     formModel() {
         return {
             id: 1,
-            courseUSD: 0,
-            courseCNY: 0,
+            courseUSD: getCourse('USD'),
+            courseCNY: getCourse('RUB'),
             fast_time: 0,
             fast_rate: 0,
             fast_сommission: 0,
@@ -60,7 +61,6 @@ class PageStore extends Basic {
     @action addSuccess(data) {
         this.messageSuccess('Настройки сохранены!')
     }
-
     @action editForm() {
         editOptionsReq(this.model).then(data => {
             this.addSuccess(data)

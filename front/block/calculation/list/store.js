@@ -27,6 +27,7 @@ class ListStore extends Basic {
     }
 
     @action setIdGoodsSupplier(id) {
+        console.log(id)
         this.requestObject.filterField.goods_supplier_id = id
         this.getList()
     }

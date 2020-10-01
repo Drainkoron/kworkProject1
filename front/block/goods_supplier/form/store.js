@@ -30,7 +30,6 @@ class FormStore extends Basic {
     formModel() {
         return {
             id: false,
-            goods_id: GoodsFormStore.model.id,
             supplier: '',
             country: '',
             url: '',

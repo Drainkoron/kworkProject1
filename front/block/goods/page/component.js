@@ -30,7 +30,6 @@ import Avatar from '../../../common/element/avatar'
 
 import GoodsSupplierBlock from '../../goods_supplier/block'
 
-
 @inject("goodsStore") @observer
 class Page extends React.Component {
 	constructor(props) {
